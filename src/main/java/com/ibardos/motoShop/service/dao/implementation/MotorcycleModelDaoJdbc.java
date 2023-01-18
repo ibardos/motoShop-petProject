@@ -48,7 +48,7 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
     @Override
     public MotorcycleModel get(int id) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM motorcycle_model WHERE id = ?";
+            String sql = "SELECT id, manufacturer_id, model_name, model_year, weight, displacement, horse_power, top_speed, gearbox, fuel_capacity, fuel_consumption_per_100kms, motorcycle_model_type FROM motorcycle_model WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -67,7 +67,7 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
     @Override
     public List<MotorcycleModel> getAll() {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM motorcycle_model ORDER BY id";
+            String sql = "SELECT id, manufacturer_id, model_name, model_year, weight, displacement, horse_power, top_speed, gearbox, fuel_capacity, fuel_consumption_per_100kms, motorcycle_model_type FROM motorcycle_model ORDER BY id";
             ResultSet rs = connection.createStatement().executeQuery(sql);
 
             // Test if query returns a valid set of data from DB. If not, return null.

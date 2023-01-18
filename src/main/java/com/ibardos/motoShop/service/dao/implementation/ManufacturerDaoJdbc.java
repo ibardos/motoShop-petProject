@@ -46,7 +46,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
     @Override
     public Manufacturer get(int id) {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM manufacturer WHERE id = ?";
+            String sql = "SELECT id, name, country, partner_since FROM manufacturer WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
@@ -68,7 +68,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
     @Override
     public List<Manufacturer> getAll() {
         try (Connection connection = dataSource.getConnection()) {
-            String sql = "SELECT * FROM manufacturer ORDER BY id";
+            String sql = "SELECT id, name, country, partner_since FROM manufacturer ORDER BY id";
             ResultSet rs = connection.createStatement().executeQuery(sql);
 
             // Test if query returns a valid set of data from DB. If not, return null.
