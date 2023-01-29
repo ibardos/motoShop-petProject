@@ -10,6 +10,9 @@ import MotorcycleModel from "./pages/motorcycles/MotorcycleModel";
 import MotorcycleStock from "./pages/motorcycles/MotorcycleStock";
 import NoPage from "./pages/NoPage";
 
+// Style imports
+import "./index.css";
+
 export default function App() {
     return (
         <BrowserRouter>
