@@ -15,6 +15,7 @@ const Layout = () => {
             <div className={"content"}>
                 <Outlet/>
             </div>
+            <Footer />
         </>
     )
 };
@@ -36,6 +37,15 @@ const Header = () => {
         </Navbar>
     )
 }
+
+const Footer = () => {
+    return (
+        <>
+            <footer>
+                <span>Created by ibardos => <a href="https://github.com/ibardos">GitHub profile.</a></span>
+            </footer>
+        </>
+    )
 }
 
 export default Layout;
