@@ -1,6 +1,10 @@
 
 const Layout = () => {
     return (
+        <>
+            <div className={"content"}>
+                <Outlet/>
+        </>
     )
 };
 
