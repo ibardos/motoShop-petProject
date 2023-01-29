@@ -1,5 +1,5 @@
 import Table from "react-bootstrap";
-import useState from "react";
+import {useEffect, useState} from "react";
 const Manufacturers = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
