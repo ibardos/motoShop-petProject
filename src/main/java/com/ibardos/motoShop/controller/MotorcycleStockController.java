@@ -83,7 +83,7 @@ public class MotorcycleStockController {
      * @param id of the MotorcycleStock to delete, passed by path variable.
      */
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable int id) {
         MotorcycleStock motorcycleStock = motorcycleStockDao.get(id);
 
