@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 
 import StripedTable from "../components/shared/table/StripedTable";
 import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
+import ManufacturerUpdateModal from "../components/manufacturers/ManufacturerUpdateModal";
 
 import {fetchData} from "../util/fetchData";
 
@@ -85,6 +86,10 @@ const Manufacturers = () => {
 
             <ManufacturerAddModal setFormSubmit={setFormSubmit} show={addModalShow} setAddModalShow={setAddModalShow}
                                   onHide={() => setAddModalShow(false)}/>
+
+            <ManufacturerUpdateModal manufacturers={manufacturers} recordId={recordId} setFormSubmit={setFormSubmit}
+                                     show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
+                                     onHide={() => setUpdateModalShow(false)}/>
 
         </>
     )
