@@ -1,5 +1,9 @@
 import {useEffect, useState} from "react";
 import StripedTable from "../components/shared/table/StripedTable";
+
+import {fetchData} from "../util/fetchData";
+
+
 const Manufacturers = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -11,8 +15,7 @@ const Manufacturers = () => {
 
     // Fetching data
     useEffect(() => {
-        fetch("manufacturer/get/all")
-            .then(res => res.json())
+        fetchData("manufacturer/get/all")
             .then(
                 (result) => {
                     setIsLoaded(true);
