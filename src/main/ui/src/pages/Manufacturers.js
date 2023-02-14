@@ -4,7 +4,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {FormControl} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
 import StripedTable from "../components/shared/table/StripedTable";
+import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
 
 import {fetchData} from "../util/fetchData";
 
@@ -15,11 +18,16 @@ const Manufacturers = () => {
     const [error, setError] = useState(null);
     const [manufacturers, setManufacturers] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+
+    // States for Modals
+    const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
-    // Fetching data
+    // State for table re-render
+    const [formSubmit, setFormSubmit] = useState(false);
+
 
     // Table live search feature
     async function handleSearch(event) {
@@ -45,8 +53,8 @@ const Manufacturers = () => {
                     setIsLoaded(true);
                     setError(error);
                 }
-            )
-    }, [])
+            );
+    }, [formSubmit])
 
     // Check for errors during fetch data, and show loading status
     if (error) {
@@ -65,6 +73,9 @@ const Manufacturers = () => {
                         <FormControl id="search-box" type="text" onChange={async (event) => await handleSearch(event)}
                                      placeholder="Type here to filter..."/>
                     </Col>
+                    <Col xs={2}>
+                        <Button variant="secondary" onClick={() => setAddModalShow(true)}>Add new item</Button>
+                    </Col>
                 </Row>
             </Container>
 
@@ -72,6 +83,10 @@ const Manufacturers = () => {
                           setUpdateModalShow={setUpdateModalShow} setDeleteModalShow={setDeleteModalShow}/>
 
 
+            <ManufacturerAddModal setFormSubmit={setFormSubmit} show={addModalShow} setAddModalShow={setAddModalShow}
+                                  onHide={() => setAddModalShow(false)}/>
+
+        </>
     )
 }
 
