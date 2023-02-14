@@ -1,7 +1,7 @@
 const MotorcycleStock = () => {
     return (
         <>
-            <h2 className="pageTitle">Motorcycle stock</h2>
+            <h2 className="page-title">Motorcycle stock</h2>
         </>
     )
 };

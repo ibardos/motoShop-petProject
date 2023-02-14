@@ -1,20 +1,22 @@
+import {Link} from "react-router-dom";
+
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-
 import manufacturersImage from "../assets/img/home/manufacturers.jpg"
 import motorcycleImage from "../assets/img/home/motorcycles.jpg"
-import {Link} from "react-router-dom";
+
 
 const Home = () => {
     return (
         <>
-            <h2 className="pageTitle">Home</h2>
+            <h2 className="page-title">Home</h2>
             <Services />
         </>
     )
 }
+
 
 const Services = () => {
     return (
