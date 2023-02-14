@@ -9,6 +9,8 @@ import Button from "react-bootstrap/Button";
 import StripedTable from "../components/shared/table/StripedTable";
 import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
 import ManufacturerUpdateModal from "../components/manufacturers/ManufacturerUpdateModal";
+import ManufacturerDeleteModal from "../components/manufacturers/ManufacturerDeleteModal";
+import ManufacturerDeleteErrorModal from "../components/manufacturers/ManufacturerDeleteErrorModal";
 
 import {fetchData} from "../util/fetchData";
 
@@ -24,6 +26,7 @@ const Manufacturers = () => {
     const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteErrorModalShow, setDeleteErrorModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
     // State for table re-render
@@ -91,6 +94,14 @@ const Manufacturers = () => {
                                      show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
                                      onHide={() => setUpdateModalShow(false)}/>
 
+            <ManufacturerDeleteModal manufacturers={manufacturers} recordId={recordId}
+                                     setErrorModalShow={setDeleteErrorModalShow} setFormSubmit={setFormSubmit}
+                                     show={deleteModalShow} setDeleteModalShow={setDeleteModalShow}
+                                     onHide={() => setDeleteModalShow(false)}/>
+
+            <ManufacturerDeleteErrorModal manufacturers={manufacturers} recordId={recordId} show={deleteErrorModalShow}
+                                          setDeleteErrorModalShow={setDeleteErrorModalShow}
+                                          onHide={() => setDeleteErrorModalShow(false)}/>
         </>
     )
 }
