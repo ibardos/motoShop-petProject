@@ -11,7 +11,7 @@ body {
   text-align: center;
 }
 
-.pageTitle {
+.page-title {
   padding-bottom: 30px;
   color: black;
 }
@@ -34,4 +34,21 @@ a {
 
 a:hover {
   color: darkblue;
+}
+
+.modal-content {
+  background-color: lightslategray;
+  color: black;
+}
+
+.delete-modal-container {
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 0 20px 0;
+  text-align: center;
+}
+
+.delete-modal-container h4 {
+  padding-bottom: 15px;
 }

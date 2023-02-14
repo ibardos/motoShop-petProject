@@ -1,65 +1,108 @@
-import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
-const Manufacturers = () => {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [manufacturers, setManufacturers] = useState([]);
 
-    // Fetching data
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import {FormControl} from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+
+import StripedTable from "../components/shared/table/StripedTable";
+import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
+import ManufacturerUpdateModal from "../components/manufacturers/ManufacturerUpdateModal";
+import ManufacturerDeleteModal from "../components/manufacturers/ManufacturerDeleteModal";
+import ManufacturerDeleteErrorModal from "../components/manufacturers/ManufacturerDeleteErrorModal";
+
+import {fetchData} from "../util/fetchData";
+
+
+const Manufacturers = () => {
+    // States for fetched data
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
+    const [manufacturers, setManufacturers] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
+    // States for Modals
+    const [addModalShow, setAddModalShow] = useState(false);
+    const [updateModalShow, setUpdateModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteErrorModalShow, setDeleteErrorModalShow] = useState(false);
+    const [recordId, setRecordId] = useState("");
+
+    // State for table re-render
+    const [formSubmit, setFormSubmit] = useState(false);
+
+
+    // Table live search feature
+    async function handleSearch(event) {
+        setFilteredData(manufacturers.filter((item) =>
+            item.id.toString().includes(event.target.value.toLowerCase()) ||
+            item.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.country.toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.partnerSince.toString().includes(event.target.value.toLowerCase())
+        ));
+    }
+
+
+    // Fetching data for all the components of Manufacturers page
     useEffect(() => {
-        fetch("manufacturer/get/all")
-            .then(res => res.json())
+        fetchData("manufacturer/get/all")
             .then(
                 (result) => {
                     setIsLoaded(true);
                     setManufacturers(result);
+                    setFilteredData(result);
                 },
                 (error) => {
                     setIsLoaded(true);
                     setError(error);
                 }
-            )
-    }, [])
+            );
+    }, [formSubmit])
 
-    // Check errors and show loading status
+    // Check for errors during fetch data, and show loading status
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     }
 
+
     return (
         <>
-            <h2 className="pageTitle">Manufacturers</h2>
-            <ManufacturersTable manufacturers={manufacturers} />
+            <h2 className="page-title">Manufacturers</h2>
+            <Container id="search-and-add-bar">
+                <Row>
+                    <Col>
+                        <FormControl id="search-box" type="text" onChange={async (event) => await handleSearch(event)}
+                                     placeholder="Type here to filter..."/>
+                    </Col>
+                    <Col xs={2}>
+                        <Button variant="secondary" onClick={() => setAddModalShow(true)}>Add new item</Button>
+                    </Col>
+                </Row>
+            </Container>
+
+            <StripedTable originalData={manufacturers} filteredData={filteredData} setRecordId={setRecordId}
+                          setUpdateModalShow={setUpdateModalShow} setDeleteModalShow={setDeleteModalShow}/>
+
+
+            <ManufacturerAddModal setFormSubmit={setFormSubmit} show={addModalShow} setAddModalShow={setAddModalShow}
+                                  onHide={() => setAddModalShow(false)}/>
+
+            <ManufacturerUpdateModal manufacturers={manufacturers} recordId={recordId} setFormSubmit={setFormSubmit}
+                                     show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
+                                     onHide={() => setUpdateModalShow(false)}/>
+
+            <ManufacturerDeleteModal manufacturers={manufacturers} recordId={recordId}
+                                     setErrorModalShow={setDeleteErrorModalShow} setFormSubmit={setFormSubmit}
+                                     show={deleteModalShow} setDeleteModalShow={setDeleteModalShow}
+                                     onHide={() => setDeleteModalShow(false)}/>
+
+            <ManufacturerDeleteErrorModal manufacturers={manufacturers} recordId={recordId} show={deleteErrorModalShow}
+                                          setDeleteErrorModalShow={setDeleteErrorModalShow}
+                                          onHide={() => setDeleteErrorModalShow(false)}/>
         </>
-    )
-};
-
-const ManufacturersTable = (props) => {
-
-
-    return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Partner since</th>
-            </tr>
-            </thead>
-            <tbody>
-            {props.manufacturers.map(m => (
-                <tr key={m.id}>
-                    <td>{m.id}</td>
-                    <td>{m.name}</td>
-                    <td>{m.country}</td>
-                    <td>{m.partnerSince}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
     )
 }
 

@@ -1,12 +1,14 @@
 import {Outlet, Link} from "react-router-dom";
-import logo from "../assets/img/shared/motoShop_logo_forNavbar.png";
-import "../index.css";
 
 // Navbar related imports
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Image} from "react-bootstrap";
+
+import logo from "../assets/img/shared/motoShop_logo_forNavbar.png";
+import "../index.css";
+
 
 const Layout = () => {
     return (
@@ -19,6 +21,7 @@ const Layout = () => {
         </>
     )
 };
+
 
 const Header = () => {
     return (
@@ -37,6 +40,7 @@ const Header = () => {
         </Navbar>
     )
 }
+
 
 const Footer = () => {
     return (

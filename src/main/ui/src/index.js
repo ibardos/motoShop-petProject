@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Page imports
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Manufacturers from "./pages/Manufacturers";
@@ -10,8 +9,8 @@ import MotorcycleModel from "./pages/motorcycles/MotorcycleModel";
 import MotorcycleStock from "./pages/motorcycles/MotorcycleStock";
 import NoPage from "./pages/NoPage";
 
-// Style imports
 import "./index.css";
+
 
 export default function App() {
     return (
