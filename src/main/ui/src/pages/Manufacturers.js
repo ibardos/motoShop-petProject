@@ -1,9 +1,13 @@
-import {Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import StripedTable from "../components/shared/table/StripedTable";
 const Manufacturers = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [manufacturers, setManufacturers] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [updateModalShow, setUpdateModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [recordId, setRecordId] = useState("");
 
     // Fetching data
     useEffect(() => {
@@ -36,30 +40,10 @@ const Manufacturers = () => {
     )
 };
 
-const ManufacturersTable = (props) => {
+            <StripedTable originalData={manufacturers} filteredData={filteredData} setRecordId={setRecordId}
+                          setUpdateModalShow={setUpdateModalShow} setDeleteModalShow={setDeleteModalShow}/>
 
 
-    return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Partner since</th>
-            </tr>
-            </thead>
-            <tbody>
-            {props.manufacturers.map(m => (
-                <tr key={m.id}>
-                    <td>{m.id}</td>
-                    <td>{m.name}</td>
-                    <td>{m.country}</td>
-                    <td>{m.partnerSince}</td>
-                </tr>
-            ))}
-            </tbody>
-        </Table>
     )
 }
 
