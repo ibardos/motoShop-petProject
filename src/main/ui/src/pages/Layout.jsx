@@ -6,7 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Image} from "react-bootstrap";
 
-import logo from "../assets/img/shared/motoShop_logo_forNavbar.png";
+import logo from "../assets/img/shared/motoShopLogoForNavbar.png";
 import "../index.css";
 
 
