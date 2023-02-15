@@ -16,7 +16,7 @@ CREATE TABLE manufacturer
 CREATE TABLE motorcycle_model
 (
     id SERIAL PRIMARY KEY,
-    manufacturer_id INTEGER REFERENCES manufacturer(id),
+    manufacturer_id INTEGER REFERENCES manufacturer(id) ON DELETE CASCADE,
     model_name VARCHAR(40) NOT NULL,
     model_year INTEGER NOT NULL,
     weight INTEGER NOT NULL,
