@@ -60,6 +60,7 @@ VALUES ((SELECT id FROM manufacturer WHERE name = 'BMW'), 'R 1250 GS Adventure',
        ((SELECT id FROM manufacturer WHERE name = 'Honda'), 'CRF 1000L Africa Twin DCT', '2023', '226', '1084', '101', '214', '6', '18.1', '4.90', 'TOURING_ENDURO'),
        ((SELECT id FROM manufacturer WHERE name = 'Husqvarna'), '701 SM', '2022', '156', '693', '74', '201', '6', '13.0', '4.05', 'SUPERMOTO'),
        ((SELECT id FROM manufacturer WHERE name = 'KTM'), '1290 Super Adventure S', '2023', '245', '1301', '160', '228', '6', '23.0', '5.70', 'TOURING_SPORT'),
+       ((SELECT id FROM manufacturer WHERE name = 'MV Agusta'), 'Turismo Veloce 800 Lusso', '2023', '192', '798', '110', '230', '6', '21.5', '5.50', 'TOURING_SPORT'),
        ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'DR-Z 400 SM', '2005', '126', '439', '62', '148', '5', '10.0', '4.20', 'SUPERMOTO'),
        ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'V-Strom 1050DE Adventure', '2023', '252', '1037', '100', '189', '6', '20.0', '3.99', 'TOURING_ENDURO'),
        ((SELECT id FROM manufacturer WHERE name = 'Yamaha'), 'YZF-R1 M', '2023', '204', '998', '200', '301', '6', '17.0', '7.13', 'SUPERSPORT')
