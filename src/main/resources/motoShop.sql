@@ -46,7 +46,7 @@ CREATE TABLE motorcycle_stock
 ---------- Insert data ----------
 INSERT INTO manufacturer (name, country, partner_since)
 VALUES ('BMW', 'Germany', '2002-06-01'),
-       ('Honda', 'Italy', '2008-01-01'),
+       ('Honda', 'Japan', '2008-01-01'),
        ('Husqvarna', 'Sweden', '2016-01-01'),
        ('KTM', 'Austria', '2002-06-01'),
        ('MV Agusta', 'Italy', '2023-01-01'),
