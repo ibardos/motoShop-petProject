@@ -1,6 +1,4 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Manufacturers from "./pages/Manufacturers";
@@ -9,10 +7,8 @@ import MotorcycleModel from "./pages/motorcycles/MotorcycleModel";
 import MotorcycleStock from "./pages/motorcycles/MotorcycleStock";
 import NoPage from "./pages/NoPage";
 
-import "./index.css";
 
-
-export default function App() {
+const App = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -31,5 +27,4 @@ export default function App() {
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+export default App;
