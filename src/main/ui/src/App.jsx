@@ -1,4 +1,7 @@
+import {StrictMode} from "react";
+
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Manufacturers from "./pages/Manufacturers";
@@ -6,7 +9,6 @@ import Motorcycles from "./pages/motorcycles/Motorcycles";
 import MotorcycleModel from "./pages/motorcycles/MotorcycleModel";
 import MotorcycleStock from "./pages/motorcycles/MotorcycleStock";
 import NoPage from "./pages/NoPage";
-import {StrictMode} from "react";
 
 
 const App = () => {
