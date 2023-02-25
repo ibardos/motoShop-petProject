@@ -10,6 +10,7 @@ import StripedTable from "../../components/shared/table/StripedTable";
 import MotorcycleModelAddModal from "../../components/motorcycleModel/MotorcycleModelAddModal";
 import MotorcycleModelUpdateModal from "../../components/motorcycleModel/MotorcycleModelUpdateModal";
 import MotorcycleModelDeleteModal from "../../components/motorcycleModel/MotorcycleModelDeleteModal";
+import MotorcycleModelDeleteErrorModal from "../../components/motorcycleModel/MotorcycleModelDeleteErrorModal";
 
 import {fetchData} from "../../util/fetchData";
 
@@ -25,6 +26,7 @@ const MotorcycleModel = () => {
     const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteErrorModalShow, setDeleteErrorModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
     // State for table re-render
@@ -105,6 +107,9 @@ const MotorcycleModel = () => {
                                      show={deleteModalShow} setDeleteModalShow={setDeleteModalShow}
                                      onHide={() => setDeleteModalShow(false)}/>
 
+            <MotorcycleModelDeleteErrorModal motorcycleModels={motorcycleModels} recordId={recordId} show={deleteErrorModalShow}
+                                          setDeleteErrorModalShow={setDeleteErrorModalShow}
+                                          onHide={() => setDeleteErrorModalShow(false)}/>
         </>
     )
 };
