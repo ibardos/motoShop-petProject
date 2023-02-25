@@ -76,7 +76,7 @@ const AddForm = (props) => {
                                 await handleSubmit(event);
                                 props.setAddModalShow(false);
                             }
-                        }}>Update</Button>
+                        }}>Add</Button>
             </div>
         </Form>
     )
