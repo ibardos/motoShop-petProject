@@ -62,4 +62,8 @@ a:hover {
   border-radius: 7px;
 }
 
+.formErrorText {
+  margin-left: 12px;
+  margin-bottom: 12px;
+  color: darkred;
 }
