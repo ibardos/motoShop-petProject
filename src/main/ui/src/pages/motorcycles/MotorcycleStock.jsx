@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import StripedTable from "../../components/shared/table/StripedTable";
 import MotorcycleStockAddModal from "../../components/motorcycleStock/MotorcycleStockAddModal";
 import MotorcycleStockUpdateModal from "../../components/motorcycleStock/MotorcycleStockUpdateModal";
+import MotorcycleStockDeleteModal from "../../components/motorcycleStock/MotorcycleStockDeleteModal";
 
 import {fetchData} from "../../util/fetchData";
 
@@ -23,6 +24,7 @@ const MotorcycleStock = () => {
     // States for Modals
     const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
+    const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
     // State for table re-render
@@ -96,6 +98,10 @@ const MotorcycleStock = () => {
                                         show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
                                         onHide={() => setUpdateModalShow(false)}/>
 
+            <MotorcycleStockDeleteModal motorcycleStocks={motorcycleStocks} recordId={recordId}
+                                        setFormSubmit={setFormSubmit} show={deleteModalShow}
+                                        setDeleteModalShow={setDeleteModalShow}
+                                        onHide={() => setDeleteModalShow(false)}/>
         </>
     )
 };
