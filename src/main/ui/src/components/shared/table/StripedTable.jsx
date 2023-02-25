@@ -6,14 +6,20 @@ import TableTitles from "./TableTitles";
 
 const StripedTable = (props) => {
     return (
-        <Table striped bordered hover variant="dark">
-            <thead>
-            <tr>
-                <TableTitles originalData={props.originalData} />
-            </tr>
-            </thead>
-            <TableContent filteredData={props.filteredData} setRecordId={props.setRecordId} setUpdateModalShow={props.setUpdateModalShow} setDeleteModalShow={props.setDeleteModalShow} />
-        </Table>
+        <>
+            <Table responsive striped bordered hover variant="dark">
+                <thead>
+                <tr>
+                    <TableTitles originalData={props.originalData}/>
+                </tr>
+                </thead>
+                <TableContent filteredData={props.filteredData} setRecordId={props.setRecordId}
+                              setUpdateModalShow={props.setUpdateModalShow}
+                              setDeleteModalShow={props.setDeleteModalShow}/>
+            </Table>
+
+            <p style={{textAlign: "center"}}>*Responsive table. Scroll horizontally if needed.</p>
+        </>
     )
 }
 

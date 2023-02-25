@@ -21,7 +21,7 @@ table {
 }
 
 footer {
-  position: fixed;
+  position: static;
   left: 0;
   bottom: 10px;
   width: 100%;
@@ -36,6 +36,8 @@ a:hover {
   color: darkblue;
 }
 
+
+/* Modal specific styles */
 .modal-content {
   background-color: lightslategray;
   color: black;
@@ -51,4 +53,17 @@ a:hover {
 
 .delete-modal-container h4 {
   padding-bottom: 15px;
+}
+
+.modal-content select {
+  width: 386px;
+  height: 38px;
+  padding: 6px 12px 6px 12px;
+  border-radius: 7px;
+}
+
+.formErrorText {
+  margin-left: 12px;
+  margin-bottom: 12px;
+  color: darkred;
 }
