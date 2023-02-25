@@ -152,7 +152,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="modelName"
                                       placeholder="DR-Z 400 SM"
-                                      value={values.modelName}
+                                      defaultValue={values.modelName}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.modelName}
@@ -164,7 +164,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="modelYear"
                                       placeholder="2005"
-                                      value={values.modelYear}
+                                      defaultValue={values.modelYear}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.modelYear}
@@ -178,7 +178,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="weight"
                                       placeholder="126"
-                                      value={values.weight}
+                                      defaultValue={values.weight}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.weight}
@@ -190,7 +190,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="displacement"
                                       placeholder="439"
-                                      value={values.displacement}
+                                      defaultValue={values.displacement}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.displacement}
@@ -202,7 +202,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="horsePower"
                                       placeholder="62"
-                                      value={values.horsePower}
+                                      defaultValue={values.horsePower}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.horsePower}
@@ -214,7 +214,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="topSpeed"
                                       placeholder="148"
-                                      value={values.topSpeed}
+                                      defaultValue={values.topSpeed}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.topSpeed}
@@ -226,7 +226,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="gearbox"
                                       placeholder="5"
-                                      value={values.gearbox}
+                                      defaultValue={values.gearbox}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.gearbox}
@@ -238,7 +238,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="fuelCapacity"
                                       placeholder="10.0"
-                                      value={values.fuelCapacity}
+                                      defaultValue={values.fuelCapacity}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.fuelCapacity}
@@ -250,7 +250,7 @@ const UpdateForm = (props) => {
                         <Form.Control type="text"
                                       name="fuelConsumption"
                                       placeholder="4.2"
-                                      value={values.fuelConsumption}
+                                      defaultValue={values.fuelConsumption}
                                       onChange={handleChange}
                                       onBlur={handleBlur}
                                       isValid={!errors.fuelConsumption}
