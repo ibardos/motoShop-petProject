@@ -14,9 +14,9 @@ const ManufacturerAddModal = (props) => {
 
 
 const AddForm = (props) => {
-    const [modalName, setModalName] = useState("");
-    const [modalCountry, setModalCountry] = useState("");
-    const [modalPartnerSince, setModalPartnerSince] = useState("");
+    const [name, setName] = useState("");
+    const [country, setCountry] = useState("");
+    const [partnerSince, setPartnerSince] = useState("");
     const [incompleteFormAlert, setIncompleteFormAlert] = useState("");
 
     const currentDate = new Date().toJSON().slice(0, 10);
@@ -28,9 +28,9 @@ const AddForm = (props) => {
         const url = "manufacturer/add";
 
         const requestBody = {
-            "name": modalName,
-            "country": modalCountry,
-            "partnerSince": modalPartnerSince ? modalPartnerSince : currentDate
+            "name": name,
+            "country": country,
+            "partnerSince": partnerSince ? partnerSince : currentDate
         }
 
         const options = {
@@ -49,20 +49,20 @@ const AddForm = (props) => {
             <Form.Group className="mb-3" controlId="formTextareaName">
                 <Form.Label>Manufacturer name<span style={{color: "red"}}>*</span></Form.Label>
                 <Form.Control type="text" name="name" placeholder="Name"
-                              onChange={(event) => setModalName(event.target.value)}/>
+                              onChange={(event) => setName(event.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formTextareaCountry">
                 <Form.Label>Country of origin<span style={{color: "red"}}>*</span></Form.Label>
                 <Form.Control type="text" name="country" placeholder="Country"
-                              onChange={(event) => setModalCountry(event.target.value)}/>
+                              onChange={(event) => setCountry(event.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDatePartnerSince">
                 <Form.Label>Partner since</Form.Label>
                 <Form.Control type="text" onFocus={(event) => (event.target.type = "date")}
                               onBlur={(event) => (event.target.type = "text")} defaultValue={currentDate}
-                              name="partnerSince" onChange={(event) => setModalPartnerSince(event.target.value)}/>
+                              name="partnerSince" onChange={(event) => setPartnerSince(event.target.value)}/>
             </Form.Group>
 
             <p style={{fontWeight: "bold", textAlign: "center"}}>{incompleteFormAlert}</p>
@@ -70,7 +70,7 @@ const AddForm = (props) => {
             <div style={{display: "flex", justifyContent: "center"}}>
                 <Button type="button" variant="secondary" style={{paddingInline: "30px"}}
                         onClick={async (event) => {
-                            if (!modalName || !modalCountry) {
+                            if (!name || !country) {
                                 setIncompleteFormAlert("Name and Country fields are both mandatory!");
                             } else {
                                 await handleSubmit(event);
