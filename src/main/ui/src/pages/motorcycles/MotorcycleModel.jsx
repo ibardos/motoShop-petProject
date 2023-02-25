@@ -36,23 +36,23 @@ const MotorcycleModel = () => {
     // Table live search feature
     async function handleSearch(event) {
         setFilteredData(motorcycleModels.filter((item) =>
-            item.id.toString().includes(event.target.value.toLowerCase()) ||
+            item.id.toString().includes(event.target.value) ||
             item.manufacturer.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
-            item.modelName.toString().includes(event.target.value.toLowerCase()) ||
-            item.modelYear.toString().includes(event.target.value.toLowerCase()) ||
-            item.weight.toString().includes(event.target.value.toLowerCase()) ||
-            item.displacement.toString().includes(event.target.value.toLowerCase()) ||
-            item.horsePower.toString().includes(event.target.value.toLowerCase()) ||
-            item.topSpeed.toString().includes(event.target.value.toLowerCase()) ||
-            item.gearbox.toString().includes(event.target.value.toLowerCase()) ||
-            item.fuelCapacity.toString().includes(event.target.value.toLowerCase()) ||
-            item.fuelConsumptionPer100Kms.toString().includes(event.target.value.toLowerCase()) ||
+            item.modelName.toLowerCase().includes(event.target.value.toLowerCase()) ||
+            item.modelYear.toString().includes(event.target.value) ||
+            item.weight.toString().includes(event.target.value) ||
+            item.displacement.toString().includes(event.target.value) ||
+            item.horsePower.toString().includes(event.target.value) ||
+            item.topSpeed.toString().includes(event.target.value) ||
+            item.gearbox.toString().includes(event.target.value) ||
+            item.fuelCapacity.toString().includes(event.target.value) ||
+            item.fuelConsumptionPer100Kms.toString().includes(event.target.value) ||
             item.motorcycleModelType.toLowerCase().includes(event.target.value.toLowerCase())
         ));
     }
 
 
-    // Fetching data for all the components of Manufacturers page
+    // Fetching data for all the components of Motorcycle model page
     useEffect(() => {
         fetchData("/motorcycle/model/get/all")
             .then(
