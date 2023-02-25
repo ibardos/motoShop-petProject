@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 
 import StripedTable from "../../components/shared/table/StripedTable";
 import MotorcycleModelAddModal from "../../components/motorcycleModel/MotorcycleModelAddModal";
+import MotorcycleModelUpdateModal from "../../components/motorcycleModel/MotorcycleModelUpdateModal";
 
 import {fetchData} from "../../util/fetchData";
 
@@ -21,6 +22,8 @@ const MotorcycleModel = () => {
 
     // States for Modals
     const [addModalShow, setAddModalShow] = useState(false);
+    const [updateModalShow, setUpdateModalShow] = useState(false);
+    const [recordId, setRecordId] = useState("");
 
     // State for table re-render
     const [formSubmit, setFormSubmit] = useState(false);
@@ -90,6 +93,10 @@ const MotorcycleModel = () => {
 
             <MotorcycleModelAddModal setFormSubmit={setFormSubmit} show={addModalShow} setAddModalShow={setAddModalShow}
                                   onHide={() => setAddModalShow(false)}/>
+
+            <MotorcycleModelUpdateModal motorcycleModels={motorcycleModels} recordId={recordId} setFormSubmit={setFormSubmit}
+                                     show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
+                                     onHide={() => setUpdateModalShow(false)}/>
 
         </>
     )
