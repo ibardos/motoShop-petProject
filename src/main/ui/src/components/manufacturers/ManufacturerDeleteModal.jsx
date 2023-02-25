@@ -12,7 +12,7 @@ const ManufacturerDeleteModal = (props) => {
                                setDeleteModalShow={props.setDeleteModalShow}/>
     );
 
-    return <CrudModal show={props.show} onHide={props.onHide} title="Delete manufacturer" body={modalBody} />
+    return <CrudModal show={props.show} onHide={props.onHide} title="Delete Manufacturer" body={modalBody} />
 }
 
 
@@ -28,7 +28,7 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `manufacturer/delete/${currentRecord.id}`;
+        const url = `/manufacturer/delete/${currentRecord.id}`;
 
         const options = {
             method: "DELETE",

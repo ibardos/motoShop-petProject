@@ -12,14 +12,14 @@ const ManufacturerUpdateModal = (props) => {
                     setUpdateModalShow={props.setUpdateModalShow}/>
     );
 
-    return <CrudModal show={props.show} onHide={props.onHide} title="Update manufacturer" body={modalBody} />
+    return <CrudModal show={props.show} onHide={props.onHide} title="Update Manufacturer" body={modalBody} />
 }
 
 
 const UpdateForm = (props) => {
-    const [modalName, setModalName] = useState("");
-    const [modalCountry, setModalCountry] = useState("");
-    const [modalPartnerSince, setModalPartnerSince] = useState("");
+    const [name, setName] = useState("");
+    const [country, setCountry] = useState("");
+    const [partnerSince, setPartnerSince] = useState("");
 
     const [currentRecord, setCurrentRecord] = useState({});
 
@@ -32,13 +32,13 @@ const UpdateForm = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "manufacturer/update";
+        const url = "/manufacturer/update";
 
         const requestBody = {
             "id": currentRecord.id,
-            "name": modalName ? modalName : currentRecord.name,
-            "country": modalCountry ? modalCountry : currentRecord.country,
-            "partnerSince": modalPartnerSince ? modalPartnerSince : currentRecord.partnerSince
+            "name": name ? name : currentRecord.name,
+            "country": country ? country : currentRecord.country,
+            "partnerSince": partnerSince ? partnerSince : currentRecord.partnerSince
         }
 
         const options = {
@@ -47,7 +47,7 @@ const UpdateForm = (props) => {
             body: JSON.stringify(requestBody),
         }
 
-        if (modalName || modalCountry || modalPartnerSince) {
+        if (name || country || partnerSince) {
             await fetch(url, options);
             props.setFormSubmit(old => !old);
         }
@@ -59,13 +59,13 @@ const UpdateForm = (props) => {
             <Form.Group className="mb-3" controlId="formTextareaName">
                 <Form.Label>Manufacturer name</Form.Label>
                 <Form.Control type="text" name="name" defaultValue={currentRecord.name}
-                              onChange={(event) => setModalName(event.target.value)}/>
+                              onChange={(event) => setName(event.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formTextareaCountry">
                 <Form.Label>Country of origin</Form.Label>
                 <Form.Control type="text" name="country" defaultValue={currentRecord.country}
-                              onChange={(event) => setModalCountry(event.target.value)}/>
+                              onChange={(event) => setCountry(event.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formDatePartnerSince">
@@ -73,7 +73,7 @@ const UpdateForm = (props) => {
                 <Form.Control type="text" onFocus={(event) => (event.target.type = "date")}
                               onBlur={(event) => (event.target.type = "text")}
                               defaultValue={currentRecord.partnerSince}
-                              name="partnerSince" onChange={(event) => setModalPartnerSince(event.target.value)}/>
+                              name="partnerSince" onChange={(event) => setPartnerSince(event.target.value)}/>
             </Form.Group>
 
             <div style={{display: "flex", justifyContent: "center"}}>
