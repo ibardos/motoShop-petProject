@@ -36,10 +36,10 @@ const Manufacturers = () => {
     // Table live search feature
     async function handleSearch(event) {
         setFilteredData(manufacturers.filter((item) =>
-            item.id.toString().includes(event.target.value.toLowerCase()) ||
+            item.id.toString().includes(event.target.value) ||
             item.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
             item.country.toLowerCase().includes(event.target.value.toLowerCase()) ||
-            item.partnerSince.toString().includes(event.target.value.toLowerCase())
+            item.partnerSince.toString().includes(event.target.value)
         ));
     }
 
