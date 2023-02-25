@@ -47,7 +47,7 @@ const UpdateForm = (props) => {
 
         const requestBody = {
             "id": currentRecord.id,
-            "manufacturer": values.manufacturerName ? manufacturers.find(manufacturer => manufacturer.name === values.manufacturerName) : currentManufacturer.name,
+            "manufacturer": values.manufacturerName ? manufacturers.find(manufacturer => manufacturer.name === values.manufacturerName) : currentManufacturer,
             "modelName": values.modelName ? values.modelName : currentRecord.modelName,
             "modelYear": values.modelYear ? values.modelYear : currentRecord.modelYear,
             "weight": values.weight ? values.weight : currentRecord.weight,
