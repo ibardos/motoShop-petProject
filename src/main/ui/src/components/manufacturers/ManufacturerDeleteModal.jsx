@@ -12,7 +12,7 @@ const ManufacturerDeleteModal = (props) => {
                                setDeleteModalShow={props.setDeleteModalShow}/>
     );
 
-    return <CrudModal show={props.show} onHide={props.onHide} title="Delete manufacturer" body={modalBody} />
+    return <CrudModal show={props.show} onHide={props.onHide} title="Delete Manufacturer" body={modalBody} />
 }
 
 

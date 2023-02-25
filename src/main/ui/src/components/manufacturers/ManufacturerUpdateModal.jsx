@@ -12,7 +12,7 @@ const ManufacturerUpdateModal = (props) => {
                     setUpdateModalShow={props.setUpdateModalShow}/>
     );
 
-    return <CrudModal show={props.show} onHide={props.onHide} title="Update manufacturer" body={modalBody} />
+    return <CrudModal show={props.show} onHide={props.onHide} title="Update Manufacturer" body={modalBody} />
 }
 
 

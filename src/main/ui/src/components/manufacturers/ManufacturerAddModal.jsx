@@ -9,7 +9,7 @@ import CrudModal from "../shared/CrudModal";
 const ManufacturerAddModal = (props) => {
     const modalBody = (<AddForm setFormSubmit={props.setFormSubmit} setAddModalShow={props.setAddModalShow} />);
 
-    return <CrudModal show={props.show} onHide={props.onHide} title="Add new manufacturer" body={modalBody} />
+    return <CrudModal show={props.show} onHide={props.onHide} title="Add new Manufacturer" body={modalBody} />
 }
 
 
