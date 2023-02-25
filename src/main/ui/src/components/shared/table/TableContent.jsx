@@ -15,7 +15,7 @@ const TableContent = (props) => {
                     if (typeof value === "object") {
                         columnIndexer++;
                         return <td key={columnIndexer + value.name || columnIndexer + value.modelName}
-                                   style={{paddingTop: "15px"}}>{value.name || value.modelName}</td>
+                                   style={{paddingTop: "15px"}}>{value.name || value.manufacturer.name + " - " + value.modelName}</td>
                     } else {
                         columnIndexer++;
                         return <td key={columnIndexer.toString() + value.toString()} style={{paddingTop: "15px"}}>{value}</td>
