@@ -2,10 +2,12 @@ package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.model.MotorcycleModel;
 import com.ibardos.motoShop.service.dao.MotorcycleModelDao;
+import com.ibardos.motoShop.util.MotorcycleModelType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -90,5 +92,20 @@ public class MotorcycleModelController {
         if (motorcycleModel == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
         motorcycleModelDao.delete(id);
+    }
+
+    /**
+     * Gets all valid MotorcycleModel types.
+     * @return List of MotorcycleModel types as Strings.
+     */
+    @GetMapping("get/types")
+    public List<String> getMotorcycleModelTypes() {
+        List<String> modelTypes = new ArrayList<>();
+
+        for (MotorcycleModelType modelType : MotorcycleModelType.values()) {
+            modelTypes.add(String.valueOf(modelType));
+        }
+
+        return modelTypes;
     }
 }
