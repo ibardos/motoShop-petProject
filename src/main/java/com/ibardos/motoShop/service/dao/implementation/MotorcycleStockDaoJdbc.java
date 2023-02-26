@@ -4,6 +4,7 @@ import com.ibardos.motoShop.data.DatabaseManager;
 import com.ibardos.motoShop.model.MotorcycleStock;
 import com.ibardos.motoShop.service.dao.MotorcycleModelDao;
 import com.ibardos.motoShop.service.dao.MotorcycleStockDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -20,6 +21,7 @@ public class MotorcycleStockDaoJdbc implements MotorcycleStockDao {
     DataSource dataSource;
     MotorcycleModelDao motorcycleModelDao;
 
+    @Autowired
     public MotorcycleStockDaoJdbc(DatabaseManager databaseManager, MotorcycleModelDao motorcycleModelDao) {
         this.dataSource = databaseManager.dataSource;
         this.motorcycleModelDao = motorcycleModelDao;

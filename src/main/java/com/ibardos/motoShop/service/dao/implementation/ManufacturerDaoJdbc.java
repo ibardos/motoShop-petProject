@@ -3,6 +3,7 @@ package com.ibardos.motoShop.service.dao.implementation;
 import com.ibardos.motoShop.data.DatabaseManager;
 import com.ibardos.motoShop.model.Manufacturer;
 import com.ibardos.motoShop.service.dao.ManufacturerDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ManufacturerDaoJdbc implements ManufacturerDao {
     DataSource dataSource;
 
+    @Autowired
     public ManufacturerDaoJdbc(DatabaseManager databaseManager) {
         this.dataSource = databaseManager.dataSource;
     }
