@@ -32,9 +32,7 @@ const DeleteErrorInformation = (props) => {
 
             <Button type="button" variant="secondary"
                     style={{margin: 0, position: "relative", left: "40%"}}
-                    onClick={async (event) => {
-                        props.setDeleteErrorModalShow(false);
-                    }}>OK</Button>
+                    onClick={async () => {props.setDeleteErrorModalShow(false);}}>OK</Button>
         </>
     )
 }
