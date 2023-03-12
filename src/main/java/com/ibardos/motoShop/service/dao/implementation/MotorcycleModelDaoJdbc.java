@@ -1,14 +1,15 @@
 package com.ibardos.motoShop.service.dao.implementation;
 
-import com.ibardos.motoShop.data.DatabaseManager;
 import com.ibardos.motoShop.model.MotorcycleModel;
 import com.ibardos.motoShop.service.dao.ManufacturerDao;
 import com.ibardos.motoShop.service.dao.MotorcycleModelDao;
 import com.ibardos.motoShop.util.MotorcycleModelType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,8 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
     ManufacturerDao manufacturerDao;
 
     @Autowired
-    public MotorcycleModelDaoJdbc(DatabaseManager databaseManager, ManufacturerDao manufacturerDao) {
-        this.dataSource = databaseManager.dataSource;
+    public MotorcycleModelDaoJdbc(DataSource dataSource, ManufacturerDao manufacturerDao) throws SQLException {
+        this.dataSource = dataSource;
         this.manufacturerDao = manufacturerDao;
     }
 
