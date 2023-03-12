@@ -2,11 +2,16 @@ package com.ibardos.motoShop.data;
 
 import org.postgresql.ds.PGSimpleDataSource;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 import javax.sql.DataSource;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -34,5 +39,25 @@ public class DatabaseManager {
         System.out.println("Connection OK");
 
         return dataSource;
+    }
+
+    /**
+     * Initialises database with predefined tables and adds initial set of data.
+     * @throws SQLException if connection failed.
+     */
+    public static void initialiseDatabase() throws SQLException {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.scan("com.ibardos.motoShop.data");
+        context.refresh();
+
+        DataSource dataSource = (DataSource) context.getBean("DataSource");
+
+        Connection connection = dataSource.getConnection();
+
+        Resource schemaResource = new FileSystemResource("src/main/resources/schema.sql");
+        Resource dataResource = new FileSystemResource("src/main/resources/data.sql");
+
+        ScriptUtils.executeSqlScript(connection, schemaResource);
+        ScriptUtils.executeSqlScript(connection, dataResource);
     }
 }
