@@ -4,7 +4,7 @@
 The project is currently under development, with a functional Java back-end server, to which a React front-end user-interface is connected. Java back-end is using JDBC, a low level persistence technology for database manipulation, and communicating via REST APIs. During the following iterations, JDBC will be changed to a JPA implementation, to experience such an issue in the underlying technology.
 
 **The aim of the project:** During the development, I would like to learn the proper usage of JDBC, a low level interface for
-relational databse management, compared to an ORM. It is also a good opportunity to practice building REST APIs with Java Spring,
+relational database management, compared to an ORM. It is also a good opportunity to practice building REST APIs with Java Spring,
 practice React, use SQL, and to properly design a relational database in accordance with object-oriented Java code,
 to avoid object-relational impedance mismatch. At a later iteration, I would like to gather further experience by switching JBDC to ORM, while proper unit test coverage should help a clear alteration.
 
@@ -62,5 +62,5 @@ Front-end:
 ## Hints:
 - You can create a Postgre SQL database in your terminal, but I recommend to use <a href="https://www.pgadmin.org/download/">"pgAdmin 4"</a> if you prefer to use a GUI.
 - You can download Postman from the link above, if you haven't already.
-- Create a compound in your IDE to be able to run back-end and front-end servers simultanously with a push of a button
+- Create a compound in your IDE to be able to run back-end and front-end servers simultaneously with a push of a button
 - If you don't understand something, Google it, or feel free to contact me.
