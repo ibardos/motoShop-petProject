@@ -20,7 +20,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
     DataSource dataSource;
 
     @Autowired
-    public ManufacturerDaoJdbc(DataSource dataSource) throws SQLException {
+    public ManufacturerDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

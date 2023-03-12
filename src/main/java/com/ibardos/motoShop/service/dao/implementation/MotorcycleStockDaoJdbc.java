@@ -23,7 +23,7 @@ public class MotorcycleStockDaoJdbc implements MotorcycleStockDao {
     MotorcycleModelDao motorcycleModelDao;
 
     @Autowired
-    public MotorcycleStockDaoJdbc(DataSource dataSource, MotorcycleModelDao motorcycleModelDao) throws SQLException {
+    public MotorcycleStockDaoJdbc(DataSource dataSource, MotorcycleModelDao motorcycleModelDao) {
         this.dataSource = dataSource;
         this.motorcycleModelDao = motorcycleModelDao;
     }
