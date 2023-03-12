@@ -1,5 +1,6 @@
 package com.ibardos.motoShop.controller;
 
+import com.ibardos.motoShop.data.DatabaseManager;
 import com.ibardos.motoShop.util.JsonReader;
 
 import org.junit.jupiter.api.*;
@@ -10,14 +11,22 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
+import java.sql.SQLException;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MotorcycleModelControllerTest {
     private static HttpClient client;
 
     @BeforeAll
-    static void initBeforeAll() {
+    static void initBeforeAll() throws SQLException {
         client = HttpClient.newBuilder().build();
+
+        DatabaseManager.initialiseDatabase();
+    }
+
+    @AfterAll
+    static void cleanUpAfterAll() throws SQLException {
+        DatabaseManager.initialiseDatabase();
     }
 
     @Test
