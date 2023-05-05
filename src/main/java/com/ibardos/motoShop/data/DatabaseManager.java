@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class DatabaseManager {
     /**
      * Creates connection to a PostgreSQL database.
-     * @return DataSource object, representing a PSQL database connection.
+     * @return DataSource object, representing a PSQL database.
      * @throws SQLException if connection failed.
      */
     @Bean(name = {"DataSource", "getDataSource"})
