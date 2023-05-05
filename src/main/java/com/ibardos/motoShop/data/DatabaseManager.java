@@ -25,7 +25,7 @@ public class DatabaseManager {
      * @throws SQLException if connection failed.
      */
     @Bean(name = {"DataSource", "getDataSource"})
-    public DataSource getDatasource() throws SQLException {
+    public DataSource getDataSource() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setDatabaseName("motoShop");
         dataSource.setUser("ibardos_GitHub_demoProject");
