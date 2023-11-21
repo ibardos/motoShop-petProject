@@ -1,7 +1,8 @@
 package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.model.Manufacturer;
-import com.ibardos.motoShop.service.dao.ManufacturerDao;
+import com.ibardos.motoShop.service.ManufacturerService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,9 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("manufacturer")
 public class ManufacturerController {
-    ManufacturerDao manufacturerDao;
+    ManufacturerService manufacturerService;
 
-    public ManufacturerController(ManufacturerDao manufacturerDao) { this.manufacturerDao = manufacturerDao; }
+    public ManufacturerController(ManufacturerService manufacturerService) { this.manufacturerService = manufacturerService; }
 
 
     /**
@@ -28,7 +29,7 @@ public class ManufacturerController {
     @PostMapping("add")
     public Manufacturer add(@RequestBody Manufacturer manufacturer) {
         try {
-            return manufacturerDao.add(manufacturer);
+            return manufacturerService.add(manufacturer);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -41,7 +42,7 @@ public class ManufacturerController {
      */
     @GetMapping("get/{id}")
     public Manufacturer get(@PathVariable int id) {
-        Manufacturer manufacturer = manufacturerDao.get(id);
+        Manufacturer manufacturer = manufacturerService.get(id);
 
         if (manufacturer == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
@@ -54,7 +55,7 @@ public class ManufacturerController {
      */
     @GetMapping("get/all")
     public List<Manufacturer> getAll() {
-        List<Manufacturer> manufacturers = manufacturerDao.getAll();
+        List<Manufacturer> manufacturers = manufacturerService.getAll();
 
         if (manufacturers == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
@@ -68,11 +69,11 @@ public class ManufacturerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("update")
     public void update(@RequestBody Manufacturer manufacturer) {
-        Manufacturer manufacturerFromDb = manufacturerDao.get(manufacturer.getId());
+        Manufacturer manufacturerFromDb = manufacturerService.get(manufacturer.getId());
         if (manufacturerFromDb == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
         try {
-            manufacturerDao.update(manufacturer);
+            manufacturerService.update(manufacturer);
 
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -86,10 +87,10 @@ public class ManufacturerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("delete/{id}")
     public void delete(@PathVariable int id) {
-        Manufacturer manufacturerFromDb = manufacturerDao.get(id);
+        Manufacturer manufacturerFromDb = manufacturerService.get(id);
 
         if (manufacturerFromDb == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
-        manufacturerDao.delete(id);
+        manufacturerService.delete(id);
     }
 }
