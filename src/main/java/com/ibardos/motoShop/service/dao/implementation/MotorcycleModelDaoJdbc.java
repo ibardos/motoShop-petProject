@@ -158,7 +158,7 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
                 rs.getInt(9),
                 rs.getFloat(10),
                 rs.getFloat(11),
-                MotorcycleModelType.valueOf(rs.getString(12))
+                MotorcycleModelType.values()[rs.getInt(12)]
         );
 
         motorcycleModel.setId(rs.getInt(1));
