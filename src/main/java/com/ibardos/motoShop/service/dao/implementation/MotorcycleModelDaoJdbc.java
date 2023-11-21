@@ -137,7 +137,7 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
         statement.setInt(8, motorcycleModel.getGearbox());
         statement.setFloat(9, motorcycleModel.getFuelCapacity());
         statement.setFloat(10, motorcycleModel.getFuelConsumptionPer100Kms());
-        statement.setString(11, String.valueOf(motorcycleModel.getMotorcycleModelType()));
+        statement.setInt(11, motorcycleModel.getMotorcycleModelType().ordinal());
     }
 
     /**
@@ -158,7 +158,7 @@ public class MotorcycleModelDaoJdbc implements MotorcycleModelDao {
                 rs.getInt(9),
                 rs.getFloat(10),
                 rs.getFloat(11),
-                MotorcycleModelType.valueOf(rs.getString(12))
+                MotorcycleModelType.values()[rs.getInt(12)]
         );
 
         motorcycleModel.setId(rs.getInt(1));

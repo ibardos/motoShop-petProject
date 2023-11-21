@@ -26,7 +26,7 @@ CREATE TABLE motorcycle_model
     gearbox INTEGER NOT NULL,
     fuel_capacity FLOAT NOT NULL,
     fuel_consumption_per_100kms FLOAT NOT NULL,
-    motorcycle_model_type VARCHAR(20) NOT NULL
+    motorcycle_model_type INTEGER NOT NULL
 );
 
 CREATE TABLE motorcycle_stock
