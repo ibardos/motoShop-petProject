@@ -11,21 +11,20 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Path;
-import java.sql.SQLException;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MotorcycleStockControllerTest {
     private static HttpClient client;
 
     @BeforeAll
-    static void initBeforeAll() throws SQLException {
+    static void initBeforeAll() {
         client = HttpClient.newBuilder().build();
 
         DatabaseManager.initialiseDatabase();
     }
 
     @AfterAll
-    static void cleanUpAfterAll() throws SQLException {
+    static void cleanUpAfterAll() {
         DatabaseManager.initialiseDatabase();
     }
 
