@@ -48,9 +48,9 @@ public class DatabaseManager {
     }
 
     /**
-     * Initialises database with predefined tables and adds initial set of data.
+     * Initializes database with predefined tables and adds initial set of data.
      */
-    public static void initialiseDatabase() {
+    public static void initializeDatabase() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.scan("com.ibardos.motoShop.data");
         context.refresh();

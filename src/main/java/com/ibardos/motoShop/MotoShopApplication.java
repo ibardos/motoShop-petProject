@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MotoShopApplication {
 
     public static void main(String[] args) {
-        DatabaseManager.initialiseDatabase();
+        DatabaseManager.initializeDatabase();
 
         SpringApplication.run(MotoShopApplication.class, args);
     }

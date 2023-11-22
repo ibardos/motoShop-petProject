@@ -23,12 +23,12 @@ public class ManufacturerControllerTest {
     static void initBeforeAll() {
         client = HttpClient.newBuilder().build();
 
-        DatabaseManager.initialiseDatabase();
+        DatabaseManager.initializeDatabase();
     }
 
     @AfterAll
     static void cleanUpAfterAll() {
-        DatabaseManager.initialiseDatabase();
+        DatabaseManager.initializeDatabase();
     }
 
     @Test
