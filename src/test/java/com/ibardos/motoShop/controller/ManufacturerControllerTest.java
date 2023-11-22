@@ -14,22 +14,21 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
 import java.nio.file.Path;
-import java.sql.SQLException;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ManufacturerControllerTest {
     private static HttpClient client;
 
     @BeforeAll
-    static void initBeforeAll() throws SQLException {
+    static void initBeforeAll() {
         client = HttpClient.newBuilder().build();
 
-        DatabaseManager.initialiseDatabase();
+        DatabaseManager.initializeDatabase();
     }
 
     @AfterAll
-    static void cleanUpAfterAll() throws SQLException {
-        DatabaseManager.initialiseDatabase();
+    static void cleanUpAfterAll() {
+        DatabaseManager.initializeDatabase();
     }
 
     @Test

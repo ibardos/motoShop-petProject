@@ -10,15 +10,15 @@ VALUES ('BMW', 'Germany', '2002-06-01'),
 ;
 
 INSERT INTO motorcycle_model (manufacturer_id, model_name, model_year, weight, displacement, horse_power, top_speed, gearbox, fuel_capacity, fuel_consumption_per_100kms, motorcycle_model_type)
-VALUES ((SELECT id FROM manufacturer WHERE name = 'BMW'), 'R 1250 GS Adventure', '2023', '268', '1254', '136', '193', '6', '29.9', '4.75', 'TOURING_ENDURO'),
-       ((SELECT id FROM manufacturer WHERE name = 'BMW'), 'S 1000 RR', '2022', '197', '999', '205', '302', '6', '16.5', '8.33', 'SUPERSPORT'),
-       ((SELECT id FROM manufacturer WHERE name = 'Honda'), 'CRF 1000L Africa Twin DCT', '2023', '226', '1084', '101', '214', '6', '18.1', '4.90', 'TOURING_ENDURO'),
-       ((SELECT id FROM manufacturer WHERE name = 'Husqvarna'), '701 SM', '2022', '156', '693', '74', '201', '6', '13.0', '4.05', 'SUPERMOTO'),
-       ((SELECT id FROM manufacturer WHERE name = 'KTM'), '1290 Super Adventure S', '2023', '245', '1301', '160', '228', '6', '23.0', '5.70', 'TOURING_SPORT'),
-       ((SELECT id FROM manufacturer WHERE name = 'MV Agusta'), 'Turismo Veloce 800 Lusso', '2023', '192', '798', '110', '230', '6', '21.5', '5.50', 'TOURING_SPORT'),
-       ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'DR-Z 400 SM', '2005', '126', '439', '62', '148', '5', '10.0', '4.20', 'SUPERMOTO'),
-       ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'V-Strom 1050DE Adventure', '2023', '252', '1037', '100', '189', '6', '20.0', '3.99', 'TOURING_ENDURO'),
-       ((SELECT id FROM manufacturer WHERE name = 'Yamaha'), 'YZF-R1 M', '2023', '204', '998', '200', '301', '6', '17.0', '7.13', 'SUPERSPORT')
+VALUES ((SELECT id FROM manufacturer WHERE name = 'BMW'), 'R 1250 GS Adventure', '2023', '268', '1254', '136', '193', '6', '29.9', '4.75', '4'),
+       ((SELECT id FROM manufacturer WHERE name = 'BMW'), 'S 1000 RR', '2022', '197', '999', '205', '302', '6', '16.5', '8.33', '0'),
+       ((SELECT id FROM manufacturer WHERE name = 'Honda'), 'CRF 1000L Africa Twin DCT', '2023', '226', '1084', '101', '214', '6', '18.1', '4.90', '4'),
+       ((SELECT id FROM manufacturer WHERE name = 'Husqvarna'), '701 SM', '2022', '156', '693', '74', '201', '6', '13.0', '4.05', '1'),
+       ((SELECT id FROM manufacturer WHERE name = 'KTM'), '1290 Super Adventure S', '2023', '245', '1301', '160', '228', '6', '23.0', '5.70', '5'),
+       ((SELECT id FROM manufacturer WHERE name = 'MV Agusta'), 'Turismo Veloce 800 Lusso', '2023', '192', '798', '110', '230', '6', '21.5', '5.50', '5'),
+       ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'DR-Z 400 SM', '2005', '126', '439', '62', '148', '5', '10.0', '4.20', '1'),
+       ((SELECT id FROM manufacturer WHERE name = 'Suzuki'), 'V-Strom 1050DE Adventure', '2023', '252', '1037', '100', '189', '6', '20.0', '3.99', '4'),
+       ((SELECT id FROM manufacturer WHERE name = 'Yamaha'), 'YZF-R1 M', '2023', '204', '998', '200', '301', '6', '17.0', '7.13', '0')
 ;
 
 INSERT INTO motorcycle_stock (motorcycle_model_id, mileage, purchasing_price, profit_margin, profit_on_unit, selling_price, in_stock, color)
