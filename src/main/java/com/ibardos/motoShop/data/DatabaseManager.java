@@ -49,16 +49,21 @@ public class DatabaseManager {
 
     /**
      * Initialises database with predefined tables and adds initial set of data.
-     * @throws SQLException if connection failed.
      */
-    public static void initialiseDatabase() throws SQLException {
+    public static void initialiseDatabase() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.scan("com.ibardos.motoShop.data");
         context.refresh();
 
         DataSource dataSource = (DataSource) context.getBean("DataSource");
 
-        Connection connection = dataSource.getConnection();
+        Connection connection;
+
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            throw new DataAccessResourceFailureException("Database connection failed during initialization!");
+        }
 
         Resource schemaResource = new FileSystemResource("src/main/resources/schema.sql");
         Resource dataResource = new FileSystemResource("src/main/resources/data.sql");
