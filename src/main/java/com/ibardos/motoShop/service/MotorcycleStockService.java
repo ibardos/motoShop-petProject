@@ -22,28 +22,51 @@ public class MotorcycleStockService {
         this.motorcycleStockRepository = motorcycleStockRepository;
     }
 
+
+    /**
+     * Adds the defined MotorcycleStock to DB.
+     * @param motorcycleStock object to add.
+     * @return the created MotorcycleStock object.
+     */
     public MotorcycleStock add(MotorcycleStock motorcycleStock) {
         setCalculatedFieldsOfMotorcycleStockObjectFromClient(motorcycleStock);
 
         return motorcycleStockRepository.save(motorcycleStock);
     }
 
+    /**
+     * Gets a MotorcycleStock from DB by id.
+     * @param id of the MotorcycleStock to get.
+     * @return MotorcycleStock object.
+     */
     public MotorcycleStock get(int id) {
         Optional<MotorcycleStock> motorcycleStockFromDb = motorcycleStockRepository.findById(id);
 
         return motorcycleStockFromDb.orElse(null);
     }
 
+    /**
+     * Gets all existing MotorcycleStock from DB.
+     * @return List of MotorcycleStock objects.
+     */
     public List<MotorcycleStock> getAll() {
         return motorcycleStockRepository.findAllByOrderByIdAsc();
     }
 
+    /**
+     * Updates a MotorcycleStock in DB.
+     * @param motorcycleStock object with updated properties.
+     */
     public void update(MotorcycleStock motorcycleStock) {
         setCalculatedFieldsOfMotorcycleStockObjectFromClient(motorcycleStock);
 
         motorcycleStockRepository.save(motorcycleStock);
     }
 
+    /**
+     * Deletes a MotorcycleStock from DB by id.
+     * @param id of the MotorcycleStock to delete.
+     */
     public void delete(int id) {
         motorcycleStockRepository.deleteById(id);
     }

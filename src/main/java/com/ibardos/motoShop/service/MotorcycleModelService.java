@@ -21,22 +21,45 @@ public class MotorcycleModelService {
         this.motorcycleModelRepository = motorcycleModelRepository;
     }
 
+
+    /**
+     * Adds the defined MotorcycleModel to DB.
+     * @param motorcycleModel object to add.
+     * @return the created MotorcycleModel object.
+     */
     public MotorcycleModel add(MotorcycleModel motorcycleModel) { return motorcycleModelRepository.save(motorcycleModel); }
 
+    /**
+     * Gets a MotorcycleModel from DB by id.
+     * @param id of the MotorcycleModel to get.
+     * @return MotorcycleModel object, or null if not found.
+     */
     public MotorcycleModel get(int id) {
         Optional<MotorcycleModel> motorcycleModelFromDb = motorcycleModelRepository.findById(id);
 
         return motorcycleModelFromDb.orElse(null);
     }
 
+    /**
+     * Gets all existing MotorcycleModel from DB.
+     * @return List of MotorcycleModel objects.
+     */
     public List<MotorcycleModel> getAll() {
         return motorcycleModelRepository.findAllByOrderByIdAsc();
     }
 
-    public void update(MotorcycleModel manufacturer) {
-        motorcycleModelRepository.save(manufacturer);
+    /**
+     * Updates a MotorcycleModel in DB.
+     * @param motorcycleModel object with updated properties.
+     */
+    public void update(MotorcycleModel motorcycleModel) {
+        motorcycleModelRepository.save(motorcycleModel);
     }
 
+    /**
+     * Deletes a MotorcycleModel from DB by id.
+     * @param id of the MotorcycleModel to delete.
+     */
     public void delete(int id) {
         motorcycleModelRepository.deleteById(id);
     }
