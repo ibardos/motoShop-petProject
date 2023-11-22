@@ -1,7 +1,8 @@
 package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.model.MotorcycleStock;
-import com.ibardos.motoShop.service.dao.MotorcycleStockDao;
+import com.ibardos.motoShop.service.MotorcycleStockService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -14,9 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("motorcycle/stock")
 public class MotorcycleStockController {
-    MotorcycleStockDao motorcycleStockDao;
+    MotorcycleStockService motorcycleStockService;
 
-    public MotorcycleStockController(MotorcycleStockDao motorcycleStockDao) { this.motorcycleStockDao = motorcycleStockDao; }
+    public MotorcycleStockController(MotorcycleStockService motorcycleStockService) { this.motorcycleStockService = motorcycleStockService; }
 
 
     /**
@@ -28,7 +29,7 @@ public class MotorcycleStockController {
     @PostMapping("add")
     public MotorcycleStock add(@RequestBody MotorcycleStock motorcycleStock) {
         try {
-            return motorcycleStockDao.add(motorcycleStock);
+            return motorcycleStockService.add(motorcycleStock);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -41,7 +42,7 @@ public class MotorcycleStockController {
      */
     @GetMapping("get/{id}")
     public MotorcycleStock get(@PathVariable int id) {
-        MotorcycleStock motorcycleStock = motorcycleStockDao.get(id);
+        MotorcycleStock motorcycleStock = motorcycleStockService.get(id);
 
         if (motorcycleStock == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
@@ -54,7 +55,7 @@ public class MotorcycleStockController {
      */
     @GetMapping("get/all")
     public List<MotorcycleStock> getAll() {
-        List<MotorcycleStock> motorcycleStocks = motorcycleStockDao.getAll();
+        List<MotorcycleStock> motorcycleStocks = motorcycleStockService.getAll();
 
         if (motorcycleStocks == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
@@ -68,11 +69,11 @@ public class MotorcycleStockController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("update")
     public void update(@RequestBody MotorcycleStock motorcycleStock) {
-        MotorcycleStock motorcycleStockFromDb = motorcycleStockDao.get(motorcycleStock.getId());
+        MotorcycleStock motorcycleStockFromDb = motorcycleStockService.get(motorcycleStock.getId());
         if (motorcycleStockFromDb == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
         try {
-            motorcycleStockDao.update(motorcycleStock);
+            motorcycleStockService.update(motorcycleStock);
         } catch (RuntimeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -85,10 +86,10 @@ public class MotorcycleStockController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("delete/{id}")
     public void delete(@PathVariable int id) {
-        MotorcycleStock motorcycleStock = motorcycleStockDao.get(id);
+        MotorcycleStock motorcycleStock = motorcycleStockService.get(id);
 
         if (motorcycleStock == null) { throw new ResponseStatusException(HttpStatus.NOT_FOUND); }
 
-        motorcycleStockDao.delete(id);
+        motorcycleStockService.delete(id);
     }
 }

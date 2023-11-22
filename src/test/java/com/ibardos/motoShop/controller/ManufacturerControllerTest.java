@@ -1,10 +1,9 @@
 package com.ibardos.motoShop.controller;
 
-import com.ibardos.motoShop.data.DatabaseManager;
+import com.ibardos.motoShop.util.DatabaseManager;
 import com.ibardos.motoShop.util.JsonReader;
 
 import org.junit.jupiter.api.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.net.URI;
