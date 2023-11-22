@@ -2,12 +2,27 @@ package com.ibardos.motoShop.model;
 
 import com.ibardos.motoShop.util.MotorcycleModelType;
 
+import jakarta.persistence.*;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 /**
  * Model class, representing a Motorcycle model, containing specifications about a specific Motorcycle in DB.
  */
+@Entity
+@Table(name = "motorcycle_model")
+@Getter
+@Setter
+@NoArgsConstructor
 public class MotorcycleModel {
     // Properties
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
     private String modelName;
     private int modelYear;
@@ -17,76 +32,7 @@ public class MotorcycleModel {
     private int topSpeed;
     private int gearbox;
     private float fuelCapacity;
+    @Column(name = "fuel_consumption_per_100kms")
     private float fuelConsumptionPer100Kms;
     private MotorcycleModelType motorcycleModelType;
-
-
-    // Constructor
-    public MotorcycleModel(Manufacturer manufacturer, String modelName, int modelYear, int weight, int displacement, int horsePower, int topSpeed, int gearbox, float fuelCapacity, float fuelConsumptionPer100Kms, MotorcycleModelType motorcycleModelType) {
-        this.manufacturer = manufacturer;
-        this.modelName = modelName;
-        this.modelYear = modelYear;
-        this.weight = weight;
-        this.displacement = displacement;
-        this.horsePower = horsePower;
-        this.topSpeed = topSpeed;
-        this.gearbox = gearbox;
-        this.fuelCapacity = fuelCapacity;
-        this.fuelConsumptionPer100Kms = fuelConsumptionPer100Kms;
-        this.motorcycleModelType = motorcycleModelType;
-    }
-
-
-    // Getters and setters
-    public int getId() {
-        return id;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public int getModelYear() {
-        return modelYear;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getDisplacement() {
-        return displacement;
-    }
-
-    public int getHorsePower() {
-        return horsePower;
-    }
-
-    public int getTopSpeed() {
-        return topSpeed;
-    }
-
-    public int getGearbox() {
-        return gearbox;
-    }
-
-    public float getFuelCapacity() {
-        return fuelCapacity;
-    }
-
-    public float getFuelConsumptionPer100Kms() {
-        return fuelConsumptionPer100Kms;
-    }
-
-    public MotorcycleModelType getMotorcycleModelType() {
-        return motorcycleModelType;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
