@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
 import javax.sql.DataSource;
@@ -22,10 +23,9 @@ public class DatabaseManager {
     /**
      * Creates connection to a PostgreSQL database.
      * @return DataSource object, representing a PSQL database.
-     * @throws SQLException if connection failed.
      */
     @Bean(name = {"DataSource", "getDataSource"})
-    public DataSource getDataSource() throws SQLException {
+    public DataSource getDataSource() {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         dataSource.setDatabaseName("motoShop");
         dataSource.setUser("ibardos_GitHub_demoProject");
@@ -33,8 +33,14 @@ public class DatabaseManager {
 
         // Test DB connection.
         System.out.println("Connecting...");
-        // Open and close connection.
-        dataSource.getConnection().close();
+
+        try {
+            // Open and close connection.
+            dataSource.getConnection().close();
+        } catch (SQLException e) {
+            throw new DataAccessResourceFailureException("Database connection failed!");
+        }
+
         // If no Exceptions are thrown, the connection test was successful.
         System.out.println("Connection OK");
 
