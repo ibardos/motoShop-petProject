@@ -1,7 +1,7 @@
 {
   "id": 7,
   "manufacturer": {
-    "id": 6,
+    "invalid": "invalid",
     "name": "Suzuki",
     "country": "Japan",
     "partnerSince": "2002-06-01"

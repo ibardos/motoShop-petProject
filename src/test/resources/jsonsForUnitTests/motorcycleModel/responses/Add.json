@@ -1,1 +1,19 @@
-{"id":10,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"GSX-R 1000 30th Anniversary Edition","modelYear":2016,"weight":203,"displacement":999,"horsePower":183,"topSpeed":299,"gearbox":6,"fuelCapacity":17.5,"fuelConsumptionPer100Kms":8.52,"motorcycleModelType":"SUPERSPORT"}
+{
+  "id": 10,
+  "manufacturer": {
+    "id": 6,
+    "name": "Suzuki",
+    "country": "Japan",
+    "partnerSince": "2002-06-01"
+  },
+  "modelName": "GSX-R 1000 30th Anniversary Edition",
+  "modelYear": 2016,
+  "weight": 203,
+  "displacement": 999,
+  "horsePower": 183,
+  "topSpeed": 299,
+  "gearbox": 6,
+  "fuelCapacity": 17.5,
+  "fuelConsumptionPer100Kms": 8.52,
+  "motorcycleModelType": "SUPERSPORT"
+}

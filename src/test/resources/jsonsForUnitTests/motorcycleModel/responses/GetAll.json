@@ -1,1 +1,192 @@
-[{"id":1,"manufacturer":{"id":1,"name":"BMW","country":"Germany","partnerSince":"2002-06-01"},"modelName":"R 1250 GS Adventure","modelYear":2023,"weight":268,"displacement":1254,"horsePower":136,"topSpeed":193,"gearbox":6,"fuelCapacity":29.9,"fuelConsumptionPer100Kms":4.75,"motorcycleModelType":"TOURING_ENDURO"},{"id":2,"manufacturer":{"id":1,"name":"BMW","country":"Germany","partnerSince":"2002-06-01"},"modelName":"S 1000 RR","modelYear":2022,"weight":197,"displacement":999,"horsePower":205,"topSpeed":302,"gearbox":6,"fuelCapacity":16.5,"fuelConsumptionPer100Kms":8.33,"motorcycleModelType":"SUPERSPORT"},{"id":3,"manufacturer":{"id":2,"name":"Honda","country":"Japan","partnerSince":"2008-01-01"},"modelName":"CRF 1000L Africa Twin DCT","modelYear":2023,"weight":226,"displacement":1084,"horsePower":101,"topSpeed":214,"gearbox":6,"fuelCapacity":18.1,"fuelConsumptionPer100Kms":4.9,"motorcycleModelType":"TOURING_ENDURO"},{"id":4,"manufacturer":{"id":3,"name":"Husqvarna","country":"Sweden","partnerSince":"2016-01-01"},"modelName":"701 SM","modelYear":2022,"weight":156,"displacement":693,"horsePower":74,"topSpeed":201,"gearbox":6,"fuelCapacity":13.0,"fuelConsumptionPer100Kms":4.05,"motorcycleModelType":"SUPERMOTO"},{"id":5,"manufacturer":{"id":4,"name":"KTM","country":"Austria","partnerSince":"2002-06-01"},"modelName":"1290 Super Adventure S","modelYear":2023,"weight":245,"displacement":1301,"horsePower":160,"topSpeed":228,"gearbox":6,"fuelCapacity":23.0,"fuelConsumptionPer100Kms":5.7,"motorcycleModelType":"TOURING_SPORT"},{"id":6,"manufacturer":{"id":5,"name":"MV Agusta","country":"Italy","partnerSince":"2023-01-01"},"modelName":"Turismo Veloce 800 Lusso","modelYear":2023,"weight":192,"displacement":798,"horsePower":110,"topSpeed":230,"gearbox":6,"fuelCapacity":21.5,"fuelConsumptionPer100Kms":5.5,"motorcycleModelType":"TOURING_SPORT"},{"id":7,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"DR-Z 400 SM","modelYear":2005,"weight":126,"displacement":439,"horsePower":62,"topSpeed":148,"gearbox":5,"fuelCapacity":10.0,"fuelConsumptionPer100Kms":4.2,"motorcycleModelType":"SUPERMOTO"},{"id":8,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"V-Strom 1050DE Adventure","modelYear":2023,"weight":252,"displacement":1037,"horsePower":100,"topSpeed":189,"gearbox":6,"fuelCapacity":20.0,"fuelConsumptionPer100Kms":3.99,"motorcycleModelType":"TOURING_ENDURO"},{"id":9,"manufacturer":{"id":7,"name":"Yamaha","country":"Japan","partnerSince":"2004-03-01"},"modelName":"YZF-R1 M","modelYear":2023,"weight":204,"displacement":998,"horsePower":200,"topSpeed":301,"gearbox":6,"fuelCapacity":17.0,"fuelConsumptionPer100Kms":7.13,"motorcycleModelType":"SUPERSPORT"},{"id":10,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"GSX-R 1000 30th Anniversary Edition","modelYear":2016,"weight":203,"displacement":999,"horsePower":183,"topSpeed":299,"gearbox":6,"fuelCapacity":17.5,"fuelConsumptionPer100Kms":8.52,"motorcycleModelType":"SUPERSPORT"}]
+[
+  {
+    "id": 1,
+    "manufacturer": {
+      "id": 1,
+      "name": "BMW",
+      "country": "Germany",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "R 1250 GS Adventure",
+    "modelYear": 2023,
+    "weight": 268,
+    "displacement": 1254,
+    "horsePower": 136,
+    "topSpeed": 193,
+    "gearbox": 6,
+    "fuelCapacity": 29.9,
+    "fuelConsumptionPer100Kms": 4.75,
+    "motorcycleModelType": "TOURING_ENDURO"
+  },
+  {
+    "id": 2,
+    "manufacturer": {
+      "id": 1,
+      "name": "BMW",
+      "country": "Germany",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "S 1000 RR",
+    "modelYear": 2022,
+    "weight": 197,
+    "displacement": 999,
+    "horsePower": 205,
+    "topSpeed": 302,
+    "gearbox": 6,
+    "fuelCapacity": 16.5,
+    "fuelConsumptionPer100Kms": 8.33,
+    "motorcycleModelType": "SUPERSPORT"
+  },
+  {
+    "id": 3,
+    "manufacturer": {
+      "id": 2,
+      "name": "Honda",
+      "country": "Japan",
+      "partnerSince": "2008-01-01"
+    },
+    "modelName": "CRF 1000L Africa Twin DCT",
+    "modelYear": 2023,
+    "weight": 226,
+    "displacement": 1084,
+    "horsePower": 101,
+    "topSpeed": 214,
+    "gearbox": 6,
+    "fuelCapacity": 18.1,
+    "fuelConsumptionPer100Kms": 4.9,
+    "motorcycleModelType": "TOURING_ENDURO"
+  },
+  {
+    "id": 4,
+    "manufacturer": {
+      "id": 3,
+      "name": "Husqvarna",
+      "country": "Sweden",
+      "partnerSince": "2016-01-01"
+    },
+    "modelName": "701 SM",
+    "modelYear": 2022,
+    "weight": 156,
+    "displacement": 693,
+    "horsePower": 74,
+    "topSpeed": 201,
+    "gearbox": 6,
+    "fuelCapacity": 13.0,
+    "fuelConsumptionPer100Kms": 4.05,
+    "motorcycleModelType": "SUPERMOTO"
+  },
+  {
+    "id": 5,
+    "manufacturer": {
+      "id": 4,
+      "name": "KTM",
+      "country": "Austria",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "1290 Super Adventure S",
+    "modelYear": 2023,
+    "weight": 245,
+    "displacement": 1301,
+    "horsePower": 160,
+    "topSpeed": 228,
+    "gearbox": 6,
+    "fuelCapacity": 23.0,
+    "fuelConsumptionPer100Kms": 5.7,
+    "motorcycleModelType": "TOURING_SPORT"
+  },
+  {
+    "id": 6,
+    "manufacturer": {
+      "id": 5,
+      "name": "MV Agusta",
+      "country": "Italy",
+      "partnerSince": "2023-01-01"
+    },
+    "modelName": "Turismo Veloce 800 Lusso",
+    "modelYear": 2023,
+    "weight": 192,
+    "displacement": 798,
+    "horsePower": 110,
+    "topSpeed": 230,
+    "gearbox": 6,
+    "fuelCapacity": 21.5,
+    "fuelConsumptionPer100Kms": 5.5,
+    "motorcycleModelType": "TOURING_SPORT"
+  },
+  {
+    "id": 7,
+    "manufacturer": {
+      "id": 6,
+      "name": "Suzuki",
+      "country": "Japan",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "DR-Z 400 SM",
+    "modelYear": 2005,
+    "weight": 126,
+    "displacement": 439,
+    "horsePower": 62,
+    "topSpeed": 148,
+    "gearbox": 5,
+    "fuelCapacity": 10.0,
+    "fuelConsumptionPer100Kms": 4.2,
+    "motorcycleModelType": "SUPERMOTO"
+  },
+  {
+    "id": 8,
+    "manufacturer": {
+      "id": 6,
+      "name": "Suzuki",
+      "country": "Japan",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "V-Strom 1050DE Adventure",
+    "modelYear": 2023,
+    "weight": 252,
+    "displacement": 1037,
+    "horsePower": 100,
+    "topSpeed": 189,
+    "gearbox": 6,
+    "fuelCapacity": 20.0,
+    "fuelConsumptionPer100Kms": 3.99,
+    "motorcycleModelType": "TOURING_ENDURO"
+  },
+  {
+    "id": 9,
+    "manufacturer": {
+      "id": 7,
+      "name": "Yamaha",
+      "country": "Japan",
+      "partnerSince": "2004-03-01"
+    },
+    "modelName": "YZF-R1 M",
+    "modelYear": 2023,
+    "weight": 204,
+    "displacement": 998,
+    "horsePower": 200,
+    "topSpeed": 301,
+    "gearbox": 6,
+    "fuelCapacity": 17.0,
+    "fuelConsumptionPer100Kms": 7.13,
+    "motorcycleModelType": "SUPERSPORT"
+  },
+  {
+    "id": 10,
+    "manufacturer": {
+      "id": 6,
+      "name": "Suzuki",
+      "country": "Japan",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "GSX-R 1000 30th Anniversary Edition",
+    "modelYear": 2016,
+    "weight": 203,
+    "displacement": 999,
+    "horsePower": 183,
+    "topSpeed": 299,
+    "gearbox": 6,
+    "fuelCapacity": 17.5,
+    "fuelConsumptionPer100Kms": 8.52,
+    "motorcycleModelType": "SUPERSPORT"
+  }
+]
