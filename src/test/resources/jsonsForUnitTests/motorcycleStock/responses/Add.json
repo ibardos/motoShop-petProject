@@ -1,1 +1,29 @@
-{"id":10,"motorcycleModel":{"id":7,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"V-Strom 1050DE Adventure","modelYear":2023,"weight":252,"displacement":1037,"horsePower":100,"topSpeed":189,"gearbox":6,"fuelCapacity":20.0,"fuelConsumptionPer100Kms":3.99,"motorcycleModelType":"TOURING_ENDURO"},"mileage":0,"purchasingPrice":15300,"profitMargin":0.15,"profitOnUnit":2300.0,"sellingPrice":17600.0,"inStock":3,"color":"Metallic Matte Sword Silver"}
+{
+  "id": 10,
+  "motorcycleModel": {
+    "id": 7,
+    "manufacturer": {
+      "id": 6,
+      "name": "Suzuki",
+      "country": "Japan",
+      "partnerSince": "2002-06-01"
+    },
+    "modelName": "V-Strom 1050DE Adventure",
+    "modelYear": 2023,
+    "weight": 252,
+    "displacement": 1037,
+    "horsePower": 100,
+    "topSpeed": 189,
+    "gearbox": 6,
+    "fuelCapacity": 20.0,
+    "fuelConsumptionPer100Kms": 3.99,
+    "motorcycleModelType": "TOURING_ENDURO"
+  },
+  "mileage": 0,
+  "purchasingPrice": 15300,
+  "profitMargin": 0.15,
+  "profitOnUnit": 2300.0,
+  "sellingPrice": 17600.0,
+  "inStock": 3,
+  "color": "Metallic Matte Sword Silver"
+}

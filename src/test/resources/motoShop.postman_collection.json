@@ -130,7 +130,7 @@
 					"name": "invalid_parameters",
 					"item": [
 						{
-							"name": "add_invalid",
+							"name": "add_invalid_json",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -157,7 +157,7 @@
 							"response": []
 						},
 						{
-							"name": "get_invalid",
+							"name": "get_invalid_id",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -176,7 +176,7 @@
 							"response": []
 						},
 						{
-							"name": "getAll_invalid",
+							"name": "getAll_invalid_url",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -195,7 +195,7 @@
 							"response": []
 						},
 						{
-							"name": "update_invalid",
+							"name": "update_invalid_id",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -222,7 +222,34 @@
 							"response": []
 						},
 						{
-							"name": "delete_invalid_item",
+							"name": "update_invalid_json",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\" : 1,\n\t\"name\": \"BMW International\",\n\t\"country\": \"Germany\",\n\t\"partnerSince\": \"bad_date_format\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/manufacturer/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"manufacturer",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_invalid_id",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -412,7 +439,7 @@
 					"name": "invalid_parameters",
 					"item": [
 						{
-							"name": "add_invalid",
+							"name": "add_invalid_json",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -440,7 +467,7 @@
 							"response": []
 						},
 						{
-							"name": "get_invalid",
+							"name": "get_invalid_id",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -460,7 +487,7 @@
 							"response": []
 						},
 						{
-							"name": "getAll_invalid",
+							"name": "getAll_invalid_url",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -480,7 +507,7 @@
 							"response": []
 						},
 						{
-							"name": "update_invalid",
+							"name": "update_invalid_id",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -508,7 +535,35 @@
 							"response": []
 						},
 						{
-							"name": "delete_invalid_item",
+							"name": "update_invalid_json",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": 7,\n\t\"manufacturer\": {\n\t\t\"invalid\": \"invalid\",\n\t\t\"name\": \"Suzuki\",\n\t\t\"country\": \"Japan\",\n\t\t\"partnerSince\": \"2002-06-01\"\n\t},\n\t\"modelName\": \"V-Strom 1050\",\n\t\"modelYear\": 2023,\n\t\"weight\": 252,\n\t\"displacement\": 1037,\n\t\"horsePower\": 100,\n\t\"topSpeed\": 189,\n\t\"gearbox\": 6,\n\t\"fuelCapacity\": 20.0,\n\t\"fuelConsumptionPer100Kms\": 3.70,\n\t\"motorcycleModelType\": \"TOURING_ENDURO\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/motorcycle/model/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"motorcycle",
+										"model",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_invalid_id",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -680,7 +735,7 @@
 					"name": "invalid_parameters",
 					"item": [
 						{
-							"name": "add_invalid",
+							"name": "add_invalid_json",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -708,7 +763,7 @@
 							"response": []
 						},
 						{
-							"name": "get_invalid",
+							"name": "get_invalid_id",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -728,7 +783,7 @@
 							"response": []
 						},
 						{
-							"name": "getAll_invalid",
+							"name": "getAll_invalid_url",
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -748,7 +803,35 @@
 							"response": []
 						},
 						{
-							"name": "update_invalid",
+							"name": "update_invalid_id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"id\": 800,\n\t\"motorcycleModel\": {\n\t\t\"id\": 7,\n\t\t\"manufacturer\": {\n\t\t\t\"id\": 6,\n\t\t\t\"name\": \"Suzuki\",\n\t\t\t\"country\": \"Japan\",\n\t\t\t\"partnerSince\": \"2002-06-01\"\n\t\t},\n\t\t\"modelName\": \"V-Strom 1050DE Adventure\",\n\t\t\"modelYear\": 2023,\n\t\t\"weight\": 252,\n\t\t\"displacement\": 1037,\n\t\t\"horsePower\": 100,\n\t\t\"topSpeed\": 189,\n\t\t\"gearbox\": 6,\n\t\t\"fuelCapacity\": 20.0,\n\t\t\"fuelConsumptionPer100Kms\": 3.99,\n\t\t\"motorcycleModelType\": \"TOURING_ENDURO\"\n\t},\n\t\"mileage\": 0,\n\t\"purchasingPrice\": 15300,\n\t\"profitMargin\": 0.2,\n\t\"inStock\": 2,\n\t\"color\": \"Unbelievably white and blue and black\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/motorcycle/stock/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"motorcycle",
+										"stock",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_json",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -776,7 +859,7 @@
 							"response": []
 						},
 						{
-							"name": "delete_invalid",
+							"name": "delete_invalid_id",
 							"request": {
 								"method": "DELETE",
 								"header": [],

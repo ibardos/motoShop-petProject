@@ -1,4 +1,5 @@
 {
+  "id": 800,
   "motorcycleModel": {
     "id": 7,
     "manufacturer": {
@@ -20,7 +21,7 @@
   },
   "mileage": 0,
   "purchasingPrice": 15300,
-  "profitMargin": 0.15,
-  "inStock": 3,
-  "color": "Metallic Matte Sword Silver"
+  "profitMargin": 0.2,
+  "inStock": 2,
+  "color": "Unbelievably white and blue and black"
 }
