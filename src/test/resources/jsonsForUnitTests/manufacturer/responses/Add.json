@@ -1,1 +1,6 @@
-{"id":8,"name":"Ducati","country":"Italy","partnerSince":"2022-12-16"}
+{
+  "id": 8,
+  "name": "Ducati",
+  "country": "Italy",
+  "partnerSince": "2022-12-16"
+}
