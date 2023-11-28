@@ -1,1 +1,292 @@
-[{"id":1,"motorcycleModel":{"id":1,"manufacturer":{"id":1,"name":"BMW","country":"Germany","partnerSince":"2002-06-01"},"modelName":"R 1250 GS Adventure","modelYear":2023,"weight":268,"displacement":1254,"horsePower":136,"topSpeed":193,"gearbox":6,"fuelCapacity":29.9,"fuelConsumptionPer100Kms":4.75,"motorcycleModelType":"TOURING_ENDURO"},"mileage":0,"purchasingPrice":16955,"profitMargin":0.2,"profitOnUnit":3400,"sellingPrice":20355,"inStock":3,"color":"Gravity blue metallic"},{"id":2,"motorcycleModel":{"id":2,"manufacturer":{"id":1,"name":"BMW","country":"Germany","partnerSince":"2002-06-01"},"modelName":"S 1000 RR","modelYear":2022,"weight":197,"displacement":999,"horsePower":205,"topSpeed":302,"gearbox":6,"fuelCapacity":16.5,"fuelConsumptionPer100Kms":8.33,"motorcycleModelType":"SUPERSPORT"},"mileage":200,"purchasingPrice":20600,"profitMargin":0.2,"profitOnUnit":4200,"sellingPrice":24800,"inStock":1,"color":"M-Motorsport"},{"id":3,"motorcycleModel":{"id":3,"manufacturer":{"id":2,"name":"Honda","country":"Japan","partnerSince":"2008-01-01"},"modelName":"CRF 1000L Africa Twin DCT","modelYear":2023,"weight":226,"displacement":1084,"horsePower":101,"topSpeed":214,"gearbox":6,"fuelCapacity":18.1,"fuelConsumptionPer100Kms":4.9,"motorcycleModelType":"TOURING_ENDURO"},"mileage":0,"purchasingPrice":15800,"profitMargin":0.15,"profitOnUnit":2400,"sellingPrice":18200,"inStock":2,"color":"Grand Prix Red"},{"id":4,"motorcycleModel":{"id":4,"manufacturer":{"id":3,"name":"Husqvarna","country":"Sweden","partnerSince":"2016-01-01"},"modelName":"701 SM","modelYear":2022,"weight":156,"displacement":693,"horsePower":74,"topSpeed":201,"gearbox":6,"fuelCapacity":13.0,"fuelConsumptionPer100Kms":4.05,"motorcycleModelType":"SUPERMOTO"},"mileage":0,"purchasingPrice":10870,"profitMargin":0.15,"profitOnUnit":1700,"sellingPrice":12570,"inStock":2,"color":"White"},{"id":5,"motorcycleModel":{"id":5,"manufacturer":{"id":4,"name":"KTM","country":"Austria","partnerSince":"2002-06-01"},"modelName":"1290 Super Adventure S","modelYear":2023,"weight":245,"displacement":1301,"horsePower":160,"topSpeed":228,"gearbox":6,"fuelCapacity":23.0,"fuelConsumptionPer100Kms":5.7,"motorcycleModelType":"TOURING_SPORT"},"mileage":0,"purchasingPrice":17350,"profitMargin":0.2,"profitOnUnit":3500,"sellingPrice":20850,"inStock":1,"color":"Orange"},{"id":6,"motorcycleModel":{"id":7,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"DR-Z 400 SM","modelYear":2005,"weight":126,"displacement":439,"horsePower":62,"topSpeed":148,"gearbox":5,"fuelCapacity":10.0,"fuelConsumptionPer100Kms":4.2,"motorcycleModelType":"SUPERMOTO"},"mileage":38000,"purchasingPrice":4080,"profitMargin":0.1,"profitOnUnit":500,"sellingPrice":4580,"inStock":1,"color":"Black"},{"id":7,"motorcycleModel":{"id":8,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"V-Strom 1050DE Adventure","modelYear":2023,"weight":252,"displacement":1037,"horsePower":100,"topSpeed":189,"gearbox":6,"fuelCapacity":20.0,"fuelConsumptionPer100Kms":3.99,"motorcycleModelType":"TOURING_ENDURO"},"mileage":0,"purchasingPrice":15300,"profitMargin":0.15,"profitOnUnit":2300,"sellingPrice":17600,"inStock":3,"color":"Champion Yellow"},{"id":8,"motorcycleModel":{"id":8,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"V-Strom 1050DE Adventure","modelYear":2023,"weight":252,"displacement":1037,"horsePower":100,"topSpeed":189,"gearbox":6,"fuelCapacity":20.0,"fuelConsumptionPer100Kms":3.99,"motorcycleModelType":"TOURING_ENDURO"},"mileage":0,"purchasingPrice":15300,"profitMargin":0.15,"profitOnUnit":2300,"sellingPrice":17600,"inStock":3,"color":"Metallic Matte Sword Silver"},{"id":9,"motorcycleModel":{"id":9,"manufacturer":{"id":7,"name":"Yamaha","country":"Japan","partnerSince":"2004-03-01"},"modelName":"YZF-R1 M","modelYear":2023,"weight":204,"displacement":998,"horsePower":200,"topSpeed":301,"gearbox":6,"fuelCapacity":17.0,"fuelConsumptionPer100Kms":7.13,"motorcycleModelType":"SUPERSPORT"},"mileage":0,"purchasingPrice":23480,"profitMargin":0.15,"profitOnUnit":3600,"sellingPrice":27080,"inStock":1,"color":"Carbon-fiber/blue"},{"id":10,"motorcycleModel":{"id":7,"manufacturer":{"id":6,"name":"Suzuki","country":"Japan","partnerSince":"2002-06-01"},"modelName":"DR-Z 400 SM","modelYear":2005,"weight":126,"displacement":439,"horsePower":62,"topSpeed":148,"gearbox":5,"fuelCapacity":10.0,"fuelConsumptionPer100Kms":4.2,"motorcycleModelType":"SUPERMOTO"},"mileage":0,"purchasingPrice":15300,"profitMargin":0.15,"profitOnUnit":2300.0,"sellingPrice":17600.0,"inStock":3,"color":"Metallic Matte Sword Silver"}]
+[
+  {
+    "id": 1,
+    "motorcycleModel": {
+      "id": 1,
+      "manufacturer": {
+        "id": 1,
+        "name": "BMW",
+        "country": "Germany",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "R 1250 GS Adventure",
+      "modelYear": 2023,
+      "weight": 268,
+      "displacement": 1254,
+      "horsePower": 136,
+      "topSpeed": 193,
+      "gearbox": 6,
+      "fuelCapacity": 29.9,
+      "fuelConsumptionPer100Kms": 4.75,
+      "motorcycleModelType": "TOURING_ENDURO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 16955,
+    "profitMargin": 0.2,
+    "profitOnUnit": 3400,
+    "sellingPrice": 20355,
+    "inStock": 3,
+    "color": "Gravity blue metallic"
+  },
+  {
+    "id": 2,
+    "motorcycleModel": {
+      "id": 2,
+      "manufacturer": {
+        "id": 1,
+        "name": "BMW",
+        "country": "Germany",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "S 1000 RR",
+      "modelYear": 2022,
+      "weight": 197,
+      "displacement": 999,
+      "horsePower": 205,
+      "topSpeed": 302,
+      "gearbox": 6,
+      "fuelCapacity": 16.5,
+      "fuelConsumptionPer100Kms": 8.33,
+      "motorcycleModelType": "SUPERSPORT"
+    },
+    "mileage": 200,
+    "purchasingPrice": 20600,
+    "profitMargin": 0.2,
+    "profitOnUnit": 4200,
+    "sellingPrice": 24800,
+    "inStock": 1,
+    "color": "M-Motorsport"
+  },
+  {
+    "id": 3,
+    "motorcycleModel": {
+      "id": 3,
+      "manufacturer": {
+        "id": 2,
+        "name": "Honda",
+        "country": "Japan",
+        "partnerSince": "2008-01-01"
+      },
+      "modelName": "CRF 1000L Africa Twin DCT",
+      "modelYear": 2023,
+      "weight": 226,
+      "displacement": 1084,
+      "horsePower": 101,
+      "topSpeed": 214,
+      "gearbox": 6,
+      "fuelCapacity": 18.1,
+      "fuelConsumptionPer100Kms": 4.9,
+      "motorcycleModelType": "TOURING_ENDURO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 15800,
+    "profitMargin": 0.15,
+    "profitOnUnit": 2400,
+    "sellingPrice": 18200,
+    "inStock": 2,
+    "color": "Grand Prix Red"
+  },
+  {
+    "id": 4,
+    "motorcycleModel": {
+      "id": 4,
+      "manufacturer": {
+        "id": 3,
+        "name": "Husqvarna",
+        "country": "Sweden",
+        "partnerSince": "2016-01-01"
+      },
+      "modelName": "701 SM",
+      "modelYear": 2022,
+      "weight": 156,
+      "displacement": 693,
+      "horsePower": 74,
+      "topSpeed": 201,
+      "gearbox": 6,
+      "fuelCapacity": 13.0,
+      "fuelConsumptionPer100Kms": 4.05,
+      "motorcycleModelType": "SUPERMOTO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 10870,
+    "profitMargin": 0.15,
+    "profitOnUnit": 1700,
+    "sellingPrice": 12570,
+    "inStock": 2,
+    "color": "White"
+  },
+  {
+    "id": 5,
+    "motorcycleModel": {
+      "id": 5,
+      "manufacturer": {
+        "id": 4,
+        "name": "KTM",
+        "country": "Austria",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "1290 Super Adventure S",
+      "modelYear": 2023,
+      "weight": 245,
+      "displacement": 1301,
+      "horsePower": 160,
+      "topSpeed": 228,
+      "gearbox": 6,
+      "fuelCapacity": 23.0,
+      "fuelConsumptionPer100Kms": 5.7,
+      "motorcycleModelType": "TOURING_SPORT"
+    },
+    "mileage": 0,
+    "purchasingPrice": 17350,
+    "profitMargin": 0.2,
+    "profitOnUnit": 3500,
+    "sellingPrice": 20850,
+    "inStock": 1,
+    "color": "Orange"
+  },
+  {
+    "id": 6,
+    "motorcycleModel": {
+      "id": 7,
+      "manufacturer": {
+        "id": 6,
+        "name": "Suzuki",
+        "country": "Japan",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "DR-Z 400 SM",
+      "modelYear": 2005,
+      "weight": 126,
+      "displacement": 439,
+      "horsePower": 62,
+      "topSpeed": 148,
+      "gearbox": 5,
+      "fuelCapacity": 10.0,
+      "fuelConsumptionPer100Kms": 4.2,
+      "motorcycleModelType": "SUPERMOTO"
+    },
+    "mileage": 38000,
+    "purchasingPrice": 4080,
+    "profitMargin": 0.1,
+    "profitOnUnit": 500,
+    "sellingPrice": 4580,
+    "inStock": 1,
+    "color": "Black"
+  },
+  {
+    "id": 7,
+    "motorcycleModel": {
+      "id": 8,
+      "manufacturer": {
+        "id": 6,
+        "name": "Suzuki",
+        "country": "Japan",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "V-Strom 1050DE Adventure",
+      "modelYear": 2023,
+      "weight": 252,
+      "displacement": 1037,
+      "horsePower": 100,
+      "topSpeed": 189,
+      "gearbox": 6,
+      "fuelCapacity": 20.0,
+      "fuelConsumptionPer100Kms": 3.99,
+      "motorcycleModelType": "TOURING_ENDURO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 15300,
+    "profitMargin": 0.15,
+    "profitOnUnit": 2300,
+    "sellingPrice": 17600,
+    "inStock": 3,
+    "color": "Champion Yellow"
+  },
+  {
+    "id": 8,
+    "motorcycleModel": {
+      "id": 8,
+      "manufacturer": {
+        "id": 6,
+        "name": "Suzuki",
+        "country": "Japan",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "V-Strom 1050DE Adventure",
+      "modelYear": 2023,
+      "weight": 252,
+      "displacement": 1037,
+      "horsePower": 100,
+      "topSpeed": 189,
+      "gearbox": 6,
+      "fuelCapacity": 20.0,
+      "fuelConsumptionPer100Kms": 3.99,
+      "motorcycleModelType": "TOURING_ENDURO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 15300,
+    "profitMargin": 0.15,
+    "profitOnUnit": 2300,
+    "sellingPrice": 17600,
+    "inStock": 3,
+    "color": "Metallic Matte Sword Silver"
+  },
+  {
+    "id": 9,
+    "motorcycleModel": {
+      "id": 9,
+      "manufacturer": {
+        "id": 7,
+        "name": "Yamaha",
+        "country": "Japan",
+        "partnerSince": "2004-03-01"
+      },
+      "modelName": "YZF-R1 M",
+      "modelYear": 2023,
+      "weight": 204,
+      "displacement": 998,
+      "horsePower": 200,
+      "topSpeed": 301,
+      "gearbox": 6,
+      "fuelCapacity": 17.0,
+      "fuelConsumptionPer100Kms": 7.13,
+      "motorcycleModelType": "SUPERSPORT"
+    },
+    "mileage": 0,
+    "purchasingPrice": 23480,
+    "profitMargin": 0.15,
+    "profitOnUnit": 3600,
+    "sellingPrice": 27080,
+    "inStock": 1,
+    "color": "Carbon-fiber/blue"
+  },
+  {
+    "id": 10,
+    "motorcycleModel": {
+      "id": 7,
+      "manufacturer": {
+        "id": 6,
+        "name": "Suzuki",
+        "country": "Japan",
+        "partnerSince": "2002-06-01"
+      },
+      "modelName": "DR-Z 400 SM",
+      "modelYear": 2005,
+      "weight": 126,
+      "displacement": 439,
+      "horsePower": 62,
+      "topSpeed": 148,
+      "gearbox": 5,
+      "fuelCapacity": 10.0,
+      "fuelConsumptionPer100Kms": 4.2,
+      "motorcycleModelType": "SUPERMOTO"
+    },
+    "mileage": 0,
+    "purchasingPrice": 15300,
+    "profitMargin": 0.15,
+    "profitOnUnit": 2300.0,
+    "sellingPrice": 17600.0,
+    "inStock": 3,
+    "color": "Metallic Matte Sword Silver"
+  }
+]
