@@ -99,8 +99,8 @@ To being notified about further developments on the project, please consider "wa
    - Test API endpoints with Unit tests to check the transition was successful
 
 ### Future development plans:
-6. Establish CI/CD pipeline - GitHub Actions
-   - Create YAML file to establish pipeline
+6. Establish a Continuous Integration (CI) pipeline - GitHub Actions
+   - Create YAML file to establish pipeline with automated build and tests before code integration
 7. Implement authentication and authorization functionalities by utilizing Spring Security
    - Create User entity
    - Create Roles and Privileges
@@ -111,11 +111,12 @@ To being notified about further developments on the project, please consider "wa
    - Implement registration feature on the back-end server
 9. Containerize application - Docker
    - Create Dockerfile
-   - Create Shell script to run Dockerfile
+   - Create Shell scripts to build and run Dockerfile
 10. Deploy the application to a public server
-    - Utilize previously implemented CI/CD pipeline for deployment
-    - Utilize previously created Dockerfile
-    - Add job to YAML file to handle deployment
+    - Utilize previously implemented GitHub Actions CI pipeline for deployment
+      - Update CI pipeline into CI/CD to have Continuous Deployment as well
+    - Utilize previously created Dockerfile for containerization
+    - Add job to YAML file to handle automatic deployment in a containerized environment
 
 ## How to use this repository:
 #### Establish project:
