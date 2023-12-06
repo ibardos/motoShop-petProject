@@ -1,4 +1,4 @@
-package com.ibardos.motoShop.controller;
+package com.ibardos.motoShop.endToendTests.apiTests;
 
 import org.junit.jupiter.api.*;
 
@@ -20,14 +20,14 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 
 /**
- * End-to-end tests against API endpoints in MotorcycleStockController.
+ * End-to-end tests against API endpoints in MotorcycleModelController.
  */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MotorcycleStockControllerTest {
+public class MotorcycleModelControllerApiTests {
     @LocalServerPort
     private int port;
 
@@ -36,20 +36,22 @@ public class MotorcycleStockControllerTest {
     private static HttpClient client;
 
     @BeforeAll
-    static void initBeforeAll() { client = HttpClient.newBuilder().build(); }
+    static void initBeforeAll() {
+        client = HttpClient.newBuilder().build();
+    }
 
     @Test
     @Order(1)
-    void add_newValidMotorcycleStock_statusCode201WithProperJson() throws Exception {
+    void add_newValidMotorcycleModel_statusCode201WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + port + "/motorcycle/model/add";
 
         int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Add.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/Add.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddValid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/AddValid.json")))
                 .build();
 
         // Act
@@ -65,15 +67,15 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(2)
-    void add_newInvalidMotorcycleStock_statusCode400() throws Exception {
+    void add_newInvalidMotorcycleModel_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + port + "/motorcycle/model/add";
 
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddInvalid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/AddInvalid.json")))
                 .build();
 
         // Act
@@ -87,12 +89,12 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(3)
-    void get_motorcycleStockWithValidId_statusCode200WithProperJson() throws Exception {
+    void get_motorcycleModelWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/8";
+        String url = baseUrl + port + "/motorcycle/model/get/1";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Get.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/Get.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
@@ -111,9 +113,9 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(4)
-    void get_motorcycleStockWithInvalidId_statusCode404() throws Exception {
+    void get_motorcycleModelWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/55";
+        String url = baseUrl + port + "/motorcycle/model/get/55";
 
         int expectedResponseStatus = 404;
 
@@ -132,12 +134,12 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(5)
-    void getAll_listOfMotorcycleStocks_statusCode200WithProperJson() throws Exception {
+    void getAll_listOfMotorcycleModels_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/all";
+        String url = baseUrl + port + "/motorcycle/model/get/all";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/GetAll.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/GetAll.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
@@ -156,9 +158,9 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(6)
-    void getAll_listOfMotorcycleStocksFromInvalidUrl_statusCode400() throws Exception {
+    void getAll_listOfMotorcycleModelsFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/allInvalid";
+        String url = baseUrl + port + "/motorcycle/model/get/allInvalid";
 
         int expectedResponseStatus = 400;
 
@@ -177,15 +179,15 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(7)
-    void update_motorcycleStockWithValidId_statusCode204() throws Exception {
+    void update_motorcycleModelWithValidId_statusCode204() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + port + "/motorcycle/model/update";
 
         int expectedResponseStatus = 204;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateValid.json")))
                 .build();
 
         // Act
@@ -199,15 +201,15 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(8)
-    void update_motorcycleStockWithInvalidId_statusCode404() throws Exception {
+    void update_motorcycleModelWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + port + "/motorcycle/model/update";
 
         int expectedResponseStatus = 404;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidId.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -221,15 +223,15 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(9)
-    void update_motorcycleStockWithInvalidJson_statusCode400() throws Exception {
+    void update_motorcycleModelWithInvalidJson_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + port + "/motorcycle/model/update";
 
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidJson.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateInvalidJson.json")))
                 .build();
 
         // Act
@@ -243,9 +245,9 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(10)
-    void delete_motorcycleStockWithValidId_statusCode204() throws Exception {
+    void delete_motorcycleModelWithValidId_statusCode204() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/9";
+        String url = baseUrl + port + "/motorcycle/model/delete/6";
 
         int expectedResponseStatus = 204;
 
@@ -265,9 +267,9 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(11)
-    void delete_motorcycleStockWithInvalidId_statusCode404() throws Exception {
+    void delete_motorcycleModelWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/99";
+        String url = baseUrl + port + "/motorcycle/model/delete/99";
 
         int expectedResponseStatus = 404;
 
@@ -283,5 +285,51 @@ public class MotorcycleStockControllerTest {
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
+    }
+
+    @Test
+    @Order(12)
+    void delete_motorcycleModelWithIdHasForeignKeyRestriction_statusCode500() throws Exception {
+        // Arrange
+        String url = baseUrl + port + "/motorcycle/model/delete/7";
+
+        int expectedResponseStatus = 500;
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json")
+                .DELETE()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+    }
+
+    @Test
+    @Order(13)
+    void get_motorcycleModelTypes_statusCode200WithProperJson() throws Exception {
+        // Arrange
+        String url = baseUrl + port + "/motorcycle/model/get/types";
+
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/GetMotorcycleModelTypes.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+        String resultResponseBody = response.body();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
     }
 }
