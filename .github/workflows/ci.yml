@@ -33,3 +33,35 @@ jobs:
 
     # Run job only if git commit message contains '[CI]'
     if: "contains(github.event.commits[0].message, '[CI]')"
+
+    # Steps must run in the folder where ReactJS front-end application is located.
+    defaults:
+      run:
+        working-directory: ./src/main/ui
+
+    strategy:
+      matrix:
+        node-version: [ 16, 18, 21 ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: ./src/main/ui/package-lock.json
+
+      - name: Clean install node dependencies
+        run: npm ci
+
+      - name: Install React scripts
+        run: npm install react-scripts
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Test with ESLint
+        run: npm run lint
