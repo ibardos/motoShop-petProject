@@ -27,7 +27,7 @@ const UpdateForm = (props) => {
     const [currentMotorcycleModel, setCurrentMotorcycleModel] = useState({});
 
 
-    useEffect((props) => {
+    useEffect(() => {
         fetchData("/motorcycle/model/get/all")
             .then(result => setMotorcycleModels(result));
 
@@ -35,7 +35,7 @@ const UpdateForm = (props) => {
 
         setCurrentRecord(currentRecord);
         setCurrentMotorcycleModel(currentRecord.motorcycleModel);
-    }, [])
+    }, [props.motorcycleStocks, props.recordId])
 
 
     async function handleSubmit(values) {

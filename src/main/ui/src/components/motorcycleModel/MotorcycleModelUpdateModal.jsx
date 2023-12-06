@@ -28,7 +28,7 @@ const UpdateForm = (props) => {
     const [currentManufacturer, setCurrentManufacturer] = useState({});
 
 
-    useEffect((props) => {
+    useEffect(() => {
         fetchData("/manufacturer/get/all")
             .then(result => setManufacturers(result));
 
@@ -39,7 +39,7 @@ const UpdateForm = (props) => {
 
         setCurrentRecord(currentRecord);
         setCurrentManufacturer(currentRecord.manufacturer);
-    }, [])
+    }, [props.motorcycleModels, props.recordId])
 
 
     async function handleSubmit(values) {

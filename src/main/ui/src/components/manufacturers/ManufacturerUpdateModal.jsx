@@ -24,9 +24,9 @@ const UpdateForm = (props) => {
     const [currentRecord, setCurrentRecord] = useState({});
 
 
-    useEffect((props) => {
-        setCurrentRecord(props.manufacturers.find(m => m.id.toString() === props.recordId))
-    }, [props.recordId])
+    useEffect(() => {
+        setCurrentRecord(props.manufacturers.find(m => m.id.toString() === props.recordId));
+    }, [props.manufacturers, props.recordId])
 
 
     async function handleSubmit(event) {

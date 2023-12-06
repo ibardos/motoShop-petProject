@@ -19,9 +19,10 @@ const DeleteItemInformation = (props) => {
     const [currentRecord, setCurrentRecord] = useState({});
 
 
-    useEffect((props) => {
-        setCurrentRecord(props.motorcycleStocks.find(m => m.id.toString() === props.recordId))
-    },[props.recordId])
+    useEffect(() => {
+        const currentRecord = props.motorcycleStocks.find(m => m.id.toString() === props.recordId);
+        setCurrentRecord(currentRecord !== undefined ? currentRecord : {});
+    }, [props.motorcycleStocks, props.recordId])
 
 
     async function handleSubmit(event) {
