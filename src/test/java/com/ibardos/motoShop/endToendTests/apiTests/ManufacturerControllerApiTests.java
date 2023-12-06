@@ -20,7 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 
 /**
- * End-to-end tests against API endpoints in ManufacturerController.
+ * Test class, containing End-to-End tests against API endpoints in ManufacturerController.
  */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
