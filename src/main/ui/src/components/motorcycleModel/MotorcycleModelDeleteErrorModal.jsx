@@ -17,7 +17,7 @@ const DeleteErrorInformation = (props) => {
     const [currentRecord, setCurrentRecord] = useState({});
 
 
-    useEffect(() => {
+    useEffect((props) => {
         setCurrentRecord(props.motorcycleModels.find(m => m.id.toString() === props.recordId))
     }, [props.recordId])
 

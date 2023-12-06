@@ -9,7 +9,7 @@ import {camelCaseToSentenceCase} from "../../util/util";
 
 const MotorcycleStockDeleteModal = (props) => {
     const modalBody = <DeleteItemInformation motorcycleStocks={props.motorcycleStocks} recordId={props.recordId}
-                               setFormSubmit={props.setFormSubmit} setDeleteModalShow={props.setDeleteModalShow}/>
+                                             setFormSubmit={props.setFormSubmit} setDeleteModalShow={props.setDeleteModalShow}/>
 
     return <CrudModal show={props.show} onHide={props.onHide} title="Delete Motorcycle from stock" body={modalBody} />
 }
@@ -19,7 +19,7 @@ const DeleteItemInformation = (props) => {
     const [currentRecord, setCurrentRecord] = useState({});
 
 
-    useEffect(() => {
+    useEffect((props) => {
         setCurrentRecord(props.motorcycleStocks.find(m => m.id.toString() === props.recordId))
     },[props.recordId])
 

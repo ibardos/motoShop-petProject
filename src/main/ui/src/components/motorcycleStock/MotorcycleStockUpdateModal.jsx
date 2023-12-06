@@ -27,7 +27,7 @@ const UpdateForm = (props) => {
     const [currentMotorcycleModel, setCurrentMotorcycleModel] = useState({});
 
 
-    useEffect(() => {
+    useEffect((props) => {
         fetchData("/motorcycle/model/get/all")
             .then(result => setMotorcycleModels(result));
 
@@ -108,6 +108,8 @@ const UpdateForm = (props) => {
                                 if (m.modelName !== values.motorcycleModel) {
                                     return <option key={m.modelName} value={m.modelName}>{m.modelName}</option>
                                 }
+
+                                return "Click to select Motorcycle model";
                             })}
                         </Field>
                     </Form.Group>
