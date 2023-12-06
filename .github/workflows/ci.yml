@@ -1,0 +1,20 @@
+name: CI pipeline for Java back-end and ReactJS front-end
+
+on:
+  push:
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  back-end:
+    runs-on: ubuntu-latest
+
+    # Run job only if git commit message contains '[CI]'
+    if: "contains(github.event.commits[0].message, '[CI]')"
+
+  front-end:
+    runs-on: ubuntu-latest
+
+    # Run job only if git commit message contains '[CI]'
+    if: "contains(github.event.commits[0].message, '[CI]')"
