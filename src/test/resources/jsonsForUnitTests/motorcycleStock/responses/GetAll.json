@@ -259,34 +259,5 @@
     "sellingPrice": 27080,
     "inStock": 1,
     "color": "Carbon-fiber/blue"
-  },
-  {
-    "id": 10,
-    "motorcycleModel": {
-      "id": 7,
-      "manufacturer": {
-        "id": 6,
-        "name": "Suzuki",
-        "country": "Japan",
-        "partnerSince": "2002-06-01"
-      },
-      "modelName": "DR-Z 400 SM",
-      "modelYear": 2005,
-      "weight": 126,
-      "displacement": 439,
-      "horsePower": 62,
-      "topSpeed": 148,
-      "gearbox": 5,
-      "fuelCapacity": 10.0,
-      "fuelConsumptionPer100Kms": 4.2,
-      "motorcycleModelType": "SUPERMOTO"
-    },
-    "mileage": 0,
-    "purchasingPrice": 15300,
-    "profitMargin": 0.15,
-    "profitOnUnit": 2300.0,
-    "sellingPrice": 17600.0,
-    "inStock": 3,
-    "color": "Metallic Matte Sword Silver"
   }
 ]

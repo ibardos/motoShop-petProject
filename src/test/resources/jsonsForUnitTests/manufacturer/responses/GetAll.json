@@ -40,11 +40,5 @@
     "name": "Yamaha",
     "country": "Japan",
     "partnerSince": "2004-03-01"
-  },
-  {
-    "id": 8,
-    "name": "Ducati",
-    "country": "Italy",
-    "partnerSince": "2022-12-16"
   }
 ]
