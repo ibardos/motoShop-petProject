@@ -181,14 +181,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/get/invalid",
+									"raw": "{{base_url}}/manufacturer/get/allInvalid",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"manufacturer",
 										"get",
-										"invalid"
+										"allInvalid"
 									]
 								}
 							},
@@ -492,7 +492,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/invalid",
+									"raw": "{{base_url}}/motorcycle/model/get/allInvalid",
 									"host": [
 										"{{base_url}}"
 									],
@@ -500,7 +500,7 @@
 										"motorcycle",
 										"model",
 										"get",
-										"invalid"
+										"allInvalid"
 									]
 								}
 							},
@@ -788,7 +788,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/get/invalid",
+									"raw": "{{base_url}}/motorcycle/stock/get/allInvalid",
 									"host": [
 										"{{base_url}}"
 									],
@@ -796,7 +796,7 @@
 										"motorcycle",
 										"stock",
 										"get",
-										"invalid"
+										"allInvalid"
 									]
 								}
 							},
