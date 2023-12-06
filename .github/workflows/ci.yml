@@ -13,6 +13,21 @@ jobs:
     # Run job only if git commit message contains '[CI]'
     if: "contains(github.event.commits[0].message, '[CI]')"
 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: 21
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Build and test with Maven
+        # End-to-end tests are used to cover all code-components, excluding context loading test, as database is not present in CI environment.
+        run: mvn -B package --file pom.xml -Dtest=!MotoShopApplicationGeneralTests#contextLoads
+
   front-end:
     runs-on: ubuntu-latest
 
