@@ -14,7 +14,7 @@ technologies, and best practices, all related to a modern Java based web applica
 
 During development, I wanted to imitate real-life scenarios to the fullest extent, hence the choice of the "two-tier"
 server architecture (Java back-end + ReactJS front-end), consequent use of Git branching, and the use of modern tools and
-practices like building up a CI/CD pipeline, containerization, and Tes-Driven-Development. I also wanted to face some
+practices like building up a CI/CD pipeline, containerization, and Test-Driven-Development. I also wanted to face some
 specific challenges, that can occur in real life, so I intentionally planned the project to have space for modernization.
 
 **Modernizing the persistence layer:** Modernization is a common task in software development. Persistence technologies
@@ -32,8 +32,9 @@ relational database in accordance with object-oriented Java code, to avoid objec
 The use of ORMs are much more frequent in modern Java applications, therefore now the application is using Hibernate,
 a modern Object-relational mapper for Java, ensuring proper database operations.
 
-As it would happen in a real-life scenario, the change of the persistence layer was supported by proper unit test coverage
-of the API endpoints at the back-end server, therefore the transition went smooth and error free.
+As it would happen in a real-life scenario, the change of the persistence layer was supported by proper test coverage to
+ensure a smooth and error free transition. The API endpoints at the back-end server were covered with End-to-End tests
+capable to verify the correct operation and their integration as well to other software components.
 
 To being notified about further developments on the project, please consider "watch" the repository on GitHub.
 
@@ -45,7 +46,8 @@ To being notified about further developments on the project, please consider "wa
 - Structured Query Language (SQL)
 - Java Persistence API (JPA)
 - Object-Relational Mapping (ORM) - Hibernate
-- PostgreSQL relational database management system
+- PostgreSQL relational-database management system
+- H2 database engine (used during testing in CI environment)
 - Spring framework
 - Rest API
 - Maven
@@ -63,6 +65,12 @@ To being notified about further developments on the project, please consider "wa
 - JavaScript Fetch API
 - Asynchronous programming
 
+#### In general:
+- Git version control system
+- GitHub Actions - CI workflow
+- JetBrains IntelliJ IDEA
+- Postman
+
 ## Steps of development:
 1. Design relational database
    - Tables
@@ -78,7 +86,7 @@ To being notified about further developments on the project, please consider "wa
      - Create DAO interfaces
      - Create DAO implementations
    - Create Controller classes with REST APIs
-   - Implement Unit tests for API endpoints
+   - Implement End-to-End tests for proper API endpoint verification
 4. Establish ReactJS front-end server
    - Design UI structure
      - Create initial UI pages
@@ -86,8 +94,9 @@ To being notified about further developments on the project, please consider "wa
    - Create React Components to populate pages
    - Implement state management
    - Utilize JS Fetch API to communicate with back-end server
+   - Manual testing of the User Interface
 5. Change the persistence technology from JDBC to ORM
-   - Change project dependencies
+   - Change project dependencies (JDBC -> Hibernate)
    - Change database connection according to Spring Data JPA
    - Refactor Model classes into "entities" to work with Hibernate
      - Utilize Spring Data annotations
@@ -96,11 +105,22 @@ To being notified about further developments on the project, please consider "wa
      - Create Repository interfaces
      - Create Service classes
    - Refactor Controllers to work with the newly created Service layer
-   - Test API endpoints with Unit tests to check the transition was successful
+   - Test API endpoints with End-to-End tests to check the transition was successful
+6. Establish a Continuous Integration (CI) pipeline - GitHub Actions
+    - Create YAML file to establish pipeline with automated build and tests before code integration
+      - Implement workflow for back-end (Java 21)
+      - Implement workflow for front-end (node 16, 18, 21)
+    - Reshape existing Java End-to-End tests to run in CI environment
+      - Establish a mock database to be used during testing in CI environment
+        - Update project dependencies (introduce H2)
+        - Utilize an embedded relational-database with PostgreSQL dialect, capable of running in-memory - H2
+      - Refactor existing API tests to use the H2 database
+      - Implement "automatic back-end server start" in CI environment to test API endpoint integrations
+    - Configure GitHub "Branch protection rules" for *master* branch
+      - Require "pull request" from different branches to merge code
+      - Require successful CI pipeline builds and tests to merge code
 
 ### Future development plans:
-6. Establish a Continuous Integration (CI) pipeline - GitHub Actions
-   - Create YAML file to establish pipeline with automated build and tests before code integration
 7. Implement authentication and authorization functionalities by utilizing Spring Security
    - Create User entity
    - Create Roles and Privileges
@@ -126,26 +146,32 @@ To being notified about further developments on the project, please consider "wa
     - User name: ibardos_GitHub_demoProject
     - Password: Asd123
 3. Download node dependencies for ReactJS
-   1. Open a terminal here: ```src/main/ui```
+   1. Open a terminal here: ```~/src/main/ui```
    2. Run command: ```npm install```
 4. Create a run configuration in your IDE for the back-end server - Java 21
 5. Create a run configuration in your IDE for the front-end server - npm
 
 #### Back-end testing:
-1. You can find a collection of HTTP requests in this folder of the repository: ```src/test/resources/motoShop.postman_collection.json```
+
+With Postman:
+1. You can find a collection of HTTP requests in this folder of the repository: ```~/src/test/resources/motoShop.postman_collection.json```
 2. Import the collection as raw text into <a href="https://www.postman.com/downloads/" target="_blank">Postman</a>
 3. Open the project in your IDE (I've used <a href="https://www.jetbrains.com/idea/download/?section=mac" target="_blank">IntelliJ IDEA Ultimate</a>)
 4. Start the back-end server in your IDE
    - Database tables will be created and initialized with data automatically
 5. Test the API endpoints with the predefined HTTP requests in Postman (edge cases are also covered)
-6. Or you can simply run my set of unit tests against the API endpoints, located here: ```src/test/java/com/ibardos/motoShop/controller```
-   - The defined unit tests have automatic database setup/cleanup code as well, so you don't have to bother with that
+
+With my set of End-to-End tests: 
+1. Run the tests I've created for API endpoint testing, located here: ```~/src/test/java/com/ibardos/motoShop/endToEndTests/apiTests```
+   - The defined tests have automatic database setup/cleanup code as well in a mock database specifically for testing purposes,
+so you don't have to bother with that
 
 **IMPORTANT:** I managed to "store" the Java back-end application with both persistence technologies used during the project,
-JDBC and ORM as well. You can perform the above-mentioned unit tests against the back-end APIs working with JDBC, or
+JDBC and ORM as well. You can perform the above-mentioned End-to-End tests against the back-end APIs working with JDBC, or
 even with ORM, by checking out one of the available Git branches in the ```milestone``` git folder, to choose between the
 two distinct "versions" of the Java back-end code. Although they're built different "under the hood", you should notice, that
-they perform exactly the same way.
+they perform exactly the same way. Don't forget to start the Java back-end server by hand before start testing in these
+branches, as opposed to the "latest" version of the application, these older variants do not have automatic server start!
 
 #### Front-end:
 1. Start the back-end and front-end servers simultaneously (preferably with a predefined Compound in your IDE)
