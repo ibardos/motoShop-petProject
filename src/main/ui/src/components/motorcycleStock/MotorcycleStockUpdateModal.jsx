@@ -35,7 +35,7 @@ const UpdateForm = (props) => {
 
         setCurrentRecord(currentRecord);
         setCurrentMotorcycleModel(currentRecord.motorcycleModel);
-    }, [])
+    }, [props.motorcycleStocks, props.recordId])
 
 
     async function handleSubmit(values) {
@@ -108,6 +108,8 @@ const UpdateForm = (props) => {
                                 if (m.modelName !== values.motorcycleModel) {
                                     return <option key={m.modelName} value={m.modelName}>{m.modelName}</option>
                                 }
+
+                                return "Click to select Motorcycle model";
                             })}
                         </Field>
                     </Form.Group>

@@ -39,7 +39,7 @@ const UpdateForm = (props) => {
 
         setCurrentRecord(currentRecord);
         setCurrentManufacturer(currentRecord.manufacturer);
-    }, [])
+    }, [props.motorcycleModels, props.recordId])
 
 
     async function handleSubmit(values) {
@@ -127,6 +127,8 @@ const UpdateForm = (props) => {
                                 if (m.name !== values.manufacturerName) {
                                     return <option key={m.name} value={m.name}>{m.name}</option>
                                 }
+
+                                return "Click to select Manufacturer";
                             })}
                         </Field>
                     </Form.Group>
@@ -142,6 +144,8 @@ const UpdateForm = (props) => {
                                 if (type !== values.modelType) {
                                     return <option key={type} value={type}>{type}</option>
                                 }
+
+                                return "Click to select Model type";
                             })}
                         </Field>
                     </Form.Group>

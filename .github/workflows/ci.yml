@@ -1,0 +1,67 @@
+name: CI pipeline for Java back-end and ReactJS front-end
+
+on:
+  push:
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  back-end:
+    runs-on: ubuntu-latest
+
+    # Run job only if git commit message contains '[CI]'
+    if: "contains(github.event.commits[0].message, '[CI]')"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: 21
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Build and test with Maven
+        # End-to-end tests are used to cover all code-components, excluding context loading test, as database is not present in CI environment.
+        run: mvn -B package --file pom.xml -Dtest=!MotoShopApplicationGeneralTests#contextLoads
+
+  front-end:
+    runs-on: ubuntu-latest
+
+    # Run job only if git commit message contains '[CI]'
+    if: "contains(github.event.commits[0].message, '[CI]')"
+
+    # Steps must run in the folder where ReactJS front-end application is located.
+    defaults:
+      run:
+        working-directory: ./src/main/ui
+
+    strategy:
+      matrix:
+        node-version: [ 16, 18, 21 ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: ./src/main/ui/package-lock.json
+
+      - name: Clean install node dependencies
+        run: npm ci
+
+      - name: Install React scripts
+        run: npm install react-scripts
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Test with ESLint
+        run: npm run lint

@@ -1,11 +1,15 @@
-package com.ibardos.motoShop.controller;
-
-import com.ibardos.motoShop.util.DatabaseManager;
+package com.ibardos.motoShop.endToendTests.apiTests;
 
 import org.junit.jupiter.api.*;
-import org.skyscreamer.jsonassert.JSONAssert;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.skyscreamer.jsonassert.JSONAssert;
+
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,32 +19,37 @@ import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Files;
 
+/**
+ * Test class, containing End-to-End tests against API endpoints in MotorcycleStockController.
+ */
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ManufacturerControllerTest {
+public class MotorcycleStockControllerApiTests {
+    @LocalServerPort
+    private int port;
+
+    private final String baseUrl = "http://localhost:";
+
     private static HttpClient client;
 
     @BeforeAll
-    static void initBeforeAll() {
-        client = HttpClient.newBuilder().build();
-
-        DatabaseManager.initializeDatabase();
-    }
-
-    @AfterAll
-    static void cleanUpAfterAll() {
-        DatabaseManager.initializeDatabase();
-    }
+    static void initBeforeAll() { client = HttpClient.newBuilder().build(); }
 
     @Test
     @Order(1)
-    void add_newValidManufacturer_statusCode201WithProperJson() throws Exception {
+    void add_newValidMotorcycleStock_statusCode201WithProperJson() throws Exception {
         // Arrange
-        int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/responses/Add.json")));
+        String url = baseUrl + port + "/motorcycle/stock/add";
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/add"))
+        int expectedResponseStatus = 201;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Add.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/requests/AddValid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddValid.json")))
                 .build();
 
         // Act
@@ -56,13 +65,15 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(2)
-    void add_newInvalidManufacturer_statusCode400() throws Exception {
+    void add_newInvalidMotorcycleStock_statusCode400() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/add";
+
         int expectedResponseStatus = 400;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/add"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/requests/AddInvalid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddInvalid.json")))
                 .build();
 
         // Act
@@ -76,12 +87,14 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(3)
-    void get_manufacturerWithValidId_statusCode200WithProperJson() throws Exception {
+    void get_motorcycleStockWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/responses/Get.json")));
+        String url = baseUrl + port + "/motorcycle/stock/get/8";
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/get/6"))
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Get.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
                 .build();
 
@@ -98,11 +111,13 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(4)
-    void get_manufacturerWithInvalidId_statusCode404() throws Exception {
+    void get_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/get/55";
+
         int expectedResponseStatus = 404;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/get/55"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
                 .build();
 
@@ -117,12 +132,14 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(5)
-    void getAll_listOfManufacturers_statusCode200WithProperJson() throws Exception {
+    void getAll_listOfMotorcycleStocks_statusCode200WithProperJson() throws Exception {
         // Arrange
-        int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/responses/GetAll.json")));
+        String url = baseUrl + port + "/motorcycle/stock/get/all";
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/get/all"))
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/GetAll.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
                 .build();
 
@@ -139,11 +156,13 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(6)
-    void getAll_listOfManufacturersFromInvalidUrl_statusCode400() throws Exception {
+    void getAll_listOfMotorcycleStocksFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/get/allInvalid";
+
         int expectedResponseStatus = 400;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/get/invalid"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .GET()
                 .build();
 
@@ -158,13 +177,15 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(7)
-    void update_manufacturerWithValidId_statusCode204() throws Exception {
+    void update_motorcycleStockWithValidId_statusCode204() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/update";
+
         int expectedResponseStatus = 204;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/update"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/requests/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateValid.json")))
                 .build();
 
         // Act
@@ -178,13 +199,15 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(8)
-    void update_manufacturerWithInvalidId_statusCode404() throws Exception {
+    void update_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/update";
+
         int expectedResponseStatus = 404;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/update"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/requests/UpdateInvalidId.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -198,13 +221,15 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(9)
-    void update_manufacturerWithInvalidJson_statusCode400() throws Exception {
+    void update_motorcycleStockWithInvalidJson_statusCode400() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/update";
+
         int expectedResponseStatus = 400;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/update"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/manufacturer/requests/UpdateInvalidJson.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidJson.json")))
                 .build();
 
         // Act
@@ -218,11 +243,13 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(10)
-    void delete_manufacturerWithValidId_statusCode204() throws Exception {
+    void delete_motorcycleStockWithValidId_statusCode204() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/delete/9";
+
         int expectedResponseStatus = 204;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/delete/5"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
                 .DELETE()
                 .build();
@@ -238,31 +265,13 @@ public class ManufacturerControllerTest {
 
     @Test
     @Order(11)
-    void delete_manufacturerWithInvalidId_statusCode404() throws Exception {
+    void delete_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
+        String url = baseUrl + port + "/motorcycle/stock/delete/99";
+
         int expectedResponseStatus = 404;
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/delete/33"))
-                .headers("Content-Type", "application/json")
-                .DELETE()
-                .build();
-
-        // Act
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        int resultResponseStatus = response.statusCode();
-
-        // Assert
-        assertEquals(expectedResponseStatus, resultResponseStatus);
-    }
-
-    @Test
-    @Order(12)
-    void delete_manufacturerWithIdHasForeignKeyRestriction_statusCode500() throws Exception {
-        // Arrange
-        int expectedResponseStatus = 500;
-
-        HttpRequest request = HttpRequest.newBuilder(URI.create("http://localhost:8080/manufacturer/delete/1"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json")
                 .DELETE()
                 .build();

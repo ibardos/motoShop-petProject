@@ -9,8 +9,8 @@ import {camelCaseToSentenceCase} from "../../util/util";
 
 const MotorcycleModelDeleteModal = (props) => {
     const modalBody = <DeleteItemInformation motorcycleModels={props.motorcycleModels} recordId={props.recordId}
-                               setDeleteErrorModalShow={props.setErrorModalShow} setFormSubmit={props.setFormSubmit}
-                               setDeleteModalShow={props.setDeleteModalShow}/>
+                                             setDeleteErrorModalShow={props.setErrorModalShow} setFormSubmit={props.setFormSubmit}
+                                             setDeleteModalShow={props.setDeleteModalShow}/>
 
     return <CrudModal show={props.show} onHide={props.onHide} title="Delete Motorcycle model" body={modalBody} />
 }
@@ -21,8 +21,9 @@ const DeleteItemInformation = (props) => {
 
 
     useEffect(() => {
-        setCurrentRecord(props.motorcycleModels.find(m => m.id.toString() === props.recordId))
-    },[props.recordId])
+        const currentRecord = props.motorcycleModels.find(m => m.id.toString() === props.recordId);
+        setCurrentRecord(currentRecord !== undefined ? currentRecord : {});
+    }, [props.motorcycleModels, props.recordId])
 
 
     async function handleSubmit(event) {
