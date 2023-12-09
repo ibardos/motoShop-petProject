@@ -151,6 +151,8 @@ To being notified about further developments on the project, please consider "wa
 4. Create a run configuration in your IDE for the back-end server - Java 21
 5. Create a run configuration in your IDE for the front-end server - npm
 
+<br>
+
 #### Back-end testing:
 
 With Postman:
@@ -172,6 +174,8 @@ even with ORM, by checking out one of the available Git branches in the ```miles
 two distinct "versions" of the Java back-end code. Although they're built different "under the hood", you should notice, that
 they perform exactly the same way. Don't forget to start the Java back-end server by hand before start testing in these
 branches, as opposed to the "latest" version of the application, these older variants do not have automatic server start!
+
+<br>
 
 #### Front-end:
 1. Start the back-end and front-end servers simultaneously (preferably with a predefined Compound in your IDE)
