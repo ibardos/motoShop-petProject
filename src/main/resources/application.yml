@@ -23,3 +23,11 @@ spring:
 logging:
   level:
     org.springframework.security: debug
+
+
+# Secret values for JwtService configuration class.
+application:
+  security:
+    jwt:
+      secret-key: aJY0J85oUTTVkZHaN3kjldfiuew3khdfgiouLKJHEnflJKREvfw8AJmInMNqFtfHWNK
+      expiration: 28800000 # 8 hours, as one working day
