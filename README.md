@@ -48,10 +48,12 @@ To being notified about further developments on the project, please consider "wa
 - Object-Relational Mapping (ORM) - Hibernate
 - PostgreSQL relational-database management system
 - H2 database engine (used during testing in CI environment)
-- Spring framework
+- Spring Boot
+- Spring Security
 - Rest API
 - Maven
 - JUnit 5
+- Stateless session handling with JWT
 - DAO design pattern
 - Controller-Service-Repository (CSR) pattern
 
@@ -119,16 +121,23 @@ To being notified about further developments on the project, please consider "wa
     - Configure GitHub "Branch protection rules" for *master* branch
       - Require "pull request" from different branches to merge code
       - Require successful CI pipeline builds and tests to merge code
+7. Implement authentication and authorization functionalities by utilizing Spring Security at the back-end server
+    - Create ApplicationUser entity
+    - Create Roles and Permissions
+    - Implement CustomUserDetails and corresponding Service class to customize the authentication process
+    - Implement stateless back-end server session handling with JWT
+    - Create REST controller for authentication and registration
+    - Configure security levels for API endpoints
+      - Role and Permission based authorization
+    - Refresh DDL & DML scripts to update database
+    - Refresh End-to-End tests:
+      - Create API tests against newly created AuthenticationController
+      - Update existing API tests to work with secured endpoints from now on
 
 ### Future development plans:
-7. Implement authentication and authorization functionalities by utilizing Spring Security
-   - Create User entity
-   - Create Roles and Privileges
-   - Implement UserDetailsService to customize the authentication process
-   - Configure security levels for API endpoints
 8. Implement login and registration features at the front-end side
    - Create new React components to handle login/registration through UI
-   - Implement registration feature on the back-end server
+   - Implement conditional UI element rendering according to user roles
 9. Containerize application - Docker
    - Create Dockerfile
    - Create Shell scripts to build and run Dockerfile
@@ -178,6 +187,7 @@ branches, as opposed to the "latest" version of the application, these older var
 <br>
 
 #### Front-end:
+FRONT-END cannot be used currently. Security related functionalities are under development!
 1. Start the back-end and front-end servers simultaneously (preferably with a predefined Compound in your IDE)
 2. Navigate through the menu points in your web browser
 3. Try to create/read/update/delete data at any page
