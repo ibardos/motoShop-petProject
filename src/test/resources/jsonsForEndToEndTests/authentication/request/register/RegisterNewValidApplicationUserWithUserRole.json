@@ -1,0 +1,18 @@
+{
+  "username": "sidney",
+  "password": "123",
+  "email": "sidney@icloud.com",
+  "firstName": "Sidney",
+  "lastName": "Prescott",
+  "positionAtCompany": "Receptionist",
+  "role": {
+    "id": 1,
+    "name": "User",
+    "permissions": [
+      {
+        "id": 1,
+        "name": "Read"
+      }
+    ]
+  }
+}

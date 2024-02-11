@@ -1,0 +1,26 @@
+{
+  "username": "brigi",
+  "password": "456",
+  "email": "brigi@icloud.com",
+  "firstName": "Brigi",
+  "lastName": "Kiss",
+  "positionAtCompany": "Sales manager",
+  "role": {
+    "id": 2,
+    "name": "Sales",
+    "permissions": [
+      {
+        "id": 1,
+        "name": "Read"
+      },
+      {
+        "id": 2,
+        "name": "Create"
+      },
+      {
+        "id": 3,
+        "name": "Update"
+      }
+    ]
+  }
+}
