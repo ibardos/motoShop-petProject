@@ -1,0 +1,30 @@
+{
+  "username": "steve",
+  "password": "789",
+  "email": "steve@icloud.com",
+  "firstName": "Steve",
+  "lastName": "Bardos",
+  "positionAtCompany": "Store manager",
+  "role": {
+    "id": 3,
+    "name": "Admin",
+    "permissions": [
+      {
+        "id": 1,
+        "name": "Read"
+      },
+      {
+        "id": 2,
+        "name": "Create"
+      },
+      {
+        "id": 3,
+        "name": "Update"
+      },
+      {
+        "id": 4,
+        "name": "Delete"
+      }
+    ]
+  }
+}

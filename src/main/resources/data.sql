@@ -32,3 +32,34 @@ VALUES ((SELECT id FROM motorcycle_model WHERE model_name = 'R 1250 GS Adventure
        ((SELECT id FROM motorcycle_model WHERE model_name = 'V-Strom 1050DE Adventure'), '0', '15300', '0.15', '2300', '17600', '3', 'Metallic Matte Sword Silver'),
        ((SELECT id FROM motorcycle_model WHERE model_name = 'YZF-R1 M'), '0', '23480', '0.15', '3600', '27080', '1', 'Carbon-fiber/blue')
 ;
+
+---------- Security related inserts ----------
+INSERT INTO permission (name)
+VALUES ('Read'),
+       ('Create'),
+       ('Update'),
+       ('Delete')
+;
+
+INSERT INTO role (name)
+VALUES ('User'),
+       ('Sales'),
+       ('Admin')
+;
+
+INSERT INTO role_permissions (role_id, permission_id)
+VALUES ((SELECT id FROM role WHERE name = 'User'), (SELECT id FROM permission WHERE name = 'Read')),
+       ((SELECT id FROM role WHERE name = 'Sales'), (SELECT id FROM permission WHERE name = 'Read')),
+       ((SELECT id FROM role WHERE name = 'Sales'), (SELECT id FROM permission WHERE name = 'Create')),
+       ((SELECT id FROM role WHERE name = 'Sales'), (SELECT id FROM permission WHERE name = 'Update')),
+       ((SELECT id FROM role WHERE name = 'Admin'), (SELECT id FROM permission WHERE name = 'Read')),
+       ((SELECT id FROM role WHERE name = 'Admin'), (SELECT id FROM permission WHERE name = 'Create')),
+       ((SELECT id FROM role WHERE name = 'Admin'), (SELECT id FROM permission WHERE name = 'Update')),
+       ((SELECT id FROM role WHERE name = 'Admin'), (SELECT id FROM permission WHERE name = 'Delete'))
+;
+
+INSERT INTO application_user (username, password, email, first_name, last_name, date_of_registration, position_at_company, enabled, role_id)
+VALUES ('user', '$2a$10$zagoF51UwzBUzY4ccaCikO5mGVTaw9I/XyA65k9BT6Rb8pe.cG9ve', 'user@motoShop.com', 'Tom', 'User', '2023-12-21', 'Assistant', 'TRUE', (SELECT id FROM role WHERE name = 'User')),
+       ('sales', '$2a$10$OIqT3/qM3eU8xZf4nOwXxuxo4Frzu8mI1CpNSpV2L644NsUVtONkO', 'sales@motoShop.com', 'Jack', 'Sales', '2023-12-21', 'Sales manager', 'TRUE', (SELECT id FROM role WHERE name = 'Sales')),
+       ('admin', '$2a$10$DI.Jifz9lsaUibQVyLEoCecgpxNS4FnP2B2smkQz1Dj/4wcLVONIO', 'admin@motoShop.com', 'Jill', 'Admin', '2023-12-21', 'Store manager', 'TRUE', (SELECT id FROM role WHERE name = 'Admin'))
+;

@@ -1,8 +1,15 @@
-package com.ibardos.motoShop.endToendTests.apiTests;
+package com.ibardos.motoShop.endToEndTest.apiTest.erpCore.userRole;
 
-import org.junit.jupiter.api.*;
+import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import jakarta.annotation.PostConstruct;
+
+import org.json.JSONException;
+
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import org.skyscreamer.jsonassert.JSONAssert;
 
@@ -11,71 +18,75 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.io.IOException;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import java.nio.file.Path;
 import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test class, containing End-to-End tests against API endpoints in MotorcycleModelController.
+ * Test class, containing End-to-End tests against API endpoints in MotorcycleModelController, authenticated with User role.
  */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MotorcycleModelControllerApiTests {
+public class MotorcycleModelControllerApiUserRoleTests {
     @LocalServerPort
     private int port;
-
     private final String baseUrl = "http://localhost:";
+    private HttpClient client;
+    private String jwtToken;
 
-    private static HttpClient client;
 
-    @BeforeAll
-    static void initBeforeAll() {
+    @PostConstruct
+    public void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "User");
     }
+
 
     @Test
     @Order(1)
-    void add_newValidMotorcycleModel_statusCode201WithProperJson() throws Exception {
+    void add_newValidMotorcycleModel_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/add";
 
-        int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/Add.json")));
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/AddValid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/request/AddValid.json")))
                 .build();
 
         // Act
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         int resultResponseStatus = response.statusCode();
-        String resultResponseBody = response.body();
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
-        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
     }
 
     @Test
     @Order(2)
-    void add_newInvalidMotorcycleModel_statusCode400() throws Exception {
+    void add_newInvalidMotorcycleModel_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/add";
 
-        int expectedResponseStatus = 400;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/AddInvalid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/request/AddInvalid.json")))
                 .build();
 
         // Act
@@ -94,9 +105,10 @@ public class MotorcycleModelControllerApiTests {
         String url = baseUrl + port + "/motorcycle/model/get/1";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/Get.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/Get.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -106,9 +118,11 @@ public class MotorcycleModelControllerApiTests {
         int resultResponseStatus = response.statusCode();
         String resultResponseBody = response.body();
 
+
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
         JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
+
     }
 
     @Test
@@ -120,6 +134,7 @@ public class MotorcycleModelControllerApiTests {
         int expectedResponseStatus = 404;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -139,9 +154,10 @@ public class MotorcycleModelControllerApiTests {
         String url = baseUrl + port + "/motorcycle/model/get/all";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/GetAll.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/GetAll.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -165,6 +181,7 @@ public class MotorcycleModelControllerApiTests {
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -179,15 +196,15 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(7)
-    void update_motorcycleModelWithValidId_statusCode204() throws Exception {
+    void update_motorcycleModelWithValidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/update";
 
-        int expectedResponseStatus = 204;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateValid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -201,15 +218,15 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(8)
-    void update_motorcycleModelWithInvalidId_statusCode404() throws Exception {
+    void update_motorcycleModelWithInvalidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/update";
 
-        int expectedResponseStatus = 404;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateInvalidId.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/request/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -223,15 +240,15 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(9)
-    void update_motorcycleModelWithInvalidJson_statusCode400() throws Exception {
+    void update_motorcycleModelWithInvalidJson_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/update";
 
-        int expectedResponseStatus = 400;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/requests/UpdateInvalidJson.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/request/UpdateInvalidJson.json")))
                 .build();
 
         // Act
@@ -245,14 +262,14 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(10)
-    void delete_motorcycleModelWithValidId_statusCode204() throws Exception {
+    void delete_motorcycleModelWithValidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/delete/6";
 
-        int expectedResponseStatus = 204;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .DELETE()
                 .build();
 
@@ -267,14 +284,14 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(11)
-    void delete_motorcycleModelWithInvalidId_statusCode404() throws Exception {
+    void delete_motorcycleModelWithInvalidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/delete/99";
 
-        int expectedResponseStatus = 404;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .DELETE()
                 .build();
 
@@ -289,14 +306,14 @@ public class MotorcycleModelControllerApiTests {
 
     @Test
     @Order(12)
-    void delete_motorcycleModelWithIdHasForeignKeyRestriction_statusCode500() throws Exception {
+    void delete_motorcycleModelWithIdHasForeignKeyRestriction_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + port + "/motorcycle/model/delete/7";
 
-        int expectedResponseStatus = 500;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .DELETE()
                 .build();
 
@@ -316,9 +333,10 @@ public class MotorcycleModelControllerApiTests {
         String url = baseUrl + port + "/motorcycle/model/get/types";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleModel/responses/GetMotorcycleModelTypes.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/GetMotorcycleModelTypes.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 

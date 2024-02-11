@@ -1,0 +1,33 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/motoShop
+    username: ibardos_GitHub_demoProject
+    password: Asd123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+
+  sql:
+    init:
+      mode: always
+      continue-on-error: true
+
+logging:
+  level:
+    org.springframework.security: debug
+
+
+# Secret values for JwtService configuration class.
+application:
+  security:
+    jwt:
+      secret-key: aJY0J85oUTTVkZHaN3kjldfiuew3khdfgiouLKJHEnflJKREvfw8AJmInMNqFtfHWNK
+      expiration: 28800000 # 8 hours, as one working day

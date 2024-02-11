@@ -8,6 +8,376 @@
 	},
 	"item": [
 		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "valid_parameters",
+					"item": [
+						{
+							"name": "login",
+							"item": [
+								{
+									"name": "login_user_role",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"user\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login_sales_role",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\": \"sales\",\n\t\"password\": \"sales\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login_admin_role",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"admin\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "register",
+							"item": [
+								{
+									"name": "register_user_role",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"sidney\",\n  \"password\": \"123\",\n  \"email\": \"sidney@icloud.com\",\n  \"firstName\": \"Sidney\",\n  \"lastName\": \"Prescott\",\n  \"positionAtCompany\": \"Receptionist\",\n  \"role\": {\n    \"id\": 1,\n    \"name\": \"User\",\n    \"permissions\": [\n      {\n        \"id\": 1,\n        \"name\": \"Read\"\n      }\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register_sales_role",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"brigi\",\n  \"password\": \"456\",\n  \"email\": \"brigi@icloud.com\",\n  \"firstName\": \"Brigi\",\n  \"lastName\": \"Kiss\",\n  \"positionAtCompany\": \"Sales manager\",\n  \"role\": {\n    \"id\": 2,\n    \"name\": \"Sales\",\n    \"permissions\": [\n      {\n        \"id\": 1,\n        \"name\": \"Read\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"Create\"\n      },\n      {\n        \"id\": 3,\n        \"name\": \"Update\"\n      }\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register_admin_role",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"steve\",\n  \"password\": \"789\",\n  \"email\": \"steve@icloud.com\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Bardos\",\n  \"positionAtCompany\": \"Store manager\",\n  \"role\": {\n    \"id\": 3,\n    \"name\": \"Admin\",\n    \"permissions\": [\n      {\n        \"id\": 1,\n        \"name\": \"Read\"\n      },\n      {\n        \"id\": 2,\n        \"name\": \"Create\"\n      },\n      {\n        \"id\": 3,\n        \"name\": \"Update\"\n      },\n      {\n        \"id\": 4,\n        \"name\": \"Delete\"\n      }\n    ]\n  }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"register"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "invalid_parameters",
+					"item": [
+						{
+							"name": "login",
+							"item": [
+								{
+									"name": "login_empty_body",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "login_invalid_user",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"email\": \"admin\",\n  \"password\": \"admin\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/login",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "register",
+							"item": [
+								{
+									"name": "register_invalid_user",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"steve\",\n  \"password\": \"123\",\n  \"email\": \"steve@icloud.com\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Bardos\",\n  \"positionAtCompany\": \"Sales manager\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"register"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "register_empty_body",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/authentication/register",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"authentication",
+												"register"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Manufacturer",
 			"item": [
 				{

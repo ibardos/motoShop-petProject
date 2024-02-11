@@ -1,4 +1,9 @@
-package com.ibardos.motoShop.endToendTests.apiTests;
+package com.ibardos.motoShop.endToEndTest.apiTest.erpCore.adminRole;
+
+import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
+import jakarta.annotation.PostConstruct;
+
+import org.json.JSONException;
 
 import org.junit.jupiter.api.*;
 
@@ -11,6 +16,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.io.IOException;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -20,23 +27,28 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 
 /**
- * Test class, containing End-to-End tests against API endpoints in MotorcycleStockController.
+ * Test class, containing End-to-End tests against API endpoints in MotorcycleStockController, authenticated with Admin role.
  */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MotorcycleStockControllerApiTests {
+public class MotorcycleStockControllerApiAdminRoleTests {
     @LocalServerPort
     private int port;
-
     private final String baseUrl = "http://localhost:";
+    private HttpClient client;
+    private String jwtToken;
 
-    private static HttpClient client;
 
-    @BeforeAll
-    static void initBeforeAll() { client = HttpClient.newBuilder().build(); }
+    @PostConstruct
+    public void initBeforeAll() throws Exception {
+        client = HttpClient.newBuilder().build();
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "Admin");
+    }
+
 
     @Test
     @Order(1)
@@ -45,11 +57,11 @@ public class MotorcycleStockControllerApiTests {
         String url = baseUrl + port + "/motorcycle/stock/add";
 
         int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Add.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Add.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddValid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/AddValid.json")))
                 .build();
 
         // Act
@@ -72,8 +84,8 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/AddInvalid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/AddInvalid.json")))
                 .build();
 
         // Act
@@ -92,9 +104,10 @@ public class MotorcycleStockControllerApiTests {
         String url = baseUrl + port + "/motorcycle/stock/get/8";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Get.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Get.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -118,6 +131,7 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 404;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -137,9 +151,10 @@ public class MotorcycleStockControllerApiTests {
         String url = baseUrl + port + "/motorcycle/stock/get/all";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/GetAll.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/GetAll.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -163,6 +178,7 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .GET()
                 .build();
 
@@ -184,8 +200,8 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 204;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateValid.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -206,8 +222,8 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 404;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidId.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -228,8 +244,8 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 400;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/requests/UpdateInvalidJson.json")))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateInvalidJson.json")))
                 .build();
 
         // Act
@@ -250,7 +266,7 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 204;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .DELETE()
                 .build();
 
@@ -272,7 +288,7 @@ public class MotorcycleStockControllerApiTests {
         int expectedResponseStatus = 404;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-                .headers("Content-Type", "application/json")
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .DELETE()
                 .build();
 
