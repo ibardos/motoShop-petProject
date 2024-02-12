@@ -15,7 +15,7 @@ import java.util.List;
  * REST API controller for MotorcycleModel type.
  */
 @RestController
-@RequestMapping("motorcycle/model")
+@RequestMapping("service/motorcycle/model")
 public class MotorcycleModelController {
     MotorcycleModelService motorcycleModelService;
 

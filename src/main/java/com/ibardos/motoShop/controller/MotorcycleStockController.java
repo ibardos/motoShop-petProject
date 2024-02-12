@@ -13,7 +13,7 @@ import java.util.List;
  * REST API controller for MotorcycleStock type.
  */
 @RestController
-@RequestMapping("motorcycle/stock")
+@RequestMapping("service/motorcycle/stock")
 public class MotorcycleStockController {
     MotorcycleStockService motorcycleStockService;
 
