@@ -44,20 +44,20 @@ public class SecurityConfiguration {
 
                                 .requestMatchers("authentication/register").hasRole("Admin")
 
-                                .requestMatchers("manufacturer/add").hasAuthority("PERMISSION_Create")
-                                .requestMatchers("manufacturer/get/**").hasAuthority("PERMISSION_Read")
-                                .requestMatchers("manufacturer/update").hasAuthority("PERMISSION_Update")
-                                .requestMatchers("manufacturer/delete/**").hasAuthority("PERMISSION_Delete")
+                                .requestMatchers("service/manufacturer/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("service/manufacturer/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("service/manufacturer/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("service/manufacturer/delete/**").hasAuthority("PERMISSION_Delete")
 
-                                .requestMatchers("motorcycle/model/add").hasAuthority("PERMISSION_Create")
-                                .requestMatchers("motorcycle/model/get/**").hasAuthority("PERMISSION_Read")
-                                .requestMatchers("motorcycle/model/update").hasAuthority("PERMISSION_Update")
-                                .requestMatchers("motorcycle/model/delete/**").hasAuthority("PERMISSION_Delete")
+                                .requestMatchers("service/motorcycle/model/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("service/motorcycle/model/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("service/motorcycle/model/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("service/motorcycle/model/delete/**").hasAuthority("PERMISSION_Delete")
 
-                                .requestMatchers("motorcycle/stock/add").hasAuthority("PERMISSION_Create")
-                                .requestMatchers("motorcycle/stock/get/**").hasAuthority("PERMISSION_Read")
-                                .requestMatchers("motorcycle/stock/update").hasAuthority("PERMISSION_Update")
-                                .requestMatchers("motorcycle/stock/delete/**").hasAuthority("PERMISSION_Delete")
+                                .requestMatchers("service/motorcycle/stock/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("service/motorcycle/stock/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("service/motorcycle/stock/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("service/motorcycle/stock/delete/**").hasAuthority("PERMISSION_Delete")
 
                                 .anyRequest()
                                 .authenticated()
