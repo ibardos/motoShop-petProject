@@ -41,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MotorcycleModelControllerApiUserRoleTests {
     @LocalServerPort
     private int port;
-    private final String baseUrl = "http://localhost:";
+    private String baseUrl;
     private HttpClient client;
     private String jwtToken;
 
@@ -50,7 +50,9 @@ public class MotorcycleModelControllerApiUserRoleTests {
     public void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
 
-        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "User");
+        baseUrl = "http://localhost:" + port + "/";
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "User");
     }
 
 
@@ -58,7 +60,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(1)
     void add_newValidMotorcycleModel_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/add";
+        String url = baseUrl + "service/motorcycle/model/add";
 
         int expectedResponseStatus = 403;
 
@@ -80,7 +82,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(2)
     void add_newInvalidMotorcycleModel_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/add";
+        String url = baseUrl + "service/motorcycle/model/add";
 
         int expectedResponseStatus = 403;
 
@@ -102,7 +104,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(3)
     void get_motorcycleModelWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/get/1";
+        String url = baseUrl + "service/motorcycle/model/get/1";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/Get.json")));
@@ -129,7 +131,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(4)
     void get_motorcycleModelWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/get/55";
+        String url = baseUrl + "service/motorcycle/model/get/55";
 
         int expectedResponseStatus = 404;
 
@@ -151,7 +153,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(5)
     void getAll_listOfMotorcycleModels_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/get/all";
+        String url = baseUrl + "service/motorcycle/model/get/all";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/GetAll.json")));
@@ -176,7 +178,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(6)
     void getAll_listOfMotorcycleModelsFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/get/allInvalid";
+        String url = baseUrl + "service/motorcycle/model/get/allInvalid";
 
         int expectedResponseStatus = 400;
 
@@ -198,7 +200,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(7)
     void update_motorcycleModelWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/update";
+        String url = baseUrl + "service/motorcycle/model/update";
 
         int expectedResponseStatus = 403;
 
@@ -220,7 +222,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(8)
     void update_motorcycleModelWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/update";
+        String url = baseUrl + "service/motorcycle/model/update";
 
         int expectedResponseStatus = 403;
 
@@ -242,7 +244,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(9)
     void update_motorcycleModelWithInvalidJson_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/update";
+        String url = baseUrl + "service/motorcycle/model/update";
 
         int expectedResponseStatus = 403;
 
@@ -264,7 +266,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(10)
     void delete_motorcycleModelWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/delete/6";
+        String url = baseUrl + "service/motorcycle/model/delete/6";
 
         int expectedResponseStatus = 403;
 
@@ -286,7 +288,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(11)
     void delete_motorcycleModelWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/delete/99";
+        String url = baseUrl + "service/motorcycle/model/delete/99";
 
         int expectedResponseStatus = 403;
 
@@ -308,7 +310,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(12)
     void delete_motorcycleModelWithIdHasForeignKeyRestriction_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/delete/7";
+        String url = baseUrl + "service/motorcycle/model/delete/7";
 
         int expectedResponseStatus = 403;
 
@@ -330,7 +332,7 @@ public class MotorcycleModelControllerApiUserRoleTests {
     @Order(13)
     void get_motorcycleModelTypes_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/model/get/types";
+        String url = baseUrl + "service/motorcycle/model/get/types";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleModel/response/GetMotorcycleModelTypes.json")));

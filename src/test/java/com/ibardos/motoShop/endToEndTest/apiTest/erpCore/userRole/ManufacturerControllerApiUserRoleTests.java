@@ -41,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ManufacturerControllerApiUserRoleTests {
     @LocalServerPort
     private int port;
-    private final String baseUrl = "http://localhost:";
+    private String baseUrl;
     private HttpClient client;
     private String jwtToken;
 
@@ -50,7 +50,9 @@ public class ManufacturerControllerApiUserRoleTests {
     public void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
 
-        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "User");
+        baseUrl = "http://localhost:" + port + "/";
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "User");
     }
 
 
@@ -58,7 +60,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(1)
     void add_newValidManufacturer_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/add";
+        String url = baseUrl + "service/manufacturer/add";
 
         int expectedResponseStatus = 403;
 
@@ -80,7 +82,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(2)
     void add_newInvalidManufacturer_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/add";
+        String url = baseUrl + "service/manufacturer/add";
 
         int expectedResponseStatus = 403;
 
@@ -102,7 +104,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(3)
     void get_manufacturerWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/get/6";
+        String url = baseUrl + "service/manufacturer/get/6";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/response/Get.json")));
@@ -127,7 +129,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(4)
     void get_manufacturerWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/get/55";
+        String url = baseUrl + "service/manufacturer/get/55";
 
         int expectedResponseStatus = 404;
 
@@ -149,7 +151,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(5)
     void getAll_listOfManufacturers_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/get/all";
+        String url = baseUrl + "service/manufacturer/get/all";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/response/GetAll.json")));
@@ -174,7 +176,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(6)
     void getAll_listOfManufacturersFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/get/allInvalid";
+        String url = baseUrl + "service/manufacturer/get/allInvalid";
 
         int expectedResponseStatus = 400;
 
@@ -196,7 +198,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(7)
     void update_manufacturerWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/update";
+        String url = baseUrl + "service/manufacturer/update";
 
         int expectedResponseStatus = 403;
 
@@ -218,7 +220,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(8)
     void update_manufacturerWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/update";
+        String url = baseUrl + "service/manufacturer/update";
 
         int expectedResponseStatus = 403;
 
@@ -240,7 +242,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(9)
     void update_manufacturerWithInvalidJson_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/update";
+        String url = baseUrl + "service/manufacturer/update";
 
         int expectedResponseStatus = 403;
 
@@ -262,7 +264,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(10)
     void delete_manufacturerWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/delete/5";
+        String url = baseUrl + "service/manufacturer/delete/5";
 
         int expectedResponseStatus = 403;
 
@@ -284,7 +286,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(11)
     void delete_manufacturerWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/delete/33";
+        String url = baseUrl + "service/manufacturer/delete/33";
 
         int expectedResponseStatus = 403;
 
@@ -306,7 +308,7 @@ public class ManufacturerControllerApiUserRoleTests {
     @Order(12)
     void delete_manufacturerWithIdHasForeignKeyRestriction_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/manufacturer/delete/1";
+        String url = baseUrl + "service/manufacturer/delete/1";
 
         int expectedResponseStatus = 403;
 

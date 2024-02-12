@@ -37,7 +37,7 @@ import java.nio.file.Files;
 public class MotorcycleStockControllerApiAdminRoleTests {
     @LocalServerPort
     private int port;
-    private final String baseUrl = "http://localhost:";
+    private String baseUrl;
     private HttpClient client;
     private String jwtToken;
 
@@ -46,7 +46,9 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     public void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
 
-        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "Admin");
+        baseUrl = "http://localhost:" + port + "/";
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Admin");
     }
 
 
@@ -54,7 +56,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(1)
     void add_newValidMotorcycleStock_statusCode201WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + "service/motorcycle/stock/add";
 
         int expectedResponseStatus = 201;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Add.json")));
@@ -79,7 +81,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(2)
     void add_newInvalidMotorcycleStock_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + "service/motorcycle/stock/add";
 
         int expectedResponseStatus = 400;
 
@@ -101,7 +103,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(3)
     void get_motorcycleStockWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/8";
+        String url = baseUrl + "service/motorcycle/stock/get/8";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Get.json")));
@@ -126,7 +128,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(4)
     void get_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/55";
+        String url = baseUrl + "service/motorcycle/stock/get/55";
 
         int expectedResponseStatus = 404;
 
@@ -148,7 +150,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(5)
     void getAll_listOfMotorcycleStocks_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/all";
+        String url = baseUrl + "service/motorcycle/stock/get/all";
 
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/GetAll.json")));
@@ -173,7 +175,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(6)
     void getAll_listOfMotorcycleStocksFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/allInvalid";
+        String url = baseUrl + "service/motorcycle/stock/get/allInvalid";
 
         int expectedResponseStatus = 400;
 
@@ -195,7 +197,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(7)
     void update_motorcycleStockWithValidId_statusCode204() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
         int expectedResponseStatus = 204;
 
@@ -217,7 +219,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(8)
     void update_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
         int expectedResponseStatus = 404;
 
@@ -239,7 +241,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(9)
     void update_motorcycleStockWithInvalidJson_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
         int expectedResponseStatus = 400;
 
@@ -261,7 +263,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(10)
     void delete_motorcycleStockWithValidId_statusCode204() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/9";
+        String url = baseUrl + "service/motorcycle/stock/delete/9";
 
         int expectedResponseStatus = 204;
 
@@ -283,7 +285,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(11)
     void delete_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/99";
+        String url = baseUrl + "service/motorcycle/stock/delete/99";
 
         int expectedResponseStatus = 404;
 
