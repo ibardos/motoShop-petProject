@@ -46,7 +46,7 @@ const Manufacturers = () => {
 
     // Fetching data for all the components of Manufacturers page
     useEffect(() => {
-        fetchData("/manufacturer/get/all")
+        fetchData("/service/manufacturer/get/all")
             .then(
                 (result) => {
                     setIsLoaded(true);

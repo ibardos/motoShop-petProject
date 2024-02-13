@@ -54,7 +54,7 @@ const MotorcycleModel = () => {
 
     // Fetching data for all the components of Motorcycle model page
     useEffect(() => {
-        fetchData("/motorcycle/model/get/all")
+        fetchData("/service/motorcycle/model/get/all")
             .then(
                 (result) => {
                     setIsLoaded(true);

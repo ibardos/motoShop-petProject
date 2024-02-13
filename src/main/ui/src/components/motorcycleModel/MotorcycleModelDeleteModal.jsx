@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {camelCaseToSentenceCase} from "../../util/util";
+import {camelCaseToSentenceCase} from "../../util/camelCaseToSentenceCase";
 
 
 const MotorcycleModelDeleteModal = (props) => {
@@ -29,7 +29,7 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/motorcycle/model/delete/${currentRecord.id}`;
+        const url = `/service/motorcycle/model/delete/${currentRecord.id}`;
 
         const options = {
             method: "DELETE",

@@ -1,4 +1,4 @@
-import {camelCaseToSentenceCase} from "../../../util/util";
+import {camelCaseToSentenceCase} from "../../../util/camelCaseToSentenceCase";
 
 
 const TableTitles = (props) => {
