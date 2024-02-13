@@ -1,10 +1,8 @@
-package com.ibardos.motoShop.endToEndTest.apiTest.erpCore.userRole;
+package com.ibardos.motoShop.endToEndTest.apiTest.service.userRole;
 
 import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 
 import jakarta.annotation.PostConstruct;
-
-import org.json.JSONException;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -17,8 +15,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
-
-import java.io.IOException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
