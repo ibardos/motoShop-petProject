@@ -19,7 +19,7 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 public class Manufacturer {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

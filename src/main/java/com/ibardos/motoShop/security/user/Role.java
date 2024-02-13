@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 public class Role {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

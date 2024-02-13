@@ -14,7 +14,7 @@ import java.util.List;
  * Instances of this class are meant to be used during Spring Security authentication processes.
  */
 public class CustomUserDetails implements UserDetails {
-    // Properties TODO change all of these to Fields or Attributes
+    // Fields
     private final String username;
     private final String password;
     private final boolean isEnabled;

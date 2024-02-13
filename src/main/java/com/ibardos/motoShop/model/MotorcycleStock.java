@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 public class MotorcycleStock {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -16,7 +16,7 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApplicationUser {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

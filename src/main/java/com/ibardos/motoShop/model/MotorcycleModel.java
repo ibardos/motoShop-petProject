@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Setter
 @NoArgsConstructor
 public class MotorcycleModel {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

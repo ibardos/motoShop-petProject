@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Setter
 @NoArgsConstructor
 public class Permission {
-    // Properties
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
