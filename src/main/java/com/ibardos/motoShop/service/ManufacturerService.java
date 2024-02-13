@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 @Service
 public class ManufacturerService {
-    ManufacturerRepository manufacturerRepository;
+    private final ManufacturerRepository manufacturerRepository;
 
     @Autowired
     public ManufacturerService(ManufacturerRepository manufacturerRepository) {

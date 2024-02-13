@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("service/motorcycle/stock")
 public class MotorcycleStockController {
-    MotorcycleStockService motorcycleStockService;
+    private final MotorcycleStockService motorcycleStockService;
 
     public MotorcycleStockController(MotorcycleStockService motorcycleStockService) { this.motorcycleStockService = motorcycleStockService; }
 

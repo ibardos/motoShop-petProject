@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("service/manufacturer")
 public class ManufacturerController {
-    ManufacturerService manufacturerService;
+    private final ManufacturerService manufacturerService;
 
     public ManufacturerController(ManufacturerService manufacturerService) { this.manufacturerService = manufacturerService; }
 

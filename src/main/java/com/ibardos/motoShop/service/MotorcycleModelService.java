@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 @Service
 public class MotorcycleModelService {
-    MotorcycleModelRepository motorcycleModelRepository;
+    private final MotorcycleModelRepository motorcycleModelRepository;
 
     @Autowired
     public MotorcycleModelService(MotorcycleModelRepository motorcycleModelRepository) {
