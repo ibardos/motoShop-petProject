@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AuthenticationControllerApiTests {
     @LocalServerPort
     private int port;
-    private final String baseUrl = "http://localhost:";
+    private String baseUrl;
     private HttpClient client;
     private String jwtTokenAdminRole;
 
@@ -42,8 +42,10 @@ public class AuthenticationControllerApiTests {
     void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
 
+        baseUrl = "http://localhost:" + port + "/";
+
         // JWT of authenticated ApplicationUser with Admin role needed to be authorized for calling register endpoint
-        jwtTokenAdminRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "Admin");
+        jwtTokenAdminRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Admin");
     }
 
 
@@ -52,7 +54,7 @@ public class AuthenticationControllerApiTests {
     @Order(1)
     void register_newValidApplicationUserWithoutJwtToken_statusCode403() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 403;
 
@@ -61,7 +63,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + emptyJwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -79,16 +81,16 @@ public class AuthenticationControllerApiTests {
     @Order(2)
     void register_newValidApplicationUserWithUserRole_statusCode403() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 403;
 
         // Retrieve a JWT token of a registered ApplicationUser to be used during the call of the register API
-        String jwtTokenUserRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "User");
+        String jwtTokenUserRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "User");
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenUserRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -106,16 +108,16 @@ public class AuthenticationControllerApiTests {
     @Order(3)
     void register_newValidApplicationUserWithSalesRole_statusCode403() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 403;
 
         // Retrieve a JWT token of a registered ApplicationUser to be used during the call of the register API
-        String jwtTokenSalesRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "Sales");
+        String jwtTokenSalesRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Sales");
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenSalesRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -133,13 +135,13 @@ public class AuthenticationControllerApiTests {
     @Order(4)
     void register_newEmptyBodyApplicationUserWithAdminRole_statusCode400() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 400;
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewEmptyBodyApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewEmptyBodyApplicationUser.json")))
                 .build();
 
         // Act
@@ -157,13 +159,13 @@ public class AuthenticationControllerApiTests {
     @Order(5)
     void register_newInvalidApplicationUserWithAdminRole_statusCode500() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 500;
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewInvalidApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewInvalidApplicationUser.json")))
                 .build();
 
         // Act
@@ -181,13 +183,13 @@ public class AuthenticationControllerApiTests {
     @Order(6)
     void register_newValidApplicationUserWithAdminRole_statusCode200WithValidJwtTokenInResponseForUserRole() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 200;
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithUserRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithUserRole.json")))
                 .build();
 
         // Act
@@ -209,7 +211,7 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 403;
 
@@ -218,7 +220,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -234,13 +236,13 @@ public class AuthenticationControllerApiTests {
     @Order(7)
     void register_newValidApplicationUserWithAdminRole_statusCode200WithValidJwtTokenInResponseForSalesRole() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 200;
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -262,7 +264,7 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 204;
 
@@ -271,7 +273,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -287,13 +289,13 @@ public class AuthenticationControllerApiTests {
     @Order(8)
     void register_newValidApplicationUserWithAdminRole_statusCode200WithValidJwtTokenInResponseForAdminRole() throws Exception {
         // Arrange
-        String registerUrl = baseUrl + port + "/authentication/register";
+        String registerUrl = baseUrl + "authentication/register";
 
         int registerExpectedResponseStatus = 200;
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithAdminRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithAdminRole.json")))
                 .build();
 
         // Act
@@ -315,7 +317,7 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 204;
 
@@ -324,7 +326,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -341,13 +343,13 @@ public class AuthenticationControllerApiTests {
     @Order(9)
     void login_emptyBodyApplicationUser_statusCode400() throws Exception {
         // Arrange
-        String loginUrl = baseUrl + port + "/authentication/login";
+        String loginUrl = baseUrl + "authentication/login";
 
         int loginExpectedResponseStatus = 400;
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginEmptyBody.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginEmptyBody.json")))
                 .build();
 
         // Act
@@ -365,13 +367,13 @@ public class AuthenticationControllerApiTests {
     @Order(10)
     void login_invalidApplicationUser_statusCode403() throws Exception {
         // Arrange
-        String loginUrl = baseUrl + port + "/authentication/login";
+        String loginUrl = baseUrl + "authentication/login";
 
         int loginExpectedResponseStatus = 403;
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginInvalidApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginInvalidApplicationUser.json")))
                 .build();
 
         // Act
@@ -389,13 +391,13 @@ public class AuthenticationControllerApiTests {
     @Order(11)
     void login_existingApplicationUserWithUserRole_statusCode200WithValidJwtTokenInResponseForUserRole() throws Exception {
         // Arrange
-        String loginUrl = baseUrl + port + "/authentication/login";
+        String loginUrl = baseUrl + "authentication/login";
 
         int loginExpectedResponseStatus = 200;
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginUserRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginUserRole.json")))
                 .build();
 
         // Act
@@ -419,13 +421,13 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 403;
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -441,13 +443,13 @@ public class AuthenticationControllerApiTests {
     @Order(12)
     void login_existingApplicationUserWithSalesRole_statusCode200WithValidJwtTokenInResponseForSalesRole() throws Exception {
         // Arrange
-        String loginUrl = baseUrl + port + "/authentication/login";
+        String loginUrl = baseUrl + "authentication/login";
 
         int loginExpectedResponseStatus = 200;
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginSalesRole.json")))
                 .build();
 
         // Act
@@ -471,13 +473,13 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 204;
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -493,13 +495,13 @@ public class AuthenticationControllerApiTests {
     @Order(13)
     void login_existingApplicationUserWithAdminRole_statusCode200WithValidJwtTokenInResponseForAdminRole() throws Exception {
         // Arrange
-        String loginUrl = baseUrl + port + "/authentication/login";
+        String loginUrl = baseUrl + "authentication/login";
 
         int loginExpectedResponseStatus = 200;
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginAdminRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginAdminRole.json")))
                 .build();
 
         // Act
@@ -523,13 +525,13 @@ public class AuthenticationControllerApiTests {
         // by utilizing it during a test HTTP call to the server
 
         // Arrange
-        String testCallUrl = baseUrl + port + "/manufacturer/update";
+        String testCallUrl = baseUrl + "service/manufacturer/update";
 
         int testCallExpectedResponseStatus = 204;
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act

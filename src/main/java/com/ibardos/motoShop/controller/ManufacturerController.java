@@ -13,7 +13,7 @@ import java.util.List;
  * REST API controller for Manufacturer type.
  */
 @RestController
-@RequestMapping("manufacturer")
+@RequestMapping("service/manufacturer")
 public class ManufacturerController {
     ManufacturerService manufacturerService;
 

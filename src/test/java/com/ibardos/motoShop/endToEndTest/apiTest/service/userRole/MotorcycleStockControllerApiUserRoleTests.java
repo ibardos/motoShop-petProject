@@ -1,10 +1,8 @@
-package com.ibardos.motoShop.endToEndTest.apiTest.erpCore.salesRole;
+package com.ibardos.motoShop.endToEndTest.apiTest.service.userRole;
 
 import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 
 import jakarta.annotation.PostConstruct;
-
-import org.json.JSONException;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -18,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.io.IOException;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -31,17 +27,17 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test class, containing End-to-End tests against API endpoints in MotorcycleStockController, authenticated with Sales role.
+ * Test class, containing End-to-End tests against API endpoints in MotorcycleStockController, authenticated with User role.
  */
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "/schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "/data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class MotorcycleStockControllerApiSalesRoleTests {
+public class MotorcycleStockControllerApiUserRoleTests {
     @LocalServerPort
     private int port;
-    private final String baseUrl = "http://localhost:";
+    private String baseUrl;
     private HttpClient client;
     private String jwtToken;
 
@@ -50,46 +46,45 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     public void initBeforeAll() throws Exception {
         client = HttpClient.newBuilder().build();
 
-        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, port, client, "Sales");
+        baseUrl = "http://localhost:" + port + "/";
+
+        jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "User");
     }
 
 
     @Test
     @Order(1)
-    void add_newValidMotorcycleStock_statusCode201WithProperJson() throws Exception {
+    void add_newValidMotorcycleStock_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + "service/motorcycle/stock/add";
 
-        int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Add.json")));
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/AddValid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/request/AddValid.json")))
                 .build();
 
         // Act
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         int resultResponseStatus = response.statusCode();
-        String resultResponseBody = response.body();
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
-        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
     }
 
     @Test
     @Order(2)
-    void add_newInvalidMotorcycleStock_statusCode400() throws Exception {
+    void add_newInvalidMotorcycleStock_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/add";
+        String url = baseUrl + "service/motorcycle/stock/add";
 
-        int expectedResponseStatus = 400;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/AddInvalid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/request/AddInvalid.json")))
                 .build();
 
         // Act
@@ -105,10 +100,10 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(3)
     void get_motorcycleStockWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/8";
+        String url = baseUrl + "service/motorcycle/stock/get/8";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/Get.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/response/Get.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
@@ -130,7 +125,7 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(4)
     void get_motorcycleStockWithInvalidId_statusCode404() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/55";
+        String url = baseUrl + "service/motorcycle/stock/get/55";
 
         int expectedResponseStatus = 404;
 
@@ -152,10 +147,10 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(5)
     void getAll_listOfMotorcycleStocks_statusCode200WithProperJson() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/all";
+        String url = baseUrl + "service/motorcycle/stock/get/all";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/response/GetAll.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/response/GetAll.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
@@ -177,7 +172,7 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(6)
     void getAll_listOfMotorcycleStocksFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/get/allInvalid";
+        String url = baseUrl + "service/motorcycle/stock/get/allInvalid";
 
         int expectedResponseStatus = 400;
 
@@ -197,15 +192,15 @@ public class MotorcycleStockControllerApiSalesRoleTests {
 
     @Test
     @Order(7)
-    void update_motorcycleStockWithValidId_statusCode204() throws Exception {
+    void update_motorcycleStockWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
-        int expectedResponseStatus = 204;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -219,15 +214,15 @@ public class MotorcycleStockControllerApiSalesRoleTests {
 
     @Test
     @Order(8)
-    void update_motorcycleStockWithInvalidId_statusCode404() throws Exception {
+    void update_motorcycleStockWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
-        int expectedResponseStatus = 404;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateInvalidId.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/request/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -241,15 +236,15 @@ public class MotorcycleStockControllerApiSalesRoleTests {
 
     @Test
     @Order(9)
-    void update_motorcycleStockWithInvalidJson_statusCode400() throws Exception {
+    void update_motorcycleStockWithInvalidJson_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/update";
+        String url = baseUrl + "service/motorcycle/stock/update";
 
-        int expectedResponseStatus = 400;
+        int expectedResponseStatus = 403;
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/motorcycleStock/request/UpdateInvalidJson.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/motorcycleStock/request/UpdateInvalidJson.json")))
                 .build();
 
         // Act
@@ -265,7 +260,7 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(10)
     void delete_motorcycleStockWithValidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/9";
+        String url = baseUrl + "service/motorcycle/stock/delete/9";
 
         int expectedResponseStatus = 403;
 
@@ -287,7 +282,7 @@ public class MotorcycleStockControllerApiSalesRoleTests {
     @Order(11)
     void delete_motorcycleStockWithInvalidId_statusCode403() throws Exception {
         // Arrange
-        String url = baseUrl + port + "/motorcycle/stock/delete/99";
+        String url = baseUrl + "service/motorcycle/stock/delete/99";
 
         int expectedResponseStatus = 403;
 

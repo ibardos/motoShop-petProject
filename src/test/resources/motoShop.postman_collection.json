@@ -34,12 +34,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/login",
+											"raw": "{{base_url}}authentication/login",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"login"
 											]
 										}
@@ -64,12 +63,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/login",
+											"raw": "{{base_url}}authentication/login",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"login"
 											]
 										}
@@ -94,12 +92,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/login",
+											"raw": "{{base_url}}authentication/login",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"login"
 											]
 										}
@@ -114,16 +111,6 @@
 								{
 									"name": "register_user_role",
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "",
-													"type": "string"
-												}
-											]
-										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -136,12 +123,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/register",
+											"raw": "{{base_url}}authentication/register",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"register"
 											]
 										}
@@ -151,16 +137,6 @@
 								{
 									"name": "register_sales_role",
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "",
-													"type": "string"
-												}
-											]
-										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -173,12 +149,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/register",
+											"raw": "{{base_url}}authentication/register",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"register"
 											]
 										}
@@ -188,16 +163,6 @@
 								{
 									"name": "register_admin_role",
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "",
-													"type": "string"
-												}
-											]
-										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -210,12 +175,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/register",
+											"raw": "{{base_url}}authentication/register",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"register"
 											]
 										}
@@ -250,12 +214,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/login",
+											"raw": "{{base_url}}authentication/login",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"login"
 											]
 										}
@@ -280,12 +243,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/login",
+											"raw": "{{base_url}}authentication/login",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"login"
 											]
 										}
@@ -300,16 +262,6 @@
 								{
 									"name": "register_invalid_user",
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "",
-													"type": "string"
-												}
-											]
-										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -322,12 +274,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/register",
+											"raw": "{{base_url}}authentication/register",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"register"
 											]
 										}
@@ -337,16 +288,6 @@
 								{
 									"name": "register_empty_body",
 									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "",
-													"type": "string"
-												}
-											]
-										},
 										"method": "POST",
 										"header": [],
 										"body": {
@@ -359,12 +300,11 @@
 											}
 										},
 										"url": {
-											"raw": "{{base_url}}/authentication/register",
+											"raw": "{{base_url}}authentication/register",
 											"host": [
-												"{{base_url}}"
+												"{{base_url}}authentication"
 											],
 											"path": [
-												"authentication",
 												"register"
 											]
 										}
@@ -398,9 +338,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/manufacturer/add",
+									"raw": "{{base_url}}service/manufacturer/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -416,9 +356,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/get/6",
+									"raw": "{{base_url}}service/manufacturer/get/6",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -435,9 +375,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/get/all",
+									"raw": "{{base_url}}service/manufacturer/get/all",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -463,9 +403,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/manufacturer/update",
+									"raw": "{{base_url}}service/manufacturer/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -481,9 +421,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/delete/5",
+									"raw": "{{base_url}}service/manufacturer/delete/5",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -514,9 +454,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/manufacturer/add",
+									"raw": "{{base_url}}service/manufacturer/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -532,9 +472,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/get/55",
+									"raw": "{{base_url}}service/manufacturer/get/55",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -551,9 +491,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/get/allInvalid",
+									"raw": "{{base_url}}service/manufacturer/get/allInvalid",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -579,9 +519,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/manufacturer/update",
+									"raw": "{{base_url}}service/manufacturer/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -606,9 +546,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/manufacturer/update",
+									"raw": "{{base_url}}service/manufacturer/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -624,9 +564,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/delete/33",
+									"raw": "{{base_url}}service/manufacturer/delete/33",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -643,9 +583,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/manufacturer/delete/1",
+									"raw": "{{base_url}}service/manufacturer/delete/1",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"manufacturer",
@@ -682,9 +622,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/add",
+									"raw": "{{base_url}}service/motorcycle/model/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -701,9 +641,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/1",
+									"raw": "{{base_url}}service/motorcycle/model/get/1",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -721,9 +661,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/types",
+									"raw": "{{base_url}}service/motorcycle/model/get/types",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -741,9 +681,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/all",
+									"raw": "{{base_url}}service/motorcycle/model/get/all",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -770,9 +710,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/update",
+									"raw": "{{base_url}}service/motorcycle/model/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -789,9 +729,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/delete/6",
+									"raw": "{{base_url}}service/motorcycle/model/delete/6",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -823,9 +763,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/add",
+									"raw": "{{base_url}}service/motorcycle/model/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -842,9 +782,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/55",
+									"raw": "{{base_url}}service/motorcycle/model/get/55",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -862,9 +802,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/get/allInvalid",
+									"raw": "{{base_url}}service/motorcycle/model/get/allInvalid",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -891,9 +831,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/update",
+									"raw": "{{base_url}}service/motorcycle/model/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -919,9 +859,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/update",
+									"raw": "{{base_url}}service/motorcycle/model/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -938,9 +878,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/delete/99",
+									"raw": "{{base_url}}service/motorcycle/model/delete/99",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -958,9 +898,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/model/delete/7",
+									"raw": "{{base_url}}service/motorcycle/model/delete/7",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -998,9 +938,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/add",
+									"raw": "{{base_url}}service/motorcycle/stock/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1017,9 +957,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/get/8",
+									"raw": "{{base_url}}service/motorcycle/stock/get/8",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1037,9 +977,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/get/all",
+									"raw": "{{base_url}}service/motorcycle/stock/get/all",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1066,9 +1006,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/update",
+									"raw": "{{base_url}}service/motorcycle/stock/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1085,9 +1025,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/delete/9",
+									"raw": "{{base_url}}service/motorcycle/stock/delete/9",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1119,9 +1059,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/add",
+									"raw": "{{base_url}}service/motorcycle/stock/add",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1138,9 +1078,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/get/55",
+									"raw": "{{base_url}}service/motorcycle/stock/get/55",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1158,9 +1098,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/get/allInvalid",
+									"raw": "{{base_url}}service/motorcycle/stock/get/allInvalid",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1187,9 +1127,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/update",
+									"raw": "{{base_url}}service/motorcycle/stock/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1215,9 +1155,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/update",
+									"raw": "{{base_url}}service/motorcycle/stock/update",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1234,9 +1174,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/motorcycle/stock/delete/99",
+									"raw": "{{base_url}}service/motorcycle/stock/delete/99",
 									"host": [
-										"{{base_url}}"
+										"{{base_url}}service"
 									],
 									"path": [
 										"motorcycle",
@@ -1254,6 +1194,16 @@
 			"description": "This folder is for testing Motorcycle model related APIs."
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -1277,7 +1227,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8080",
+			"value": "http://localhost:8080/",
 			"type": "string"
 		}
 	]

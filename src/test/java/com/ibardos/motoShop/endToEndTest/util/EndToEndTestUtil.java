@@ -19,7 +19,6 @@ public class EndToEndTestUtil {
     /**
      * Retrieves a JWT token from the back-end server related to a test ApplicationUser with the Role passed as parameter.
      * @param baseUrl a URI where the login request should be sent to.
-     * @param port a port which the server runs on.
      * @param client an HTTP client can be used to send HTTP related requests.
      * @param role String representation of the desired Role embedded in the JWT token.
      * @return String representation of a valid and signed JWT token retrieved from the back-end server.
@@ -27,10 +26,10 @@ public class EndToEndTestUtil {
      * @throws InterruptedException will be thrown if HTTP request sending fails.
      * @throws JSONException will be thrown if a JSON object related task fails.
      */
-    public static String retrieveJwtToken(String baseUrl, int port, HttpClient client, String role) throws IOException, InterruptedException, JSONException {
-        HttpRequest request = HttpRequest.newBuilder(URI.create(baseUrl + port + "/authentication/login"))
+    public static String retrieveJwtToken(String baseUrl, HttpClient client, String role) throws IOException, InterruptedException, JSONException {
+        HttpRequest request = HttpRequest.newBuilder(URI.create(baseUrl + "authentication/login"))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/Login" + role + "Role.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/Login" + role + "Role.json")))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
