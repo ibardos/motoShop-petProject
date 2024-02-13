@@ -171,6 +171,7 @@ With Postman:
 4. Start the back-end server in your IDE
    - Database tables will be created and initialized with data automatically
 5. Test the API endpoints with the predefined HTTP requests in Postman (edge cases are also covered)
+   - Remember to retrieve the proper (see hints) JWT token to be able to call service APIs
 
 With my set of End-to-End tests: 
 1. Run the tests I've created for API endpoint testing, located here: ```~/src/test/java/com/ibardos/motoShop/endToEndTests/apiTests```
@@ -206,3 +207,7 @@ with ORM as well.
 - Create a compound in your IDE to be able to run back-end and front-end servers simultaneously with a push of a button.
   - You don't need to bother with database initialisation at any point, as I managed to do that programmatically.
 - If you don't understand something, Google it, ask ChatGPT about it, or feel free to contact me.
+- Security configuration:
+  - User role: read permission
+  - Sales role: create, read, update permissions
+  - Admin role: create, read, update, delete permissions
