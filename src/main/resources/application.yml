@@ -29,5 +29,6 @@ logging:
 application:
   security:
     jwt:
+      # noinspection SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection,SpellCheckingInspection
       secret-key: aJY0J85oUTTVkZHaN3kjldfiuew3khdfgiouLKJHEnflJKREvfw8AJmInMNqFtfHWNK
       expiration: 28800000 # 8 hours, as one working day
