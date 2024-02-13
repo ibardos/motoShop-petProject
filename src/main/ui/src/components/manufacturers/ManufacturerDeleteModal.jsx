@@ -29,7 +29,7 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/manufacturer/delete/${currentRecord.id}`;
+        const url = `/service/manufacturer/delete/${currentRecord.id}`;
 
         const options = {
             method: "DELETE",

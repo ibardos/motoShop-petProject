@@ -49,7 +49,7 @@ const MotorcycleStock = () => {
 
     // Fetching data for all the components of Motorcycle stock page
     useEffect(() => {
-        fetchData("/motorcycle/stock/get/all")
+        fetchData("/service/motorcycle/stock/get/all")
             .then(
                 (result) => {
                     setIsLoaded(true);

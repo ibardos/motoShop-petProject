@@ -25,7 +25,7 @@ const AddForm = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "/manufacturer/add";
+        const url = "/service/manufacturer/add";
 
         const requestBody = {
             "name": name,

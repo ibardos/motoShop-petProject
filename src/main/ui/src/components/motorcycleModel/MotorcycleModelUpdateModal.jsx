@@ -29,10 +29,10 @@ const UpdateForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/manufacturer/get/all")
+        fetchData("/service/manufacturer/get/all")
             .then(result => setManufacturers(result));
 
-        fetchData("/motorcycle/model/get/types")
+        fetchData("/service/motorcycle/model/get/types")
             .then(result => setMotorcycleModelTypes(result));
 
         const currentRecord = props.motorcycleModels.find(m => m.id.toString() === props.recordId);
@@ -43,7 +43,7 @@ const UpdateForm = (props) => {
 
 
     async function handleSubmit(values) {
-        const url = "/motorcycle/model/update";
+        const url = "/service/motorcycle/model/update";
 
         const requestBody = {
             "id": currentRecord.id,

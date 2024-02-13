@@ -26,13 +26,13 @@ const AddForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/motorcycle/model/get/all")
+        fetchData("/service/motorcycle/model/get/all")
             .then(result => setMotorcycleModels(result));
     }, [])
 
 
     async function handleSubmit(values) {
-        const url = "/motorcycle/stock/add";
+        const url = "/service/motorcycle/stock/add";
 
         const requestBody = {
             "motorcycleModel": motorcycleModels.find(motorcycleModel => motorcycleModel.modelName === values.motorcycleModel),

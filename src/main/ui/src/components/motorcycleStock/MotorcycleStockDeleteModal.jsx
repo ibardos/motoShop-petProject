@@ -28,7 +28,7 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/motorcycle/stock/delete/${currentRecord.id}`;
+        const url = `/service/motorcycle/stock/delete/${currentRecord.id}`;
 
         const options = {
             method: "DELETE",

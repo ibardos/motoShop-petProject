@@ -32,7 +32,7 @@ const UpdateForm = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "/manufacturer/update";
+        const url = "/service/manufacturer/update";
 
         const requestBody = {
             "id": currentRecord.id,
