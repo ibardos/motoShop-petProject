@@ -59,11 +59,11 @@ public class ManufacturerControllerApiSalesRoleTests {
         String url = baseUrl + "service/manufacturer/add";
 
         int expectedResponseStatus = 201;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/response/Add.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/response/Add.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/AddValid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/AddValid.json")))
                 .build();
 
         // Act
@@ -87,7 +87,7 @@ public class ManufacturerControllerApiSalesRoleTests {
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/AddInvalid.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/AddInvalid.json")))
                 .build();
 
         // Act
@@ -106,7 +106,7 @@ public class ManufacturerControllerApiSalesRoleTests {
         String url = baseUrl + "service/manufacturer/get/6";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/response/Get.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/response/Get.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
@@ -153,7 +153,7 @@ public class ManufacturerControllerApiSalesRoleTests {
         String url = baseUrl + "service/manufacturer/get/all";
 
         int expectedResponseStatus = 200;
-        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/response/GetAll.json")));
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/response/GetAll.json")));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
@@ -203,7 +203,7 @@ public class ManufacturerControllerApiSalesRoleTests {
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -225,7 +225,7 @@ public class ManufacturerControllerApiSalesRoleTests {
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateInvalidId.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateInvalidId.json")))
                 .build();
 
         // Act
@@ -247,7 +247,7 @@ public class ManufacturerControllerApiSalesRoleTests {
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateInvalidJson.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateInvalidJson.json")))
                 .build();
 
         // Act

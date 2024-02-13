@@ -29,7 +29,7 @@ public class EndToEndTestUtil {
     public static String retrieveJwtToken(String baseUrl, HttpClient client, String role) throws IOException, InterruptedException, JSONException {
         HttpRequest request = HttpRequest.newBuilder(URI.create(baseUrl + "authentication/login"))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/Login" + role + "Role.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/Login" + role + "Role.json")))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

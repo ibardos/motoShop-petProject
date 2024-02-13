@@ -63,7 +63,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + emptyJwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -90,7 +90,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenUserRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -117,7 +117,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenSalesRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -141,7 +141,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewEmptyBodyApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewEmptyBodyApplicationUser.json")))
                 .build();
 
         // Act
@@ -165,7 +165,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewInvalidApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewInvalidApplicationUser.json")))
                 .build();
 
         // Act
@@ -189,7 +189,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithUserRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithUserRole.json")))
                 .build();
 
         // Act
@@ -220,7 +220,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -242,7 +242,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithSalesRole.json")))
                 .build();
 
         // Act
@@ -273,7 +273,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -295,7 +295,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest registerRequest = HttpRequest.newBuilder(URI.create(registerUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenAdminRole)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/register/RegisterNewValidApplicationUserWithAdminRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/register/request/RegisterNewValidApplicationUserWithAdminRole.json")))
                 .build();
 
         // Act
@@ -326,7 +326,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtTokenForTestCall)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -349,7 +349,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginEmptyBody.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginEmptyBody.json")))
                 .build();
 
         // Act
@@ -373,7 +373,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginInvalidApplicationUser.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginInvalidApplicationUser.json")))
                 .build();
 
         // Act
@@ -397,7 +397,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginUserRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginUserRole.json")))
                 .build();
 
         // Act
@@ -427,7 +427,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -449,7 +449,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginSalesRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginSalesRole.json")))
                 .build();
 
         // Act
@@ -479,7 +479,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
@@ -501,7 +501,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest loginRequest = HttpRequest.newBuilder(URI.create(loginUrl))
                 .headers("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/authentication/request/login/LoginAdminRole.json")))
+                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/authentication/login/request/LoginAdminRole.json")))
                 .build();
 
         // Act
@@ -531,7 +531,7 @@ public class AuthenticationControllerApiTests {
 
         HttpRequest testCallRequest = HttpRequest.newBuilder(URI.create(testCallUrl))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonsForEndToEndTests/erpCore/manufacturer/request/UpdateValid.json")))
+                .PUT(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/manufacturer/request/UpdateValid.json")))
                 .build();
 
         // Act
