@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {camelCaseToSentenceCase} from "../../util/util";
+import {camelCaseToSentenceCase} from "../../util/camelCaseToSentenceCase";
 
 
 const MotorcycleStockDeleteModal = (props) => {
