@@ -6,7 +6,7 @@ import Layout from "./pages/Layout";
 import Service from "./pages/Service";
 import Home from "./pages/Home";
 import Manufacturers from "./pages/Manufacturers";
-import Motorcycles from "./pages/motorcycle/Motorcycles";
+import Motorcycle from "./pages/motorcycle/Motorcycle";
 import MotorcycleModel from "./pages/motorcycle/MotorcycleModel";
 import MotorcycleStock from "./pages/motorcycle/MotorcycleStock";
 import NoPage from "./pages/NoPage";
@@ -34,7 +34,7 @@ const App = () => {
                                 <Route index element={<Service/>}/>
                                 <Route path="manufacturer" element={<Manufacturers/>}/>
                                 <Route path="motorcycle">
-                                    <Route index element={<Motorcycles/>}/>
+                                    <Route index element={<Motorcycle/>}/>
                                     <Route path="model" element={<MotorcycleModel/>}/>
                                     <Route path="stock" element={<MotorcycleStock/>}/>
                                 </Route>

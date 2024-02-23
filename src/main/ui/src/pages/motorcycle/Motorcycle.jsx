@@ -8,7 +8,7 @@ import motorcycleModelImage from "../../assets/img/motorcycles/motorcycleModel.j
 import motorcycleStockImage from "../../assets/img/motorcycles/motorcycleStock.jpg";
 
 
-const Motorcycles = () => {
+const Motorcycle = () => {
     return (
         <>
             <h2 className="page-title">Motorcycle services</h2>
@@ -48,4 +48,4 @@ const MotorcycleServices = () => {
     );
 };
 
-export default Motorcycles;
+export default Motorcycle;
