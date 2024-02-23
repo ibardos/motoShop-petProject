@@ -9,10 +9,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import StripedTable from "../../components/shared/table/StripedTable";
-import ManufacturerAddModal from "../../components/manufacturers/ManufacturerAddModal";
-import ManufacturerUpdateModal from "../../components/manufacturers/ManufacturerUpdateModal";
-import ManufacturerDeleteModal from "../../components/manufacturers/ManufacturerDeleteModal";
-import ManufacturerDeleteErrorModal from "../../components/manufacturers/ManufacturerDeleteErrorModal";
+import ManufacturerAddModal from "../../components/manufacturer/ManufacturerAddModal";
+import ManufacturerUpdateModal from "../../components/manufacturer/ManufacturerUpdateModal";
+import ManufacturerDeleteModal from "../../components/manufacturer/ManufacturerDeleteModal";
+import ManufacturerDeleteErrorModal from "../../components/manufacturer/ManufacturerDeleteErrorModal";
 
 import {fetchData} from "../../util/fetchData";
 import {removeJwtToken} from "../../security/authService";
