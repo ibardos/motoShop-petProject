@@ -1,10 +1,12 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import {useNavigate} from "react-router-dom";
+
 import {FormControl} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import StripedTable from "../components/shared/table/StripedTable";
 import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
@@ -13,9 +15,15 @@ import ManufacturerDeleteModal from "../components/manufacturers/ManufacturerDel
 import ManufacturerDeleteErrorModal from "../components/manufacturers/ManufacturerDeleteErrorModal";
 
 import {fetchData} from "../util/fetchData";
+import {removeJwtToken} from "../security/authService";
+import {AuthenticationContext} from "../security/authenticationProvider";
 
 
 const Manufacturers = () => {
+    const navigate = useNavigate();
+
+    const {userPermissions} = useContext(AuthenticationContext);
+
     // States for fetched data
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
@@ -34,7 +42,7 @@ const Manufacturers = () => {
 
 
     // Table live search feature
-    async function handleSearch(event) {
+    function handleSearch(event) {
         setFilteredData(manufacturers.filter((item) =>
             item.id.toString().includes(event.target.value) ||
             item.name.toLowerCase().includes(event.target.value.toLowerCase()) ||
@@ -49,57 +57,89 @@ const Manufacturers = () => {
         fetchData("/service/manufacturer/get/all")
             .then(
                 (result) => {
-                    setIsLoaded(true);
+                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
+                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
+                    if (result.status === 403) {
+                        removeJwtToken();
+                        navigate('/authentication/login');
+                    }
+
                     setManufacturers(result);
                     setFilteredData(result);
+                    setIsLoaded(true);
                 },
                 (error) => {
-                    setIsLoaded(true);
                     setError(error);
+                    setIsLoaded(true);
                 }
             );
-    }, [formSubmit])
+    }, [formSubmit, navigate])
 
-    // Check for errors during fetch data, and show loading status
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
-    }
+
+    // Create a search bar for the "Table live search feature"
+    const conditionalSearchBar = (
+        <Col>
+            <FormControl id="search-box" type="text" placeholder="Type here to filter..."
+                         onChange={event => handleSearch(event)}/>
+        </Col>
+    )
+
+    // Create a conditionally rendered "Add new item" button
+    const conditionalAddButton = (userPermissions.includes('Create')) ? (
+        <Col xs={2}>
+            <Button variant="secondary" onClick={() => setAddModalShow(true)}>Add new item</Button>
+        </Col>
+    ) : null;
+
+    // Compose the search bar and "Add new item" button into one conditionally rendered element
+    const conditionalSearchBarAndAddButton = (!error) ? (
+        <Container id="search-and-add-bar">
+            <Row>
+                {conditionalSearchBar}
+                {conditionalAddButton}
+            </Row>
+        </Container>
+    ) : null;
 
 
     return (
         <>
             <h2 className="page-title">Manufacturers</h2>
-            <Container id="search-and-add-bar">
-                <Row>
-                    <Col>
-                        <FormControl id="search-box" type="text" onChange={async (event) => await handleSearch(event)}
-                                     placeholder="Type here to filter..."/>
-                    </Col>
-                    <Col xs={2}>
-                        <Button variant="secondary" onClick={() => setAddModalShow(true)}>Add new item</Button>
-                    </Col>
-                </Row>
-            </Container>
 
-            <StripedTable originalData={manufacturers} filteredData={filteredData} setRecordId={setRecordId}
-                          setUpdateModalShow={setUpdateModalShow} setDeleteModalShow={setDeleteModalShow}/>
+            {conditionalSearchBarAndAddButton}
+
+            <StripedTable originalData={manufacturers}
+                          filteredData={filteredData}
+                          setRecordId={setRecordId}
+                          setUpdateModalShow={setUpdateModalShow}
+                          setDeleteModalShow={setDeleteModalShow}
+                          error={error}
+                          isLoaded={isLoaded}/>
 
 
-            <ManufacturerAddModal setFormSubmit={setFormSubmit} show={addModalShow} setAddModalShow={setAddModalShow}
+            <ManufacturerAddModal setFormSubmit={setFormSubmit}
+                                  show={addModalShow}
+                                  setAddModalShow={setAddModalShow}
                                   onHide={() => setAddModalShow(false)}/>
 
-            <ManufacturerUpdateModal manufacturers={manufacturers} recordId={recordId} setFormSubmit={setFormSubmit}
-                                     show={updateModalShow} setUpdateModalShow={setUpdateModalShow}
+            <ManufacturerUpdateModal manufacturers={manufacturers}
+                                     recordId={recordId}
+                                     setFormSubmit={setFormSubmit}
+                                     show={updateModalShow}
+                                     setUpdateModalShow={setUpdateModalShow}
                                      onHide={() => setUpdateModalShow(false)}/>
 
-            <ManufacturerDeleteModal manufacturers={manufacturers} recordId={recordId}
-                                     setErrorModalShow={setDeleteErrorModalShow} setFormSubmit={setFormSubmit}
-                                     show={deleteModalShow} setDeleteModalShow={setDeleteModalShow}
+            <ManufacturerDeleteModal manufacturers={manufacturers}
+                                     recordId={recordId}
+                                     setErrorModalShow={setDeleteErrorModalShow}
+                                     setFormSubmit={setFormSubmit}
+                                     show={deleteModalShow}
+                                     setDeleteModalShow={setDeleteModalShow}
                                      onHide={() => setDeleteModalShow(false)}/>
 
-            <ManufacturerDeleteErrorModal manufacturers={manufacturers} recordId={recordId} show={deleteErrorModalShow}
+            <ManufacturerDeleteErrorModal manufacturers={manufacturers}
+                                          recordId={recordId}
+                                          show={deleteErrorModalShow}
                                           setDeleteErrorModalShow={setDeleteErrorModalShow}
                                           onHide={() => setDeleteErrorModalShow(false)}/>
         </>
