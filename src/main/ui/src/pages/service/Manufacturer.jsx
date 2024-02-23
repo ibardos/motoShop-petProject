@@ -8,18 +8,18 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import StripedTable from "../components/shared/table/StripedTable";
-import ManufacturerAddModal from "../components/manufacturers/ManufacturerAddModal";
-import ManufacturerUpdateModal from "../components/manufacturers/ManufacturerUpdateModal";
-import ManufacturerDeleteModal from "../components/manufacturers/ManufacturerDeleteModal";
-import ManufacturerDeleteErrorModal from "../components/manufacturers/ManufacturerDeleteErrorModal";
+import StripedTable from "../../components/shared/table/StripedTable";
+import ManufacturerAddModal from "../../components/manufacturers/ManufacturerAddModal";
+import ManufacturerUpdateModal from "../../components/manufacturers/ManufacturerUpdateModal";
+import ManufacturerDeleteModal from "../../components/manufacturers/ManufacturerDeleteModal";
+import ManufacturerDeleteErrorModal from "../../components/manufacturers/ManufacturerDeleteErrorModal";
 
-import {fetchData} from "../util/fetchData";
-import {removeJwtToken} from "../security/authService";
-import {AuthenticationContext} from "../security/authenticationProvider";
+import {fetchData} from "../../util/fetchData";
+import {removeJwtToken} from "../../security/authService";
+import {AuthenticationContext} from "../../security/authenticationProvider";
 
 
-const Manufacturers = () => {
+const Manufacturer = () => {
     const navigate = useNavigate();
 
     const {userPermissions} = useContext(AuthenticationContext);
@@ -52,7 +52,7 @@ const Manufacturers = () => {
     }
 
 
-    // Fetching data for all the components of Manufacturers page
+    // Fetching data for all the components of Manufacturer page
     useEffect(() => {
         fetchData("/service/manufacturer/get/all")
             .then(
@@ -146,4 +146,4 @@ const Manufacturers = () => {
     )
 }
 
-export default Manufacturers;
+export default Manufacturer;

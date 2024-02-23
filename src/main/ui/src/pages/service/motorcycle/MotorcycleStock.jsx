@@ -8,14 +8,14 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import StripedTable from "../../components/shared/table/StripedTable";
-import MotorcycleStockAddModal from "../../components/motorcycleStock/MotorcycleStockAddModal";
-import MotorcycleStockUpdateModal from "../../components/motorcycleStock/MotorcycleStockUpdateModal";
-import MotorcycleStockDeleteModal from "../../components/motorcycleStock/MotorcycleStockDeleteModal";
+import StripedTable from "../../../components/shared/table/StripedTable";
+import MotorcycleStockAddModal from "../../../components/motorcycleStock/MotorcycleStockAddModal";
+import MotorcycleStockUpdateModal from "../../../components/motorcycleStock/MotorcycleStockUpdateModal";
+import MotorcycleStockDeleteModal from "../../../components/motorcycleStock/MotorcycleStockDeleteModal";
 
-import {fetchData} from "../../util/fetchData";
-import {removeJwtToken} from "../../security/authService";
-import {AuthenticationContext} from "../../security/authenticationProvider";
+import {fetchData} from "../../../util/fetchData";
+import {removeJwtToken} from "../../../security/authService";
+import {AuthenticationContext} from "../../../security/authenticationProvider";
 
 
 const MotorcycleStock = () => {

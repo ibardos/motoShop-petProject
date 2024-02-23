@@ -8,15 +8,15 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import StripedTable from "../../components/shared/table/StripedTable";
-import MotorcycleModelAddModal from "../../components/motorcycleModel/MotorcycleModelAddModal";
-import MotorcycleModelUpdateModal from "../../components/motorcycleModel/MotorcycleModelUpdateModal";
-import MotorcycleModelDeleteModal from "../../components/motorcycleModel/MotorcycleModelDeleteModal";
-import MotorcycleModelDeleteErrorModal from "../../components/motorcycleModel/MotorcycleModelDeleteErrorModal";
+import StripedTable from "../../../components/shared/table/StripedTable";
+import MotorcycleModelAddModal from "../../../components/motorcycleModel/MotorcycleModelAddModal";
+import MotorcycleModelUpdateModal from "../../../components/motorcycleModel/MotorcycleModelUpdateModal";
+import MotorcycleModelDeleteModal from "../../../components/motorcycleModel/MotorcycleModelDeleteModal";
+import MotorcycleModelDeleteErrorModal from "../../../components/motorcycleModel/MotorcycleModelDeleteErrorModal";
 
-import {fetchData} from "../../util/fetchData";
-import {removeJwtToken} from "../../security/authService";
-import {AuthenticationContext} from "../../security/authenticationProvider";
+import {fetchData} from "../../../util/fetchData";
+import {removeJwtToken} from "../../../security/authService";
+import {AuthenticationContext} from "../../../security/authenticationProvider";
 
 
 const MotorcycleModel = () => {

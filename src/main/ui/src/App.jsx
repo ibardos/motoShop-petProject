@@ -5,10 +5,10 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/Layout";
 import Service from "./pages/Service";
 import Home from "./pages/Home";
-import Manufacturers from "./pages/Manufacturers";
-import Motorcycle from "./pages/motorcycle/Motorcycle";
-import MotorcycleModel from "./pages/motorcycle/MotorcycleModel";
-import MotorcycleStock from "./pages/motorcycle/MotorcycleStock";
+import Manufacturer from "./pages/service/Manufacturer";
+import Motorcycle from "./pages/service/motorcycle/Motorcycle";
+import MotorcycleModel from "./pages/service/motorcycle/MotorcycleModel";
+import MotorcycleStock from "./pages/service/motorcycle/MotorcycleStock";
 import NoPage from "./pages/NoPage";
 import Login from "./pages/Login";
 import Customer from "./pages/Customer";
@@ -32,7 +32,7 @@ const App = () => {
                             </Route>
                             <Route path="service">
                                 <Route index element={<Service/>}/>
-                                <Route path="manufacturer" element={<Manufacturers/>}/>
+                                <Route path="manufacturer" element={<Manufacturer/>}/>
                                 <Route path="motorcycle">
                                     <Route index element={<Motorcycle/>}/>
                                     <Route path="model" element={<MotorcycleModel/>}/>
