@@ -3,9 +3,10 @@
 **Topic:** A solo "pet project" about an ERP software for a motorcycle retail shop, designed to be a modern single-page
 web application.
 
-The project is currently under development, with a functional Java back-end server, to which a ReactJS front-end
+The project is under continuous development, with a functional Java back-end server, to which a ReactJS front-end
 user-interface is connected. The back-end and the front-end are communicating via REST APIs. For persistent data storage,
-a PostgreSQL relational database was established.
+a PostgreSQL relational database was established. Data is protected with Spring Security. Authorization is role-based.
+Session handling is stateless by using JWT web-tokens.
 
 **The aim of the project:** I started this project after finishing my full-stack developer studies at Codecool, to further
 extend my practical knowledge related to software development. The main focus of the project was to gather as much
@@ -133,11 +134,11 @@ To being notified about further developments on the project, please consider "wa
     - Refresh End-to-End tests:
       - Create API tests against newly created AuthenticationController
       - Update existing API tests to work with secured endpoints from now on
+8. Implement login and registration features at the front-end side
+    - Create new React components to handle login/registration through UI
+    - Implement conditional UI element rendering (buttons, navbar) according to user roles and permissions
 
 ### Future development plans:
-8. Implement login and registration features at the front-end side
-   - Create new React components to handle login/registration through UI
-   - Implement conditional UI element rendering according to user roles
 9. Containerize application - Docker
    - Create Dockerfile
    - Create Shell scripts to build and run Dockerfile
@@ -146,6 +147,11 @@ To being notified about further developments on the project, please consider "wa
       - Update CI pipeline into CI/CD to have Continuous Deployment as well
     - Utilize previously created Dockerfile for containerization
     - Add job to YAML file to handle automatic deployment in a containerized environment
+11. Implement further functionalities
+    - Banking
+    - Customers
+    - User management
+    - Account management
 
 ## How to use this repository:
 #### Establish project:
@@ -172,9 +178,10 @@ With Postman:
    - Database tables will be created and initialized with data automatically
 5. Test the API endpoints with the predefined HTTP requests in Postman (edge cases are also covered)
    - Remember to retrieve the proper (see hints) JWT token to be able to call service APIs
+     - Retrieved JWT token should be sent during each subsequent API calls to be authorized
 
 With my set of End-to-End tests: 
-1. Run the tests I've created for API endpoint testing, located here: ```~/src/test/java/com/ibardos/motoShop/endToEndTests/apiTests```
+1. Run the tests I've created for API endpoint testing, located here: ```~/src/test/java/com/ibardos/motoShop/endToEndTest/apiTest```
    - The defined tests have automatic database setup/cleanup code as well in a mock database specifically for testing purposes,
 so you don't have to bother with that
 
@@ -188,9 +195,9 @@ branches, as opposed to the "latest" version of the application, these older var
 <br>
 
 #### Front-end:
-FRONT-END cannot be used currently. Security related functionalities are under development!
 1. Start the back-end and front-end servers simultaneously (preferably with a predefined Compound in your IDE)
-2. Navigate through the menu points in your web browser
+2. Log in to be able to use the application - available from 2.0 or later versions (see hints below)
+2. Navigate through the menu points in your web browser (rendered according to your role and permissions)
 3. Try to create/read/update/delete data at any page
 
 **IMPORTANT:** The front-end can be tested as well with both persistence technologies used during the project on the
@@ -207,7 +214,15 @@ with ORM as well.
 - Create a compound in your IDE to be able to run back-end and front-end servers simultaneously with a push of a button.
   - You don't need to bother with database initialisation at any point, as I managed to do that programmatically.
 - If you don't understand something, Google it, ask ChatGPT about it, or feel free to contact me.
-- Security configuration:
+
+
+- Security configuration back-end:
   - User role: read permission
   - Sales role: create, read, update permissions
   - Admin role: create, read, update, delete permissions
+
+
+- Security configuration front-end:
+  - username: user, password: user
+  - username: sales, password: sales
+  - username: admin, password: admin
