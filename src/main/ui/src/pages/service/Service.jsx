@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-import manufacturersImage from "../../assets/img/home/manufacturers.jpg"
-import motorcycleImage from "../../assets/img/home/motorcycles.jpg"
+import manufacturersImage from "../../assets/img/service/manufacturers.jpg"
+import motorcycleImage from "../../assets/img/service/motorcycles.jpg"
 
 
 const Service = () => {
