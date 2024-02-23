@@ -3,7 +3,7 @@ import {StrictMode} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Layout from "./pages/Layout";
-import Service from "./pages/Service";
+import Service from "./pages/service/Service";
 import Home from "./pages/Home";
 import Manufacturer from "./pages/service/Manufacturer";
 import Motorcycle from "./pages/service/motorcycle/Motorcycle";
