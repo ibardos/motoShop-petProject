@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -55,7 +56,7 @@ const AddForm = (props) => {
 
         const options = {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
             body: JSON.stringify(requestBody),
         }
 
@@ -77,6 +78,7 @@ const AddForm = (props) => {
         fuelCapacity: Yup.number().required(),
         fuelConsumption: Yup.number().required()
     });
+
 
     const initialManufacturerName = "Click to select Manufacturer";
     const initialModelType = "Click to select Model type";
@@ -206,7 +208,7 @@ const AddForm = (props) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formTextareaHorsePower">
-                    <Form.Label>Horse power<span style={{color: "red"}}>*</span></Form.Label>
+                    <Form.Label>Horsepower<span style={{color: "red"}}>*</span></Form.Label>
                     <Form.Control type="text"
                                   name="horsePower"
                                   placeholder="62"
@@ -254,7 +256,7 @@ const AddForm = (props) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formTextareaFuelConsumption">
-                    <Form.Label>Fuel consumption<span style={{color: "red"}}>*</span></Form.Label>
+                    <Form.Label>Fuel consumption l/100km<span style={{color: "red"}}>*</span></Form.Label>
                     <Form.Control type="text"
                                   name="fuelConsumption"
                                   placeholder="4.2"

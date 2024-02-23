@@ -4,6 +4,7 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
+import {getJwtToken} from "../../security/authService";
 
 
 const ManufacturerAddModal = (props) => {
@@ -35,7 +36,7 @@ const AddForm = (props) => {
 
         const options = {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
             body: JSON.stringify(requestBody),
         }
 
@@ -65,7 +66,7 @@ const AddForm = (props) => {
                               name="partnerSince" onChange={(event) => setPartnerSince(event.target.value)}/>
             </Form.Group>
 
-            <p style={{fontWeight: "bold", textAlign: "center"}}>{incompleteFormAlert}</p>
+            <p style={{fontWeight: "bold", textAlign: "center", color: "red"}}>{incompleteFormAlert}</p>
 
             <div style={{display: "flex", justifyContent: "center"}}>
                 <Button type="button" variant="secondary" style={{paddingInline: "30px"}}
@@ -76,7 +77,8 @@ const AddForm = (props) => {
                                 await handleSubmit(event);
                                 props.setAddModalShow(false);
                             }
-                        }}>Add</Button>
+                        }
+                }>Add</Button>
             </div>
         </Form>
     )

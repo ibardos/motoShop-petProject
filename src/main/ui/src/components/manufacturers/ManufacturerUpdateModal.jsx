@@ -4,11 +4,14 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
+import {getJwtToken} from "../../security/authService";
 
 
 const ManufacturerUpdateModal = (props) => {
     const modalBody = (
-        <UpdateForm manufacturers={props.manufacturers} recordId={props.recordId} setFormSubmit={props.setFormSubmit}
+        <UpdateForm manufacturers={props.manufacturers}
+                    recordId={props.recordId}
+                    setFormSubmit={props.setFormSubmit}
                     setUpdateModalShow={props.setUpdateModalShow}/>
     );
 
@@ -43,7 +46,7 @@ const UpdateForm = (props) => {
 
         const options = {
             method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
             body: JSON.stringify(requestBody),
         }
 
