@@ -1,6 +1,6 @@
 import {Image} from "react-bootstrap";
 
-import noPageImage from "../assets/img/noPage/areYouLost.jpg";
+import noPageImage from "../assets/img/error/areYouLost.jpg";
 
 
 const NoPage = () => {

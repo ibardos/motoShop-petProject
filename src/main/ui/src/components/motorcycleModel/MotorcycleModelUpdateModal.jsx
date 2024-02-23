@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -13,8 +14,10 @@ import * as Yup from "yup";
 
 
 const MotorcycleModelUpdateModal = (props) => {
-    const modalBody = <UpdateForm motorcycleModels={props.motorcycleModels} recordId={props.recordId}
-                                  setFormSubmit={props.setFormSubmit} setUpdateModalShow={props.setUpdateModalShow}/>
+    const modalBody = <UpdateForm motorcycleModels={props.motorcycleModels}
+                                  recordId={props.recordId}
+                                  setFormSubmit={props.setFormSubmit}
+                                  setUpdateModalShow={props.setUpdateModalShow}/>
 
     return <CrudModal show={props.show} onHide={props.onHide} title="Update Motorcycle model" body={modalBody}/>
 }
@@ -62,7 +65,7 @@ const UpdateForm = (props) => {
 
         const options = {
             method: "PUT",
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}`},
             body: JSON.stringify(requestBody),
         }
 
@@ -117,7 +120,7 @@ const UpdateForm = (props) => {
               }) => (
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formSelectManufacturerName">
-                        <Form.Label>Manufacturer<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Manufacturer</Form.Label>
                         <br/>
                         <Field as="select"
                                name="manufacturerName"
@@ -134,7 +137,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formSelectModelType">
-                        <Form.Label>Model type<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Model type</Form.Label>
                         <br/>
                         <Field as="select"
                                name="modelType"
@@ -152,7 +155,7 @@ const UpdateForm = (props) => {
 
 
                     <Form.Group className="mb-3" controlId="formTextareaModelName">
-                        <Form.Label>Model name<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Model name</Form.Label>
                         <Form.Control type="text"
                                       name="modelName"
                                       placeholder="DR-Z 400 SM"
@@ -164,7 +167,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaModelYear">
-                        <Form.Label>Model year<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Model year</Form.Label>
                         <Form.Control type="text"
                                       name="modelYear"
                                       placeholder="2005"
@@ -178,7 +181,7 @@ const UpdateForm = (props) => {
                         className="formErrorText">{errors.modelYear === "maxNumber" ? "No greater than next year!" : null}</div>
 
                     <Form.Group className="mb-3" controlId="formTextareaWeight">
-                        <Form.Label>Weight<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Weight</Form.Label>
                         <Form.Control type="text"
                                       name="weight"
                                       placeholder="126"
@@ -190,7 +193,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaDisplacement">
-                        <Form.Label>Displacement<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Displacement</Form.Label>
                         <Form.Control type="text"
                                       name="displacement"
                                       placeholder="439"
@@ -202,7 +205,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaHorsePower">
-                        <Form.Label>Horse power<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Horsepower</Form.Label>
                         <Form.Control type="text"
                                       name="horsePower"
                                       placeholder="62"
@@ -214,7 +217,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaTopSpeed">
-                        <Form.Label>Top speed<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Top speed</Form.Label>
                         <Form.Control type="text"
                                       name="topSpeed"
                                       placeholder="148"
@@ -226,7 +229,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaGearbox">
-                        <Form.Label>Gearbox<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Gearbox</Form.Label>
                         <Form.Control type="text"
                                       name="gearbox"
                                       placeholder="5"
@@ -238,7 +241,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaFuelCapacity">
-                        <Form.Label>Fuel capacity<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Fuel capacity</Form.Label>
                         <Form.Control type="text"
                                       name="fuelCapacity"
                                       placeholder="10.0"
@@ -250,7 +253,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaFuelConsumption">
-                        <Form.Label>Fuel consumption<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Fuel consumption l/100km</Form.Label>
                         <Form.Control type="text"
                                       name="fuelConsumption"
                                       placeholder="4.2"

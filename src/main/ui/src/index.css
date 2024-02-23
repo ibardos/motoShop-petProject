@@ -2,7 +2,6 @@ body {
   padding: 40px;
   background-color: lightslategray;
   color: white;
-  margin-bottom: 60px;
   font-family: Sans-Serif, serif;
 }
 
@@ -21,19 +20,23 @@ table {
 }
 
 footer {
-  position: static;
+  position: fixed;
   left: 0;
-  bottom: 10px;
+  bottom: 0;
   width: 100%;
   text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
 }
 
+
 a {
-  color: blue;
+  color: lightskyblue;
 }
 
 a:hover {
-  color: darkblue;
+  color: cornflowerblue;
 }
 
 

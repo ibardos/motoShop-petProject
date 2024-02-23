@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -45,7 +46,7 @@ const AddForm = (props) => {
 
         const options = {
             method: "POST",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
             body: JSON.stringify(requestBody),
         }
 
@@ -152,7 +153,7 @@ const AddForm = (props) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formTextareaInStock">
-                    <Form.Label>In stock<span style={{color: "red"}}>*</span></Form.Label>
+                    <Form.Label>Add to stock<span style={{color: "red"}}>*</span></Form.Label>
                     <Form.Control type="text"
                                   name="inStock"
                                   placeholder="1"

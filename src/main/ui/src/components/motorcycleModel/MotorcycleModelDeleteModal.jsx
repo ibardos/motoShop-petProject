@@ -5,11 +5,14 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {camelCaseToSentenceCase} from "../../util/camelCaseToSentenceCase";
+import {getJwtToken} from "../../security/authService";
 
 
 const MotorcycleModelDeleteModal = (props) => {
-    const modalBody = <DeleteItemInformation motorcycleModels={props.motorcycleModels} recordId={props.recordId}
-                                             setDeleteErrorModalShow={props.setErrorModalShow} setFormSubmit={props.setFormSubmit}
+    const modalBody = <DeleteItemInformation motorcycleModels={props.motorcycleModels}
+                                             recordId={props.recordId}
+                                             setDeleteErrorModalShow={props.setErrorModalShow}
+                                             setFormSubmit={props.setFormSubmit}
                                              setDeleteModalShow={props.setDeleteModalShow}/>
 
     return <CrudModal show={props.show} onHide={props.onHide} title="Delete Motorcycle model" body={modalBody} />
@@ -33,7 +36,7 @@ const DeleteItemInformation = (props) => {
 
         const options = {
             method: "DELETE",
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
         }
 
         const response = await fetch(url, options);
@@ -76,7 +79,8 @@ const DeleteItemInformation = (props) => {
                     onClick={async (event) => {
                         await handleSubmit(event);
                         props.setDeleteModalShow(false)
-                    }}>Delete</Button>
+                    }
+            }>Delete</Button>
         </>
     )
 }

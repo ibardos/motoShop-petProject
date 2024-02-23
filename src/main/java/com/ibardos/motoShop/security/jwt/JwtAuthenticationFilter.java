@@ -3,6 +3,8 @@ package com.ibardos.motoShop.security.jwt;
 import com.ibardos.motoShop.security.user.CustomUserDetails;
 import com.ibardos.motoShop.security.user.CustomUserDetailsService;
 
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
-        // Check if HTTP request has JWT token, if not call the next filter in filterChain
+        // Check if HTTP request has JWT token, if not, terminate and call the next filter in filterChain
         final String authorizationHeader = request.getHeader("Authorization");
 
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
@@ -54,10 +56,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        // Check if username is present in JWT token, and user is not authenticated already
         final String jwtToken = authorizationHeader.substring(7);
-        final String usernameFromJwtToken = jwtService.extractUsername(jwtToken);
+        String usernameFromJwtToken = "";
 
+        // If Exception happens while processing JWT token, terminate and call the next filter in filterChain
+        try {
+            usernameFromJwtToken = jwtService.extractUsername(jwtToken);
+        } catch (MalformedJwtException | SignatureException malformedJwtTokenException) {
+            System.out.println("Malformed or invalid JWT token: " + "\"" + jwtToken + "\"");
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // Check if username is present in JWT token, and user is not authenticated already
         if (usernameFromJwtToken != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             CustomUserDetails customUserDetailsFromDb = customUserDetailsService.loadUserByUsername(usernameFromJwtToken);
 

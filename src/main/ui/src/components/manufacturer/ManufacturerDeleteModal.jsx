@@ -3,12 +3,15 @@ import {useEffect, useState} from "react";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
+import {getJwtToken} from "../../security/authService";
 
 
 const ManufacturerDeleteModal = (props) => {
     const modalBody = (
-        <DeleteItemInformation manufacturers={props.manufacturers} recordId={props.recordId}
-                               setDeleteErrorModalShow={props.setErrorModalShow} setFormSubmit={props.setFormSubmit}
+        <DeleteItemInformation manufacturers={props.manufacturers}
+                               recordId={props.recordId}
+                               setDeleteErrorModalShow={props.setErrorModalShow}
+                               setFormSubmit={props.setFormSubmit}
                                setDeleteModalShow={props.setDeleteModalShow}/>
     );
 
@@ -33,7 +36,7 @@ const DeleteItemInformation = (props) => {
 
         const options = {
             method: "DELETE",
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
         }
 
         const response = await fetch(url, options);
@@ -65,7 +68,8 @@ const DeleteItemInformation = (props) => {
                     onClick={async (event) => {
                         await handleSubmit(event);
                         props.setDeleteModalShow(false)
-                    }}>Delete</Button>
+                    }
+            }>Delete</Button>
         </>
     )
 }

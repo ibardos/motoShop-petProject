@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -13,8 +14,10 @@ import * as Yup from "yup";
 
 
 const MotorcycleStockUpdateModal = (props) => {
-    const modalBody = <UpdateForm motorcycleStocks={props.motorcycleStocks} recordId={props.recordId}
-                                  setFormSubmit={props.setFormSubmit} setUpdateModalShow={props.setUpdateModalShow}/>
+    const modalBody = <UpdateForm motorcycleStocks={props.motorcycleStocks}
+                                  recordId={props.recordId}
+                                  setFormSubmit={props.setFormSubmit}
+                                  setUpdateModalShow={props.setUpdateModalShow}/>
 
     return <CrudModal show={props.show} onHide={props.onHide} title="Update Motorcycle in stock" body={modalBody}/>
 }
@@ -53,7 +56,7 @@ const UpdateForm = (props) => {
 
         const options = {
             method: "PUT",
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
             body: JSON.stringify(requestBody),
         }
 
@@ -98,7 +101,7 @@ const UpdateForm = (props) => {
               }) => (
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formSelectMotorcycleModel">
-                        <Form.Label>Motorcycle model<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Motorcycle model</Form.Label>
                         <br/>
                         <Field as="select"
                                name="motorcycleModel"
@@ -116,7 +119,7 @@ const UpdateForm = (props) => {
 
 
                     <Form.Group className="mb-3" controlId="formTextareaMileage">
-                        <Form.Label>Mileage<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Mileage</Form.Label>
                         <Form.Control type="text"
                                       name="mileage"
                                       placeholder="38000"
@@ -128,7 +131,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaPurchasingPrice">
-                        <Form.Label>Purchasing price<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Purchasing price</Form.Label>
                         <Form.Control type="text"
                                       name="purchasingPrice"
                                       placeholder="4080"
@@ -140,7 +143,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaProfitMargin">
-                        <Form.Label>Profit margin<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Profit margin</Form.Label>
                         <Form.Control type="text"
                                       name="profitMargin"
                                       placeholder="0.1"
@@ -152,7 +155,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaInStock">
-                        <Form.Label>In stock<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>In stock</Form.Label>
                         <Form.Control type="text"
                                       name="inStock"
                                       placeholder="1"
@@ -164,7 +167,7 @@ const UpdateForm = (props) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formTextareaColor">
-                        <Form.Label>Color<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Label>Color</Form.Label>
                         <Form.Control type="text"
                                       name="color"
                                       placeholder="Black"

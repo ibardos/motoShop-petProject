@@ -37,8 +37,10 @@ public class JwtService {
      * @return String representation of the newly created JWT token.
      */
     public String buildToken(CustomUserDetails customUserDetails) {
-        // No extra claims added, therefore empty HashMap<> should be used
-        return buildToken(new HashMap<>(), customUserDetails);
+        // Add granted authorities to JWT token to help role and also permission based conditional rendering at front-end
+        Map<String, Object> authorities = new HashMap<>(Map.of("authorities", customUserDetails.getRole().getAuthorities()));
+
+        return buildToken(authorities, customUserDetails);
     }
 
     /**
