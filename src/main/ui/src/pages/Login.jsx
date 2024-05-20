@@ -79,6 +79,12 @@ const LoginForm = () => {
         }
     }
 
+    const handleEnterPressedToLogin = async (event) => {
+        if (event.key === "Enter") {
+            await handleSubmit(event);
+        }
+    }
+
 
     return (
         <Card bg={"dark"} style={{width: '300px', margin: 'auto'}}>
@@ -93,7 +99,8 @@ const LoginForm = () => {
                     <Form.Group className="mb-3" controlId="formTextareaPassword">
                         <Form.Label>password</Form.Label>
                         <Form.Control type="password" name="password" placeholder="password"
-                                      onChange={(event) => setPassword(event.target.value)}/>
+                                      onChange={(event) => setPassword(event.target.value)}
+                                      onKeyUp={handleEnterPressedToLogin}/>
                     </Form.Group>
 
                     <p style={{fontWeight: "bold", textAlign: "center", color: "red"}}>{badCredentialsAlert}</p>
