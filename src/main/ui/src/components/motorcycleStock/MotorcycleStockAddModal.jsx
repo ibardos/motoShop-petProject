@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {identifyMotorcycleModelObject} from "../../util/identifyMotorcycleModelObject";
 import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
@@ -35,8 +36,10 @@ const AddForm = (props) => {
     async function handleSubmit(values) {
         const url = "/service/motorcycle/stock/add";
 
+        const motorcycleModel = identifyMotorcycleModelObject(motorcycleModels, values.motorcycleModel);
+
         const requestBody = {
-            "motorcycleModel": motorcycleModels.find(motorcycleModel => motorcycleModel.modelName === values.motorcycleModel),
+            "motorcycleModel": motorcycleModel,
             "mileage": values.mileage,
             "purchasingPrice": values.purchasingPrice,
             "profitMargin": values.profitMargin,
@@ -107,10 +110,15 @@ const AddForm = (props) => {
                     <Field as="select"
                            name="motorcycleModel"
                     >
-                        <option value={initialMotorcycleModel}>{initialMotorcycleModel}</option>
-                        {motorcycleModels.map(m => (
-                            <option key={m.modelName} value={m.modelName}>{m.modelName}</option>
-                        ))}
+                        <option value={values.motorcycleModel}>{values.motorcycleModel}</option>
+                        {motorcycleModels.map(m => {
+                            if (m.manufacturer.name + " - " + m.modelName !== values.motorcycleModel) {
+                                return <option key={m.manufacturer.name + " - " + m.modelName}
+                                               value={m.manufacturer.name + " - " + m.modelName}>{m.manufacturer.name + " - " + m.modelName}</option>
+                            }
+
+                            return "Click to select Motorcycle model";
+                        })}
                     </Field>
                 </Form.Group>
                 <p className="formErrorText">{incompleteMotorcycleModelAlert ? "Choose a Motorcycle model!" : null}</p>
