@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {fetchData} from "../../util/fetchData";
+import {identifyMotorcycleModelObject} from "../../util/identifyMotorcycleModelObject";
 import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
@@ -28,6 +29,7 @@ const UpdateForm = (props) => {
 
     const [currentRecord, setCurrentRecord] = useState({});
     const [currentMotorcycleModel, setCurrentMotorcycleModel] = useState({});
+    const [currentManufacturer, setCurrentManufacturer] = useState({});
 
 
     useEffect(() => {
@@ -38,15 +40,18 @@ const UpdateForm = (props) => {
 
         setCurrentRecord(currentRecord);
         setCurrentMotorcycleModel(currentRecord.motorcycleModel);
+        setCurrentManufacturer(currentRecord.motorcycleModel.manufacturer);
     }, [props.motorcycleStocks, props.recordId])
 
 
     async function handleSubmit(values) {
         const url = "/service/motorcycle/stock/update";
 
+        const motorcycleModel = identifyMotorcycleModelObject(motorcycleModels, values.motorcycleModel);
+
         const requestBody = {
             "id": currentRecord.id,
-            "motorcycleModel": values.motorcycleModel ? motorcycleModels.find(motorcycleModel => motorcycleModel.modelName === values.motorcycleModel) : currentMotorcycleModel,
+            "motorcycleModel": values.motorcycleModel ? motorcycleModel : currentMotorcycleModel,
             "mileage": values.mileage ? values.mileage : currentRecord.mileage,
             "purchasingPrice": values.purchasingPrice ? values.purchasingPrice : currentRecord.purchasingPrice,
             "profitMargin": values.profitMargin ? values.profitMargin : currentRecord.profitMargin,
@@ -79,7 +84,7 @@ const UpdateForm = (props) => {
         <Formik
             enableReinitialize
             initialValues={{
-                motorcycleModel: currentMotorcycleModel.modelName,
+                motorcycleModel: currentManufacturer.name + " - " + currentMotorcycleModel.modelName,
                 mileage: currentRecord.mileage,
                 purchasingPrice: currentRecord.purchasingPrice,
                 profitMargin: currentRecord.profitMargin,
@@ -108,8 +113,9 @@ const UpdateForm = (props) => {
                         >
                             <option value={values.motorcycleModel}>{values.motorcycleModel}</option>
                             {motorcycleModels.map(m => {
-                                if (m.modelName !== values.motorcycleModel) {
-                                    return <option key={m.modelName} value={m.modelName}>{m.modelName}</option>
+                                if (m.manufacturer.name + " - " + m.modelName !== values.motorcycleModel) {
+                                    return <option key={m.manufacturer.name + " - " + m.modelName}
+                                                   value={m.manufacturer.name + " - " + m.modelName}>{m.manufacturer.name + " - " + m.modelName}</option>
                                 }
 
                                 return "Click to select Motorcycle model";

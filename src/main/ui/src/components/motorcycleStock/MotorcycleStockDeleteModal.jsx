@@ -54,7 +54,7 @@ const DeleteItemInformation = (props) => {
                         return (
                             <div key={key}>
                                 <span key={key}>{camelCaseToSentenceCase(key)}</span>
-                                <h4 key={value.modelName}>{value.modelName}</h4>
+                                <h4 key={value.manufacturer.name + " - " + value.modelName}>{value.manufacturer.name + " - " + value.modelName}</h4>
                             </div>
                         )
                     } else {
