@@ -1,4 +1,4 @@
-package com.ibardos.motoShop.model;
+package com.ibardos.motoShop.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,6 +1,6 @@
 package com.ibardos.motoShop.service;
 
-import com.ibardos.motoShop.model.Manufacturer;
+import com.ibardos.motoShop.entity.Manufacturer;
 import com.ibardos.motoShop.service.repository.ManufacturerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

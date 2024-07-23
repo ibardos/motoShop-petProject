@@ -1,6 +1,6 @@
 package com.ibardos.motoShop.service.repository;
 
-import com.ibardos.motoShop.model.MotorcycleStock;
+import com.ibardos.motoShop.entity.MotorcycleStock;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
