@@ -1,7 +1,7 @@
 package com.ibardos.motoShop.service;
 
 import com.ibardos.motoShop.entity.MotorcycleModel;
-import com.ibardos.motoShop.service.repository.MotorcycleModelRepository;
+import com.ibardos.motoShop.repository.MotorcycleModelRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

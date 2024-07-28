@@ -1,4 +1,4 @@
-package com.ibardos.motoShop.service.repository;
+package com.ibardos.motoShop.repository;
 
 import com.ibardos.motoShop.entity.MotorcycleStock;
 
