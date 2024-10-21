@@ -1,7 +1,7 @@
 package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.model.MotorcycleModel;
-import com.ibardos.motoShop.service.dao.MotorcycleModelDao;
+import com.ibardos.motoShop.dao.MotorcycleModelDao;
 import com.ibardos.motoShop.util.MotorcycleModelType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

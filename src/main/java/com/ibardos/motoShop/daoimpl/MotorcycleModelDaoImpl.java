@@ -1,8 +1,8 @@
 package com.ibardos.motoShop.daoimpl;
 
 import com.ibardos.motoShop.model.MotorcycleModel;
-import com.ibardos.motoShop.service.dao.ManufacturerDao;
-import com.ibardos.motoShop.service.dao.MotorcycleModelDao;
+import com.ibardos.motoShop.dao.ManufacturerDao;
+import com.ibardos.motoShop.dao.MotorcycleModelDao;
 import com.ibardos.motoShop.util.MotorcycleModelType;
 
 import org.springframework.beans.factory.annotation.Autowired;

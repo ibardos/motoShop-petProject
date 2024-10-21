@@ -1,7 +1,7 @@
 package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.model.MotorcycleStock;
-import com.ibardos.motoShop.service.dao.MotorcycleStockDao;
+import com.ibardos.motoShop.dao.MotorcycleStockDao;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

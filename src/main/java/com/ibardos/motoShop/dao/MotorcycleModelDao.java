@@ -1,4 +1,4 @@
-package com.ibardos.motoShop.service.dao;
+package com.ibardos.motoShop.dao;
 
 import com.ibardos.motoShop.model.MotorcycleModel;
 

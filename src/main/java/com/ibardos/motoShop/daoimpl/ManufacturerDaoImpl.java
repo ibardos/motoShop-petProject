@@ -1,7 +1,7 @@
 package com.ibardos.motoShop.daoimpl;
 
 import com.ibardos.motoShop.model.Manufacturer;
-import com.ibardos.motoShop.service.dao.ManufacturerDao;
+import com.ibardos.motoShop.dao.ManufacturerDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
