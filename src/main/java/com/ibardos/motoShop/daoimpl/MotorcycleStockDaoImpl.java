@@ -18,12 +18,12 @@ import java.util.List;
  * Data Access Object implementation of MotorcycleStock type.
  */
 @Component
-public class MotorcycleStockDaoJdbc implements MotorcycleStockDao {
+public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
     DataSource dataSource;
     MotorcycleModelDao motorcycleModelDao;
 
     @Autowired
-    public MotorcycleStockDaoJdbc(DataSource dataSource, MotorcycleModelDao motorcycleModelDao) {
+    public MotorcycleStockDaoImpl(DataSource dataSource, MotorcycleModelDao motorcycleModelDao) {
         this.dataSource = dataSource;
         this.motorcycleModelDao = motorcycleModelDao;
     }

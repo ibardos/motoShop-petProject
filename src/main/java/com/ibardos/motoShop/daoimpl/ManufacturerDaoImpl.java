@@ -16,11 +16,11 @@ import java.util.List;
  * Data Access Object implementation of Manufacturer type.
  */
 @Component
-public class ManufacturerDaoJdbc implements ManufacturerDao {
+public class ManufacturerDaoImpl implements ManufacturerDao {
     DataSource dataSource;
 
     @Autowired
-    public ManufacturerDaoJdbc(DataSource dataSource) {
+    public ManufacturerDaoImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
