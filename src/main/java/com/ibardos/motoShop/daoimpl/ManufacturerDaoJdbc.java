@@ -1,4 +1,4 @@
-package com.ibardos.motoShop.service.dao.implementation;
+package com.ibardos.motoShop.daoimpl;
 
 import com.ibardos.motoShop.model.Manufacturer;
 import com.ibardos.motoShop.service.dao.ManufacturerDao;
