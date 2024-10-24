@@ -1,5 +1,6 @@
 package com.ibardos.motoShop.dao;
 
+import com.ibardos.motoShop.dao.generic.GenericDao;
 import com.ibardos.motoShop.model.Manufacturer;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Data Access Object interface of Manufacturer type.
  */
-public interface ManufacturerDao {
+public interface ManufacturerDao extends GenericDao<Manufacturer, Integer> {
     /**
      * Adds the defined Manufacturer to DB.
      * @param manufacturer object to add.
@@ -20,7 +21,7 @@ public interface ManufacturerDao {
      * @param id of the Manufacturer to get.
      * @return Manufacturer object.
      */
-    Manufacturer get(int id);
+    Manufacturer get(Integer id);
 
     /**
      * Gets all existing Manufacturer from DB.
@@ -38,5 +39,5 @@ public interface ManufacturerDao {
      * Deletes a Manufacturer from DB by id.
      * @param id of the Manufacturer to delete.
      */
-    void delete(int id);
+    void delete(Integer id);
 }

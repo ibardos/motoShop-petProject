@@ -1,5 +1,6 @@
 package com.ibardos.motoShop.dao;
 
+import com.ibardos.motoShop.dao.generic.GenericDao;
 import com.ibardos.motoShop.model.MotorcycleStock;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Data Access Object interface of MotorcycleStock type.
  */
-public interface MotorcycleStockDao {
+public interface MotorcycleStockDao extends GenericDao<MotorcycleStock, Integer> {
     /**
      * Adds the defined MotorcycleStock to DB.
      * @param motorcycleStock object to add.
@@ -20,7 +21,7 @@ public interface MotorcycleStockDao {
      * @param id of the MotorcycleStock to get.
      * @return MotorcycleStock object.
      */
-    MotorcycleStock get(int id);
+    MotorcycleStock get(Integer id);
 
     /**
      * Gets all existing MotorcycleStock from DB.
@@ -38,5 +39,5 @@ public interface MotorcycleStockDao {
      * Deletes a MotorcycleStock from DB by id.
      * @param id of the MotorcycleStock to delete.
      */
-    void delete(int id);
+    void delete(Integer id);
 }
