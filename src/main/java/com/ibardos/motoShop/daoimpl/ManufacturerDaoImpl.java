@@ -47,7 +47,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     }
 
     @Override
-    public Manufacturer get(int id) {
+    public Manufacturer get(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT id, name, country, partner_since FROM manufacturer WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM manufacturer WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);

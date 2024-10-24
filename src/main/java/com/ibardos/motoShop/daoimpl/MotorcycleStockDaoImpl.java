@@ -51,7 +51,7 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
     }
 
     @Override
-    public MotorcycleStock get(int id) {
+    public MotorcycleStock get(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT id, motorcycle_model_id, mileage, purchasing_price, profit_margin, profit_on_unit, selling_price, in_stock, color FROM motorcycle_stock WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM motorcycle_stock WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);

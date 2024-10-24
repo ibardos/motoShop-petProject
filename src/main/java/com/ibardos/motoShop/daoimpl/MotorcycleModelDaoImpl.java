@@ -49,7 +49,7 @@ public class MotorcycleModelDaoImpl implements MotorcycleModelDao {
     }
 
     @Override
-    public MotorcycleModel get(int id) {
+    public MotorcycleModel get(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT id, manufacturer_id, model_name, model_year, weight, displacement, horse_power, top_speed, gearbox, fuel_capacity, fuel_consumption_per_100kms, motorcycle_model_type FROM motorcycle_model WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class MotorcycleModelDaoImpl implements MotorcycleModelDao {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         try (Connection connection = dataSource.getConnection()) {
             String sql = "DELETE FROM motorcycle_model WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
