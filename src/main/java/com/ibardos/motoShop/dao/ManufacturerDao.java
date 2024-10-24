@@ -6,7 +6,7 @@ import com.ibardos.motoShop.model.Manufacturer;
 import java.util.List;
 
 /**
- * Data Access Object interface of Manufacturer type.
+ * Data Access Object (DAO) interface of Manufacturer type.
  */
 public interface ManufacturerDao extends GenericDao<Manufacturer, Integer> {
     /**
@@ -19,13 +19,13 @@ public interface ManufacturerDao extends GenericDao<Manufacturer, Integer> {
     /**
      * Gets a Manufacturer from DB by id.
      * @param id of the Manufacturer to get.
-     * @return Manufacturer object.
+     * @return Manufacturer object if found, otherwise null.
      */
     Manufacturer get(Integer id);
 
     /**
      * Gets all existing Manufacturer from DB.
-     * @return List of Manufacturer objects.
+     * @return List of Manufacturer objects if found, otherwise null.
      */
     List<Manufacturer> getAll();
 

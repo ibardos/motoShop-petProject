@@ -6,7 +6,7 @@ import com.ibardos.motoShop.model.MotorcycleModel;
 import java.util.List;
 
 /**
- * Data Access Object interface of MotorcycleModel type.
+ * Data Access Object (DAO) interface of MotorcycleModel type.
  */
 public interface MotorcycleModelDao extends GenericDao<MotorcycleModel, Integer> {
     /**
@@ -19,13 +19,13 @@ public interface MotorcycleModelDao extends GenericDao<MotorcycleModel, Integer>
     /**
      * Gets a MotorcycleModel from DB by id.
      * @param id of the MotorcycleModel to get.
-     * @return MotorcycleModel object.
+     * @return MotorcycleModel object if found, otherwise null.
      */
     MotorcycleModel get(Integer id);
 
     /**
      * Gets all existing MotorcycleModel from DB.
-     * @return List of MotorcycleModel objects.
+     * @return List of MotorcycleModel objects if found, otherwise null.
      */
     List<MotorcycleModel> getAll();
 
