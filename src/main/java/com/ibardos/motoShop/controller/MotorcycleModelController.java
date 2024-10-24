@@ -1,6 +1,6 @@
 package com.ibardos.motoShop.controller;
 
-import com.ibardos.motoShop.model.MotorcycleModel;
+import com.ibardos.motoShop.entity.MotorcycleModel;
 import com.ibardos.motoShop.service.MotorcycleModelService;
 import com.ibardos.motoShop.util.MotorcycleModelType;
 

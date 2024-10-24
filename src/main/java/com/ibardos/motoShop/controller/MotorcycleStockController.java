@@ -1,6 +1,6 @@
 package com.ibardos.motoShop.controller;
 
-import com.ibardos.motoShop.model.MotorcycleStock;
+import com.ibardos.motoShop.entity.MotorcycleStock;
 import com.ibardos.motoShop.service.MotorcycleStockService;
 
 import org.springframework.http.HttpStatus;
