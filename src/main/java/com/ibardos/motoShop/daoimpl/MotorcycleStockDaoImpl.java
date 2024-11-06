@@ -129,11 +129,15 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
      * @param motorcycleStock object from client, front-end.
      */
     private void setCalculatedFieldsOfMotorcycleStockObjectFromClient(MotorcycleStock motorcycleStock) {
+        // Extract values needed for calculations.
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
         Float profitMargin = motorcycleStock.getProfitMargin();
+
+        // Calculate automated fields of MotorcycleStock object: profit on unit, selling price.
         BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(BigDecimal.valueOf(profitMargin))))/100)*100);
         BigDecimal sellingPrice = purchasingPrice.add(profitOnUnit);
 
+        // Refresh the values of calculated fields inside MotorcycleStock object
         motorcycleStock.setProfitOnUnit(profitOnUnit);
         motorcycleStock.setSellingPrice(sellingPrice);
     }
