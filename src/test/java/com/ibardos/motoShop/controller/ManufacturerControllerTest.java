@@ -1,9 +1,12 @@
 package com.ibardos.motoShop.controller;
 
-import com.ibardos.motoShop.data.DatabaseManager;
+import com.ibardos.motoShop.data.DatabaseInitializer;
 
 import org.junit.jupiter.api.*;
 import org.skyscreamer.jsonassert.JSONAssert;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,20 +18,25 @@ import java.net.http.HttpResponse;
 import java.nio.file.Path;
 import java.nio.file.Files;
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ManufacturerControllerTest {
-    private static HttpClient client;
+    private HttpClient client;
+
+    @Autowired
+    private DatabaseInitializer databaseInitializer;
 
     @BeforeAll
-    static void initBeforeAll() {
+    public void initBeforeAll() {
         client = HttpClient.newBuilder().build();
 
-        DatabaseManager.initializeDatabase();
+        databaseInitializer.initializeDatabase();
     }
 
     @AfterAll
-    static void cleanUpAfterAll() {
-        DatabaseManager.initializeDatabase();
+    public void cleanUpAfterAll() {
+        databaseInitializer.initializeDatabase();
     }
 
     @Test
