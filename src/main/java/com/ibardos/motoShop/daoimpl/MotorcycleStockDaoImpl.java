@@ -19,8 +19,8 @@ import java.util.List;
  */
 @Component
 public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
-    DataSource dataSource;
-    MotorcycleModelDao motorcycleModelDao;
+    private final DataSource dataSource;
+    private final MotorcycleModelDao motorcycleModelDao;
 
     @Autowired
     public MotorcycleStockDaoImpl(DataSource dataSource, MotorcycleModelDao motorcycleModelDao) {

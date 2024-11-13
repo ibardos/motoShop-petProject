@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Component
 public class ManufacturerDaoImpl implements ManufacturerDao {
-    DataSource dataSource;
+    private final DataSource dataSource;
 
     @Autowired
     public ManufacturerDaoImpl(DataSource dataSource) {
