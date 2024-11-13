@@ -39,3 +39,12 @@ public class DatabaseInitializer {
             throw new DataAccessResourceFailureException("Database connection failed during initialization!");
         }
     }
+
+    /**
+     * Automatically initializes the database upon server startup.
+     */
+    @PostConstruct
+    public void initializeDatabaseAtServerStart() {
+        initializeDatabase();
+    }
+}
