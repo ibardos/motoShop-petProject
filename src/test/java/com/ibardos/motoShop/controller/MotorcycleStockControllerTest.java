@@ -84,7 +84,7 @@ public class MotorcycleStockControllerTest {
 
     @Test
     @Order(3)
-    void get_motorcycleStockWithValidIdstatusCode200WithProperJson() throws Exception {
+    void get_motorcycleStockWithValidId_statusCode200WithProperJson() throws Exception {
         // Arrange
         int expectedResponseStatus = 200;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonsForUnitTests/motorcycleStock/responses/Get.json")));
