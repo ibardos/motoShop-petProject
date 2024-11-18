@@ -14,6 +14,9 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Configuration class responsible for initializing the application's database.
+ */
 @Configuration
 public class DatabaseInitializer {
     private final DataSource dataSource;
