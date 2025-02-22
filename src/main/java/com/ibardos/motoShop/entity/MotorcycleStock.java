@@ -27,7 +27,7 @@ public class MotorcycleStock {
     private int mileage;
     private BigDecimal purchasingPrice;
     private Float profitMargin;
-    private  BigDecimal profitOnUnit;
+    private BigDecimal profitOnUnit;
     private BigDecimal sellingPrice;
     private int inStock;
     private String color;
