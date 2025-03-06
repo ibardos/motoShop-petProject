@@ -38,10 +38,10 @@ CREATE TABLE motorcycle_stock
     id SERIAL PRIMARY KEY,
     motorcycle_model_id INTEGER REFERENCES motorcycle_model(id),
     mileage INTEGER NOT NULL,
-    purchasing_price DECIMAL NOT NULL,
-    profit_margin FLOAT NOT NULL,
-    profit_on_unit DECIMAL NOT NULL,
-    selling_price DECIMAL NOT NULL,
+    purchasing_price DECIMAL(10,2) NOT NULL,
+    profit_margin DECIMAL(5,2) NOT NULL,
+    profit_on_unit DECIMAL(10,2) NOT NULL,
+    selling_price DECIMAL(10,2) NOT NULL,
     in_stock INTEGER NOT NULL,
     color VARCHAR(40) NOT NULL
 );
