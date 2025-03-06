@@ -35,7 +35,7 @@ CREATE TABLE motorcycle_stock
     motorcycle_model_id INTEGER REFERENCES motorcycle_model(id),
     mileage INTEGER NOT NULL,
     purchasing_price DECIMAL NOT NULL,
-    profit_margin FLOAT NOT NULL,
+    profit_margin DECIMAL NOT NULL,
     profit_on_unit DECIMAL NOT NULL,
     selling_price DECIMAL NOT NULL,
     in_stock INTEGER NOT NULL,
