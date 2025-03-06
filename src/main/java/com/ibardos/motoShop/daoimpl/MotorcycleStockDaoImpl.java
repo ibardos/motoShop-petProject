@@ -131,10 +131,10 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
     private void setCalculatedFieldsOfMotorcycleStockObjectFromClient(MotorcycleStock motorcycleStock) {
         // Extract values needed for calculations.
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
-        Float profitMargin = motorcycleStock.getProfitMargin();
+        BigDecimal profitMargin = motorcycleStock.getProfitMargin();
 
         // Calculate automated fields of MotorcycleStock object: profit on unit, selling price.
-        BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(BigDecimal.valueOf(profitMargin))))/100)*100);
+        BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(profitMargin)))/100)*100);
         BigDecimal sellingPrice = purchasingPrice.add(profitOnUnit);
 
         // Refresh the values of calculated fields inside MotorcycleStock object
@@ -152,7 +152,7 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
         statement.setInt(1, motorcycleStock.getMotorcycleModel().getId());
         statement.setInt(2, motorcycleStock.getMileage());
         statement.setBigDecimal(3, motorcycleStock.getPurchasingPrice());
-        statement.setFloat(4, motorcycleStock.getProfitMargin());
+        statement.setBigDecimal(4, motorcycleStock.getProfitMargin());
         statement.setBigDecimal(5, motorcycleStock.getProfitOnUnit());
         statement.setBigDecimal(6, motorcycleStock.getSellingPrice());
         statement.setInt(7, motorcycleStock.getInStock());
@@ -170,7 +170,7 @@ public class MotorcycleStockDaoImpl implements MotorcycleStockDao {
                 motorcycleModelDao.get(rs.getInt(2)),
                 rs.getInt(3),
                 rs.getBigDecimal(4),
-                rs.getFloat(5),
+                rs.getBigDecimal(5),
                 rs.getBigDecimal(6),
                 rs.getBigDecimal(7),
                 rs.getInt(8),
