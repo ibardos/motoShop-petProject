@@ -11,15 +11,15 @@ public class MotorcycleStock {
     private MotorcycleModel motorcycleModel;
     private int mileage;
     private BigDecimal purchasingPrice;
-    private Float profitMargin;
-    private  BigDecimal profitOnUnit;
+    private BigDecimal profitMargin;
+    private BigDecimal profitOnUnit;
     private BigDecimal sellingPrice;
     private int inStock;
     private String color;
 
 
     // Constructor
-    public MotorcycleStock(MotorcycleModel motorcycleModel, int mileage, BigDecimal purchasingPrice, Float profitMargin, BigDecimal profitOnUnit, BigDecimal sellingPrice, int inStock, String color) {
+    public MotorcycleStock(MotorcycleModel motorcycleModel, int mileage, BigDecimal purchasingPrice, BigDecimal profitMargin, BigDecimal profitOnUnit, BigDecimal sellingPrice, int inStock, String color) {
         this.motorcycleModel = motorcycleModel;
         this.mileage = mileage;
         this.purchasingPrice = purchasingPrice;
@@ -40,7 +40,7 @@ public class MotorcycleStock {
 
     public BigDecimal getPurchasingPrice() { return purchasingPrice; }
 
-    public Float getProfitMargin() { return profitMargin; }
+    public BigDecimal getProfitMargin() { return profitMargin; }
 
     public BigDecimal getProfitOnUnit() { return profitOnUnit; }
 
