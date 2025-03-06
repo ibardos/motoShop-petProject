@@ -79,8 +79,8 @@ public class MotorcycleStockService {
      */
     private void setCalculatedFieldsOfMotorcycleStockObjectFromClient(MotorcycleStock motorcycleStock) {
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
-        Float profitMargin = motorcycleStock.getProfitMargin();
-        BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(BigDecimal.valueOf(profitMargin))))/100)*100);
+        BigDecimal profitMargin = motorcycleStock.getProfitMargin();
+        BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(profitMargin)))/100)*100);
         BigDecimal sellingPrice = purchasingPrice.add(profitOnUnit);
 
         motorcycleStock.setProfitOnUnit(profitOnUnit);
