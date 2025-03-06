@@ -80,9 +80,9 @@ public class MotorcycleStockService {
      */
     private void setCalculatedFieldsOfMotorcycleStockObjectFromClient(MotorcycleStock motorcycleStock) {
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
-        Float profitMargin = motorcycleStock.getProfitMargin();
+        BigDecimal profitMargin = motorcycleStock.getProfitMargin();
 
-        BigDecimal profit = purchasingPrice.multiply(BigDecimal.valueOf(profitMargin));
+        BigDecimal profit = purchasingPrice.multiply(profitMargin);
 
         // Round up to the nearest hundred
         BigDecimal profitOnUnit = profit.setScale(0, RoundingMode.CEILING);
