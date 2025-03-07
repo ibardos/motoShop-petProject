@@ -10,8 +10,8 @@ jobs:
   back-end:
     runs-on: ubuntu-latest
 
-    # Run job only if git commit message contains '[CI]'
-    if: "contains(github.event.commits[0].message, '[CI]')"
+    # Run job only if git commit message contains '[CI]', or if triggered manually or by a PR
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || (github.event_name == 'push' && contains(github.event.commits[0].message, '[CI]'))
 
     steps:
       - name: Checkout repository
@@ -31,8 +31,8 @@ jobs:
   front-end:
     runs-on: ubuntu-latest
 
-    # Run job only if git commit message contains '[CI]'
-    if: "contains(github.event.commits[0].message, '[CI]')"
+    # Run job only if git commit message contains '[CI]', or if triggered manually or by a PR
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' || (github.event_name == 'push' && contains(github.event.commits[0].message, '[CI]'))
 
     # Steps must run in the folder where ReactJS front-end application is located.
     defaults:
