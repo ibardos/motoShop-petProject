@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,7 +81,12 @@ public class MotorcycleStockService {
     private void setCalculatedFieldsOfMotorcycleStockObjectFromClient(MotorcycleStock motorcycleStock) {
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
         BigDecimal profitMargin = motorcycleStock.getProfitMargin();
-        BigDecimal profitOnUnit = BigDecimal.valueOf(Math.ceil(Double.parseDouble(String.valueOf(purchasingPrice.multiply(profitMargin)))/100)*100);
+
+        // Round up to the nearest hundred
+        BigDecimal profitOnUnit = purchasingPrice.multiply(profitMargin)
+                .divide(BigDecimal.valueOf(100), 0, RoundingMode.CEILING)
+                .multiply(BigDecimal.valueOf(100));
+
         BigDecimal sellingPrice = purchasingPrice.add(profitOnUnit);
 
         motorcycleStock.setProfitOnUnit(profitOnUnit);
