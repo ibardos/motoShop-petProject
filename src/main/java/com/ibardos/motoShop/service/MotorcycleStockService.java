@@ -82,11 +82,10 @@ public class MotorcycleStockService {
         BigDecimal purchasingPrice = motorcycleStock.getPurchasingPrice();
         BigDecimal profitMargin = motorcycleStock.getProfitMargin();
 
-        BigDecimal profit = purchasingPrice.multiply(profitMargin);
-
         // Round up to the nearest hundred
-        BigDecimal profitOnUnit = profit.setScale(0, RoundingMode.CEILING);
-        profitOnUnit = profitOnUnit.divide(BigDecimal.valueOf(100), 0, RoundingMode.CEILING).multiply(BigDecimal.valueOf(100));
+        BigDecimal profitOnUnit = purchasingPrice.multiply(profitMargin)
+                .divide(BigDecimal.valueOf(100), 0, RoundingMode.CEILING)
+                .multiply(BigDecimal.valueOf(100));
 
         BigDecimal sellingPrice = purchasingPrice.add(profitOnUnit);
 
