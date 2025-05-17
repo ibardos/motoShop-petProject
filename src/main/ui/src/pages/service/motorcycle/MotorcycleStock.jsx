@@ -117,7 +117,9 @@ const MotorcycleStock = () => {
                           setRecordId={setRecordId}
                           setUpdateModalShow={setUpdateModalShow}
                           setDeleteModalShow={setDeleteModalShow}
-                          error={error} isLoaded={isLoaded}/>
+                          error={error}
+                          isLoaded={isLoaded}
+                          isSellButtonVisible={true}/>
 
 
             <MotorcycleStockAddModal setFormSubmit={setFormSubmit}

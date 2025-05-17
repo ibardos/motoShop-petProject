@@ -122,7 +122,8 @@ const MotorcycleModel = () => {
                           setUpdateModalShow={setUpdateModalShow}
                           setDeleteModalShow={setDeleteModalShow}
                           error={error}
-                          isLoaded={isLoaded}/>
+                          isLoaded={isLoaded}
+                          isSellButtonVisible={false}/>
 
 
             <MotorcycleModelAddModal setFormSubmit={setFormSubmit}

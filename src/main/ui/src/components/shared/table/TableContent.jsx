@@ -10,6 +10,25 @@ import {AuthenticationContext} from "../../../security/authenticationProvider";
 const TableContent = (props) => {
     const {userPermissions} = useContext(AuthenticationContext);
 
+    
+    // Handle Options column minWidth based on how many buttons need to be rendered
+    const showUpdateButton = userPermissions.includes('Update');
+    const showDeleteButton = userPermissions.includes('Delete');
+    const showSellButton = props.isSellButtonVisible;
+
+    let visibleButtons = 0;
+    if (showUpdateButton) visibleButtons++;
+    if (showDeleteButton) visibleButtons++;
+    if (showSellButton) visibleButtons++;
+
+    let optionsColumnWidth = "100px";
+    if (visibleButtons === 2) {
+        optionsColumnWidth = "200px";
+    } else if (visibleButtons === 3) {
+        optionsColumnWidth = "300px";
+    }
+
+
     // Provides unique values for React child keys
     let columnIndexer = 0;
 
@@ -29,12 +48,23 @@ const TableContent = (props) => {
                     }
                 })}
                 {(userPermissions.includes('Update') || userPermissions.includes('Delete')) && (
-                    <td style={{width: "175px", minWidth: "175px"}}>
+                    <td style={{minWidth: optionsColumnWidth, width: optionsColumnWidth}}>
                         <Row>
+                            { /* Conditionally render Sell button for MotorcycleStock page only */}
+                            {props.isSellButtonVisible && (
+                                <Col style={{paddingInline: "10px", minWidth: "100px"}}>
+                                    <Button variant={"success"} style={{width: "80px"}} data-id={record.id}
+                                            onClick={(event) => {
+                                                props.setRecordId(event.target.dataset.id);
+                                                props.setSellModalShow(true); // TODO Implement Sell modal
+                                            }
+                                            }>Sell</Button>
+                                </Col>
+                            )}
                             { /* Conditionally render Update button */}
                             {userPermissions.includes('Update') && (
-                                <Col style={{paddingInline: "0px", minWidth: "80px"}}>
-                                    <Button variant={"secondary"} data-id={record.id}
+                                <Col style={{paddingInline: "10px", minWidth: "100px"}}>
+                                    <Button variant={"secondary"} style={{width: "80px"}} data-id={record.id}
                                             onClick={(event) => {
                                                 props.setRecordId(event.target.dataset.id);
                                                 props.setUpdateModalShow(true);
@@ -44,8 +74,8 @@ const TableContent = (props) => {
                             )}
                             { /* Conditionally render Delete button */}
                             {userPermissions.includes('Delete') && (
-                                <Col style={{paddingInline: "0px"}}>
-                                    <Button variant={"danger"} data-id={record.id}
+                                <Col style={{paddingInline: "10px", minWidth: "100px"}}>
+                                    <Button variant={"danger"} style={{width: "80px"}} data-id={record.id}
                                             onClick={(event) => {
                                                 props.setRecordId(event.target.dataset.id);
                                                 props.setDeleteModalShow(true);

@@ -37,7 +37,8 @@ const StripedTable = (props) => {
                               setUpdateModalShow={props.setUpdateModalShow}
                               setDeleteModalShow={props.setDeleteModalShow}
                               error={props.error}
-                              isLoaded={props.isLoaded}/>
+                              isLoaded={props.isLoaded}
+                              isSellButtonVisible={props.isSellButtonVisible}/>
             </Table>
 
             <p style={{textAlign: "center"}}>*Responsive table. Scroll horizontally if needed.</p>
