@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS application_user CASCADE;
 DROP TABLE IF EXISTS role CASCADE;
 DROP TABLE IF EXISTS permission CASCADE;
 DROP TABLE IF EXISTS role_permissions CASCADE;
+DROP TABLE IF EXISTS customer CASCADE;
 
 
 ---------- Create tables ----------
@@ -46,6 +47,19 @@ CREATE TABLE motorcycle_stock
     color VARCHAR(40) NOT NULL
 );
 
+CREATE TABLE customer
+(
+    id                   SERIAL PRIMARY KEY,
+    first_name           VARCHAR(50)  NOT NULL,
+    last_name            VARCHAR(50)  NOT NULL,
+    email                VARCHAR(100) NOT NULL UNIQUE,
+    phone_number         VARCHAR(20)  NOT NULL,
+    address              VARCHAR(200) NOT NULL,
+    city                 VARCHAR(50)  NOT NULL,
+    postal_code          VARCHAR(10)  NOT NULL,
+    country              VARCHAR(50)  NOT NULL,
+    date_of_registration DATE         NOT NULL
+);
 ---------- Security related tables ----------
 CREATE TABLE permission
 (
