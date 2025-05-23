@@ -257,7 +257,7 @@
     "profitMargin": 0.15,
     "profitOnUnit": 3600,
     "sellingPrice": 27080,
-    "inStock": 1,
+    "inStock": 0,
     "color": "Carbon-fiber/blue"
   }
 ]

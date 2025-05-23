@@ -1,0 +1,13 @@
+{
+  "id": 3,
+  "orderDate": "2025-05-23",
+  "orderStatus": "PENDING",
+  "originalPrice": 20355.00,
+  "discount": 0.10,
+  "totalAmount": 18319.5000,
+  "estimatedDeliveryDate": "2025-07-10",
+  "motorcycleStockId": 1,
+  "motorcycleModelName": "BMW - R 1250 GS Adventure",
+  "customerId": 1,
+  "customerFullName": "Marcus Fenix"
+}
