@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS role CASCADE;
 DROP TABLE IF EXISTS permission CASCADE;
 DROP TABLE IF EXISTS role_permissions CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
+DROP TABLE IF EXISTS customer_order CASCADE;
 
 
 ---------- Create tables ----------
@@ -60,6 +61,20 @@ CREATE TABLE customer
     country              VARCHAR(50)  NOT NULL,
     date_of_registration DATE         NOT NULL
 );
+
+CREATE TABLE customer_order
+(
+    id                      SERIAL PRIMARY KEY,
+    order_date              DATE           NOT NULL,
+    order_status            VARCHAR(20)    NOT NULL,
+    original_price          DECIMAL(10, 2) NOT NULL,
+    discount                DECIMAL(5, 2)  NOT NULL,
+    total_amount            DECIMAL(10, 2) NOT NULL,
+    estimated_delivery_date DATE NOT NULL,
+    motorcycle_stock_id     INTEGER REFERENCES motorcycle_stock (id),
+    customer_id             INTEGER REFERENCES customer (id)
+);
+
 ---------- Security related tables ----------
 CREATE TABLE permission
 (
