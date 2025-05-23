@@ -1,0 +1,11 @@
+{
+  "id": 4,
+  "firstName": "Kait",
+  "lastName": "Diaz",
+  "fullName": "Kait Diaz",
+  "email": "kait.diaz@cog.gov",
+  "phoneNumber": "+1-555-0126",
+  "fullAddress": "12 Outsider Lane, New Ephyra NE7 9COG, Sera",
+  "dateOfRegistration": "2025-05-23",
+  "orderIds": []
+}
