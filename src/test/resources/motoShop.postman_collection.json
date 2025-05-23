@@ -235,7 +235,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"email\": \"admin\",\n  \"password\": \"admin\"\n}",
+											"raw": "{\n  \"username\": \"Admin\",\n  \"password\": \"admin\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -260,13 +260,13 @@
 							"name": "register",
 							"item": [
 								{
-									"name": "register_invalid_user",
+									"name": "register_empty_body",
 									"request": {
 										"method": "POST",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"username\": \"steve\",\n  \"password\": \"123\",\n  \"email\": \"steve@icloud.com\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Bardos\",\n  \"positionAtCompany\": \"Sales manager\"\n}",
+											"raw": "",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -286,13 +286,13 @@
 									"response": []
 								},
 								{
-									"name": "register_empty_body",
+									"name": "register_invalid_user",
 									"request": {
 										"method": "POST",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "",
+											"raw": "{\n  \"username\": \"steve\",\n  \"password\": \"123\",\n  \"email\": \"steve@icloud.com\",\n  \"firstName\": \"Steve\",\n  \"lastName\": \"Bardos\",\n  \"positionAtCompany\": \"Sales manager\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1192,6 +1192,722 @@
 				}
 			],
 			"description": "This folder is for testing Motorcycle model related APIs."
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "valid_parameters",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Kait\",\n    \"lastName\": \"Diaz\",\n    \"email\": \"kait.diaz@cog.gov\",\n    \"phoneNumber\": \"+1-555-0126\",\n    \"address\": \"12 Outsider Lane\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/get/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/get/all",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"2025-01-20\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/delete/2",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"delete",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "invalid_parameters",
+					"item": [
+						{
+							"name": "add_invalid_json",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Kait\",\n    \"lastName\": \"Diaz\",\n    \"email\": \"kait.diaz@cog.gov\",\n    \"phoneNumber\": +1-555-0126,\n    \"address\": \"12 Outsider Lane\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_invalid_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/get/11",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll_invalid_url",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/get/allinvalid",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"allinvalid"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"11\",\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"2025-01-20\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_json",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1\",\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"bad_date_format\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/customer/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_invalid_id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/delete/22",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"delete",
+										"22"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_foreignKeyViolation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/delete/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "valid_parameters",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 1,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/all",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.00,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 6,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/delete/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "invalid_parameters",
+					"item": [
+						{
+							"name": "add_invalid_json",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderStatus\": \"INVALID\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 1,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add_invalid_motorcycleStock",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 11,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add_invalid_customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 1,\n    \"customerId\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add_insufficient_stock",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 9,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/add",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_invalid_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/111",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"111"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll_invalid_url",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/allInvalid",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"allInvalid"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 300,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.00,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 6,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_json",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 3,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.00,\n    \"estimatedDeliveryDate\": \"2025-07-10 17:05:32\",\n    \"motorcycleStockId\": 6,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_motorcycleStock",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 11,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_invalid_customer",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 1,\n    \"customerId\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update_insufficient_stock",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 1,\n    \"orderStatus\": \"PENDING\",\n    \"discount\": 0.10,\n    \"estimatedDeliveryDate\": \"2025-07-10\",\n    \"motorcycleStockId\": 9,\n    \"customerId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}service/order/update",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete_invalid_id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/delete/100",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"delete",
+										"100"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	],
 	"auth": {
