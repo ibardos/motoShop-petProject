@@ -30,7 +30,7 @@ VALUES ((SELECT id FROM motorcycle_model WHERE model_name = 'R 1250 GS Adventure
        ((SELECT id FROM motorcycle_model WHERE model_name = 'DR-Z 400 SM'), '38000', '4080', '0.1', '500', '4580', '1', 'Black'),
        ((SELECT id FROM motorcycle_model WHERE model_name = 'V-Strom 1050DE Adventure'), '0', '15300', '0.15', '2300', '17600', '3', 'Champion Yellow'),
        ((SELECT id FROM motorcycle_model WHERE model_name = 'V-Strom 1050DE Adventure'), '0', '15300', '0.15', '2300', '17600', '3', 'Metallic Matte Sword Silver'),
-       ((SELECT id FROM motorcycle_model WHERE model_name = 'YZF-R1 M'), '0', '23480', '0.15', '3600', '27080', '1', 'Carbon-fiber/blue')
+       ((SELECT id FROM motorcycle_model WHERE model_name = 'YZF-R1 M'), '0', '23480', '0.15', '3600', '27080', '0', 'Carbon-fiber/blue')
 ;
 
 INSERT INTO customer (first_name, last_name, email, phone_number, address, city, postal_code, country, date_of_registration)
