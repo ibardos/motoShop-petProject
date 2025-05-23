@@ -30,7 +30,19 @@ VALUES ((SELECT id FROM motorcycle_model WHERE model_name = 'R 1250 GS Adventure
        ((SELECT id FROM motorcycle_model WHERE model_name = 'DR-Z 400 SM'), '38000', '4080', '0.1', '500', '4580', '1', 'Black'),
        ((SELECT id FROM motorcycle_model WHERE model_name = 'V-Strom 1050DE Adventure'), '0', '15300', '0.15', '2300', '17600', '3', 'Champion Yellow'),
        ((SELECT id FROM motorcycle_model WHERE model_name = 'V-Strom 1050DE Adventure'), '0', '15300', '0.15', '2300', '17600', '3', 'Metallic Matte Sword Silver'),
-       ((SELECT id FROM motorcycle_model WHERE model_name = 'YZF-R1 M'), '0', '23480', '0.15', '3600', '27080', '1', 'Carbon-fiber/blue')
+       ((SELECT id FROM motorcycle_model WHERE model_name = 'YZF-R1 M'), '0', '23480', '0.15', '3600', '27080', '0', 'Carbon-fiber/blue')
+;
+
+INSERT INTO customer (first_name, last_name, email, phone_number, address, city, postal_code, country, date_of_registration)
+VALUES ('Marcus', 'Fenix', 'marcus.fenix@cog.gov', '+1-555-0123', '25 Coalition Street', 'Ephyra', 'EP1 2COG', 'Sera','2023-01-15'),
+       ('Dominic', 'Santiago', 'dom.santiago@cog.gov', '+1-555-0124', '8 Jacinto Avenue', 'New Ephyra', 'NE2 3COG','Sera', '2023-03-22'),
+       ('Augustus', 'Cole', 'cole.train@cog.gov', '+1-555-0125', '42 Thrashball Road', 'Hanover', 'HN4 1COG', 'Sera','2023-06-30')
+;
+
+
+INSERT INTO customer_order (order_date, order_status, original_price, discount, total_amount, estimated_delivery_date, motorcycle_stock_id, customer_id)
+VALUES ('2025-01-30', '1', '17600', '0.00', '17600.00', '2025-03-03', '8', '1'),
+       ('2025-05-15', '0', '20355', '0.10', '18319.50', '2025-07-25', '1', '3')
 ;
 
 ---------- Security related inserts ----------

@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "orderStatus": "PENDING",
+  "discount": 0.10,
+  "estimatedDeliveryDate": "2025-07-10",
+  "motorcycleStockId": 1,
+  "customerId": 10
+}

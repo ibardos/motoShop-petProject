@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "firstName": "Marcus",
+  "lastName": "Fenix",
+  "fullName": "Marcus Fenix",
+  "email": "marcus.fenix@cog.gov",
+  "phoneNumber": "+1-555-0123",
+  "fullAddress": "25 Coalition Street, Ephyra EP1 2COG, Sera",
+  "dateOfRegistration": "2023-01-15",
+  "orderIds": [
+    1
+  ]
+}

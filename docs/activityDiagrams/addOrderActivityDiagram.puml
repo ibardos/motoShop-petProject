@@ -1,0 +1,33 @@
+@startuml
+
+title Order Creation Flow (Service Layer Logic)
+
+start
+:Validate OrderRequestDto;
+if (MotorcycleStock exists in DB) then (yes)
+  if (Stock > 0) then (yes)
+    if (Customer exists in DB) then (yes)
+      :Create new Order entity:
+          - Map OrderRequestDto to Order:
+            - Set field values
+            - Set references (MotorcycleStock, Customer)
+            - Set orderDate to current date
+            - Calculate totalAmount (originalPrice - (originalPrice x discount));
+      :Save Order to DB;
+      :Decrease stock value for MotorcycleStock;
+      :Save updated MotorcycleStock to DB;
+      end
+    else (no)
+      :Throw EntityNotFoundException ("Customer not found");
+      stop
+    endif
+  else (no)
+    :Throw IllegalStateException ("Stock not sufficient");
+    stop
+  endif
+else (no)
+  :Throw EntityNotFoundException ("MotorcycleStock not found");
+  stop
+endif
+
+@enduml

@@ -59,6 +59,16 @@ public class SecurityConfiguration {
                                 .requestMatchers("service/motorcycle/stock/update").hasAuthority("PERMISSION_Update")
                                 .requestMatchers("service/motorcycle/stock/delete/**").hasAuthority("PERMISSION_Delete")
 
+                                .requestMatchers("service/customer/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("service/customer/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("service/customer/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("service/customer/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .requestMatchers("service/order/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("service/order/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("service/order/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("service/order/delete/**").hasAuthority("PERMISSION_Delete")
+
                                 .anyRequest()
                                 .authenticated()
 

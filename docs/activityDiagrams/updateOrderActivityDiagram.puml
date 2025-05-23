@@ -1,0 +1,40 @@
+@startuml
+
+title Order Update Flow (Service Layer Logic)
+
+start
+:Validate OrderRequestDto;
+if (Order exists in DB) then (yes)
+  if (MotorcycleStock exists in DB) then (yes)
+    if (Customer exists in DB) then (yes)
+      if (MotorcycleStock changed (old vs. new)) then (yes)
+        if (Stock (new) > 0) then (yes)
+          :Increase stock value for old MotorcycleStock;
+          :Decrease stock value for new MotorcycleStock;
+        else (no)
+          :Throw IllegalStateException ("Stock not sufficient");
+          stop
+        endif
+      else (no)
+      endif
+      :Create updated Order entity:
+            - Map OrderRequestDto to Order:
+              - Set updated field values
+              - Set updated references (MotorcycleStock, Customer)
+              - Calculate totalAmount (originalPrice - (originalPrice x discount));
+            :Save Order to DB;
+      end
+    else (no)
+      :Throw EntityNotFoundException ("Customer not found");
+      stop
+    endif
+  else (no)
+    :Throw EntityNotFoundException ("MotorcycleStock not found");
+    stop
+  endif
+else (no)
+  :Throw EntityNotFoundException ("Order not found");
+  stop
+endif
+
+@enduml

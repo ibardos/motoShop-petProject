@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "firstName": "Marcus",
+    "lastName": "Fenix",
+    "fullName": "Marcus Fenix",
+    "email": "marcus.fenix@cog.gov",
+    "phoneNumber": "+1-555-0123",
+    "fullAddress": "25 Coalition Street, Ephyra EP1 2COG, Sera",
+    "dateOfRegistration": "2023-01-15",
+    "orderIds": [
+      1
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Dominic",
+    "lastName": "Santiago",
+    "fullName": "Dominic Santiago",
+    "email": "dom.santiago@cog.gov",
+    "phoneNumber": "+1-555-0124",
+    "fullAddress": "8 Jacinto Avenue, New Ephyra NE2 3COG, Sera",
+    "dateOfRegistration": "2023-03-22",
+    "orderIds": []
+  },
+  {
+    "id": 3,
+    "firstName": "Augustus",
+    "lastName": "Cole",
+    "fullName": "Augustus Cole",
+    "email": "cole.train@cog.gov",
+    "phoneNumber": "+1-555-0125",
+    "fullAddress": "42 Thrashball Road, Hanover HN4 1COG, Sera",
+    "dateOfRegistration": "2023-06-30",
+    "orderIds": [
+      2
+    ]
+  }
+]
