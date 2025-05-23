@@ -1,0 +1,20 @@
+@startuml
+
+actor Client
+participant Controller
+participant Service
+participant Repository
+database Database
+
+Client -> Controller : POST /service/order/ : JSON(OrderRequestDto)
+Controller -> Service : add(OrderRequestDto)
+Service -> Service : map OrderRequestDto → Order
+Service -> Repository : save(Order)
+Repository -> Database : persist Order
+Database --> Repository : saved Order
+Repository --> Service : Order
+Service -> Service : map Order → OrderResponseDto
+Service --> Controller : OrderResponseDto
+Controller --> Client : 201 Created : JSON(OrderResponseDto)
+
+@enduml
