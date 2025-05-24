@@ -11,7 +11,7 @@ import MotorcycleModel from "./pages/service/motorcycle/MotorcycleModel";
 import MotorcycleStock from "./pages/service/motorcycle/MotorcycleStock";
 import NoPage from "./pages/NoPage";
 import Login from "./pages/Login";
-import Customer from "./pages/Customer";
+import Customer from "./pages/service/Customer";
 import Bank from "./pages/Bank";
 import User from "./pages/User";
 import Account from "./pages/Account";
@@ -38,8 +38,8 @@ const App = () => {
                                     <Route path="model" element={<MotorcycleModel/>}/>
                                     <Route path="stock" element={<MotorcycleStock/>}/>
                                 </Route>
+                                <Route path={"customer"} element={<Customer/>}/>
                             </Route>
-                            <Route path={"customer"} element={<Customer/>}/>
                             <Route path={"bank"} element={<Bank/>}/>
                             <Route path={"user"} element={<User/>}/>
                             <Route path={"user/*"} element={<Account/>}/>

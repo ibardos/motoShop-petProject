@@ -1,4 +1,4 @@
-import underConstructionImage from "../assets/img/error/underConstruction.jpg";
+import underConstructionImage from "../../assets/img/error/underConstruction.jpg";
 
 import {Image} from "react-bootstrap";
 
