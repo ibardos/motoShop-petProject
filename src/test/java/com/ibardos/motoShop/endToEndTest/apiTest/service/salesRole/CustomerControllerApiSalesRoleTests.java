@@ -4,6 +4,7 @@ import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 
 import jakarta.annotation.PostConstruct;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import java.net.http.HttpResponse;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -59,6 +61,11 @@ public class CustomerControllerApiSalesRoleTests {
         int expectedResponseStatus = 201;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/response/Add.json")));
 
+        // Convert String JSON payload from expectedResponseBody to JSONObject and override dateOfRegistration
+        // to today's date, as the added Customer entity automatically saved with the current date to database.
+        JSONObject expectedJsonObject = new JSONObject(expectedResponseBody);
+        expectedJsonObject.put("dateOfRegistration", LocalDate.now().toString());
+
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/request/AddValid.json")))
@@ -72,7 +79,7 @@ public class CustomerControllerApiSalesRoleTests {
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
-        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
+        JSONAssert.assertEquals(expectedJsonObject.toString(), resultResponseBody, false);
     }
 
     @Test

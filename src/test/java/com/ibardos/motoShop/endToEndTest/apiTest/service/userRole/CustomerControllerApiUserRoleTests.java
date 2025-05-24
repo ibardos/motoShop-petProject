@@ -18,9 +18,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import org.json.JSONObject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -80,9 +81,16 @@ public class CustomerControllerApiUserRoleTests {
 
         int expectedResponseStatus = 403;
 
+        // Read JSON, update dateOfRegistration to today
+        String jsonPath = "src/test/resources/jsonForEndToEndTest/service/customer/request/AddInvalid.json";
+        String originalJson = new String(Files.readAllBytes(Path.of(jsonPath)));
+        JSONObject jsonObj = new JSONObject(originalJson);
+        jsonObj.put("dateOfRegistration", LocalDate.now().toString());
+        String modifiedJson = jsonObj.toString();
+
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
-                .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/request/AddInvalid.json")))
+                .POST(HttpRequest.BodyPublishers.ofString(modifiedJson))
                 .build();
 
         // Act
