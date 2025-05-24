@@ -50,9 +50,7 @@ const Header = () => {
         if (userRole === 'Sales' || userRole === 'Admin') {
             return (
                 <>
-                    <Nav.Link as={Link} to="/customer">Customers</Nav.Link>
                     <Nav.Link as={Link} to="/bank">Banking</Nav.Link>
-                    <Nav.Link disabled>II</Nav.Link>
                 </>
             )
         }
@@ -70,8 +68,10 @@ const Header = () => {
                                 <NavDropdown.Item as={Link} to="/service/motorcycle/model">Motorcycle models</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/service/motorcycle/stock">Motorcycles in stock</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link disabled>II</Nav.Link>
+                            <Nav.Link disabled>I</Nav.Link>
+                            <Nav.Link as={Link} to="/service/customer">Customers</Nav.Link>
                             <ConditionalNavbarButtonsIfSalesOrAdminUser/>
+                            <Nav.Link disabled>I</Nav.Link>
                             <NavDropdown title="Account" id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to={myAccountUri}>My account</NavDropdown.Item>
                                 <ConditionalNavbarDropdownButtonsIfAdminUser/>
