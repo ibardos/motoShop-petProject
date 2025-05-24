@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "firstName": "Marcus",
+  "lastName": "Fenix",
+  "email": "marcus.fenix@cog.gov",
+  "phoneNumber": "+1-555-0123",
+  "address": "25 Coalition Street",
+  "city": "Ephyra",
+  "postalCode": "EP1 2COG",
+  "country": "Sera"
+}

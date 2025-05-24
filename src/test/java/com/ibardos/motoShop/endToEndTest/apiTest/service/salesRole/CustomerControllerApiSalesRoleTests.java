@@ -4,6 +4,7 @@ import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 
 import jakarta.annotation.PostConstruct;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import java.net.http.HttpResponse;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -59,6 +61,11 @@ public class CustomerControllerApiSalesRoleTests {
         int expectedResponseStatus = 201;
         String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/response/Add.json")));
 
+        // Convert String JSON payload from expectedResponseBody to JSONObject and override dateOfRegistration
+        // to today's date, as the added Customer entity automatically saved with the current date to database.
+        JSONObject expectedJsonObject = new JSONObject(expectedResponseBody);
+        expectedJsonObject.put("dateOfRegistration", LocalDate.now().toString());
+
         HttpRequest request = HttpRequest.newBuilder(URI.create(url))
                 .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
                 .POST(HttpRequest.BodyPublishers.ofFile(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/request/AddValid.json")))
@@ -72,7 +79,7 @@ public class CustomerControllerApiSalesRoleTests {
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
-        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
+        JSONAssert.assertEquals(expectedJsonObject.toString(), resultResponseBody, false);
     }
 
     @Test
@@ -146,6 +153,53 @@ public class CustomerControllerApiSalesRoleTests {
 
     @Test
     @Order(5)
+    void get_customerUpdateDtoWithValidId_statusCode200WithProperJson() throws Exception {
+        // Arrange
+        String url = baseUrl + "service/customer/get/updateDto/1";
+
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/customer/response/GetUpdateDto.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+        String resultResponseBody = response.body();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
+    }
+
+    @Test
+    @Order(6)
+    void get_customerUpdateDtoWithInvalidId_statusCode404() throws Exception {
+        // Arrange
+        String url = baseUrl + "service/customer/get/updateDto/11";
+
+        int expectedResponseStatus = 404;
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+    }
+
+    @Test
+    @Order(7)
     void getAll_listOfCustomers_statusCode200WithProperJson() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/get/all";
@@ -170,7 +224,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(6)
+    @Order(8)
     void getAll_listOfCustomersFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/get/allInvalid";
@@ -192,7 +246,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(7)
+    @Order(9)
     void update_customerWithValidId_statusCode204() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/update";
@@ -214,7 +268,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(8)
+    @Order(10)
     void update_customerWithInvalidId_statusCode404() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/update";
@@ -236,7 +290,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(9)
+    @Order(11)
     void update_customerWithInvalidJson_statusCode400() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/update";
@@ -258,7 +312,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(10)
+    @Order(12)
     void delete_customerWithValidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/delete/2";
@@ -280,7 +334,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(11)
+    @Order(13)
     void delete_customerWithInvalidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/delete/22";
@@ -302,7 +356,7 @@ public class CustomerControllerApiSalesRoleTests {
     }
 
     @Test
-    @Order(12)
+    @Order(14)
     void delete_customerWithIdHasForeignKeyRestriction_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/customer/delete/1";

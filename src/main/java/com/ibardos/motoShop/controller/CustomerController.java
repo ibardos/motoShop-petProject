@@ -1,6 +1,7 @@
 package com.ibardos.motoShop.controller;
 
 import com.ibardos.motoShop.dto.CustomerDto;
+import com.ibardos.motoShop.dto.CustomerUpdateDto;
 import com.ibardos.motoShop.entity.Customer;
 import com.ibardos.motoShop.service.CustomerService;
 
@@ -57,6 +58,22 @@ public class CustomerController {
     public CustomerDto get(@PathVariable int id) {
         try {
             return customerService.get(id);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Retrieves a specific customer by its ID, and returns a mapped CustomerUpdateDto.
+     *
+     * @param id The ID of the customer to retrieve
+     * @return CustomerUpdateDto containing the requested customer's information
+     * @throws ResponseStatusException with NOT_FOUND status if the customer doesn't exist
+     */
+    @GetMapping("get/updateDto/{id}")
+    public CustomerUpdateDto getUpdateDto(@PathVariable int id) {
+        try {
+            return customerService.getUpdateDto(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
