@@ -1,6 +1,7 @@
 package com.ibardos.motoShop.service;
 
 import com.ibardos.motoShop.dto.CustomerDto;
+import com.ibardos.motoShop.dto.CustomerUpdateDto;
 import com.ibardos.motoShop.entity.Customer;
 import com.ibardos.motoShop.repository.CustomerRepository;
 
@@ -47,6 +48,20 @@ public class CustomerService {
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
 
         return new CustomerDto(customerFromDb);
+    }
+
+    /**
+     * Retrieves a customer record from the database by its ID.
+     *
+     * @param id The unique identifier of the customer to retrieve
+     * @return CustomerDto containing the customer's data
+     * @throws EntityNotFoundException if no customer exists with the specified ID
+     */
+    public CustomerUpdateDto getUpdateDto(int id) {
+        Customer customerFromDb = customerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
+
+        return new CustomerUpdateDto(customerFromDb);
     }
 
     /**
