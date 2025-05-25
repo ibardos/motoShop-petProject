@@ -1246,6 +1246,26 @@
 							"response": []
 						},
 						{
+							"name": "getUpdateDto",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/get/updateDto/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"updateDto",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "getAll",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1278,7 +1298,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": 1,\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"2025-01-20\"\n}",
+									"raw": "{\n    \"id\": 1,\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1369,6 +1389,26 @@
 							"response": []
 						},
 						{
+							"name": "getUpdateDto_invalid_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/customer/get/updateDto/11",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"customer",
+										"get",
+										"updateDto",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "getAll_invalid_url",
 							"request": {
 								"method": "GET",
@@ -1394,7 +1434,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"11\",\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"2025-01-20\"\n}",
+									"raw": "{\n    \"id\": \"11\",\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1421,7 +1461,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"id\": \"1\",\n    \"firstName\": \"James Dominic\",\n    \"lastName\": \"Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\",\n    \"dateOfRegistration\": \"bad_date_format\"\n}",
+									"raw": "{\n    \"id\": \"1\",\n    \"fullName\": \"James Dominic Fenix\",\n    \"email\": \"jd.fenix@cog.gov\",\n    \"phoneNumber\": \"+1-555-0127\",\n    \"address\": \"25 Coalition street\",\n    \"city\": \"New Ephyra\",\n    \"postalCode\": \"NE7 9COG\",\n    \"country\": \"Sera\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"

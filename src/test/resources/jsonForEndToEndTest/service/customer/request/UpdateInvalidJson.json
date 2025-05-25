@@ -1,12 +1,10 @@
 {
   "id": "1",
-  "firstName": "James Dominic",
-  "lastName": "Fenix",
+  "fullName": "James Dominic Fenix",
   "email": "jd.fenix@cog.gov",
   "phoneNumber": "+1-555-0127",
   "address": "25 Coalition street",
   "city": "New Ephyra",
   "postalCode": "NE7 9COG",
-  "country": "Sera",
-  "dateOfRegistration": "bad_date_format"
+  "country": "Sera"
 }
