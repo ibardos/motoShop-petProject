@@ -26,7 +26,7 @@ const DeleteItemInformation = (props) => {
     useEffect(() => {
         const currentRecord = props.customers.find(m => m.id.toString() === props.recordId);
         setCurrentRecord(currentRecord !== undefined ? currentRecord : {});
-    }, [props.manufacturers, props.recordId])
+    }, [props.customers, props.recordId])
 
 
     async function handleSubmit(event) {

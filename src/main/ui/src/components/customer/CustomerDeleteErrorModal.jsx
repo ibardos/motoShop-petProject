@@ -4,7 +4,7 @@ import CrudModal from "../shared/CrudModal";
 import {useEffect, useState} from "react";
 
 
-const ManufacturerDeleteErrorModal = (props) => {
+const CustomerDeleteErrorModal = (props) => {
     return <CrudModal show={props.show} onHide={props.onHide} title="Error"
                       body={<DeleteErrorInformation customers={props.customers} recordId={props.recordId}
                                                     setDeleteErrorModalShow={props.setDeleteErrorModalShow}/>}/>
@@ -38,4 +38,4 @@ const DeleteErrorInformation = (props) => {
     )
 }
 
-export default ManufacturerDeleteErrorModal;
+export default CustomerDeleteErrorModal;
