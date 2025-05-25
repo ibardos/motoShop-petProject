@@ -36,15 +36,32 @@ const TableContent = (props) => {
         <tbody>
         {props.filteredData.map(record => (
             <tr key={record.id}>
-                {Object.values(record).map(value => {
-                    if (typeof value === "object") {
-                        columnIndexer++;
-                        return <td key={columnIndexer + value.name || columnIndexer + value.modelName}
-                                   style={{paddingTop: "15px"}}>{value.name || value.manufacturer.name + " - " + value.modelName}</td>
+                {Object.entries(record).map(([key, value]) => {
+                    columnIndexer++;
+
+                    const hiddenFields = ['firstName', 'lastName'];
+                    if (hiddenFields.includes(key)) return null;
+
+                    if (Array.isArray(value) && key === "orderIds") {
+                        return (
+                            <td key={columnIndexer + "orders"}>
+                                {value.length > 0 ? (
+                                    <Button variant={"info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)}>Orders</Button>
+                                ) : (
+                                    <Button variant={"outline-info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)} disabled>Orders</Button>
+                                )}
+                            </td>
+                        );
+                    } else if (typeof value === "object") {
+                        return (
+                            <td key={columnIndexer + value.name || columnIndexer + value.modelName}
+                                style={{paddingTop: "15px"}}>{value.name || value.manufacturer.name + " - " + value.modelName}</td>
+                        );
                     } else {
-                        columnIndexer++;
-                        return <td key={columnIndexer.toString() + value.toString()}
-                                   style={{paddingTop: "15px"}}>{value}</td>
+                        return (
+                            <td key={columnIndexer.toString() + value.toString()}
+                                style={{paddingTop: "15px"}}>{value}</td>
+                        );
                     }
                 })}
                 {(userPermissions.includes('Update') || userPermissions.includes('Delete')) && (
