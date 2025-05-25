@@ -1,22 +1,29 @@
-import {useContext} from "react";
+import { useContext } from "react";
+import { camelCaseToSentenceCase } from "../../../util/camelCaseToSentenceCase";
+import { AuthenticationContext } from "../../../security/authenticationProvider";
 
-import {camelCaseToSentenceCase} from "../../../util/camelCaseToSentenceCase";
-import {AuthenticationContext} from "../../../security/authenticationProvider";
+const HIDDEN_FIELDS = ['firstName', 'lastName'];
 
+const TableTitles = ({ originalData }) => {
+    const { userPermissions } = useContext(AuthenticationContext);
 
-const TableTitles = (props) => {
-    const {userPermissions} = useContext(AuthenticationContext);
+    const renderTableHeaders = () => {
+        return Object.keys(originalData[0])
+            .filter((title) => !HIDDEN_FIELDS.includes(title))
+            .map((title) => {
+                const displayName = title === 'orderIds' ? 'Orders' : camelCaseToSentenceCase(title);
+                return <th key={title}>{displayName}</th>;
+            });
+    };
+
+    const showOptionsColumn = userPermissions.includes('Update') || userPermissions.includes('Delete');
 
     return (
         <>
-            {Object.keys(props.originalData[0]).map(tableTitle => (
-                <th key={tableTitle}>{camelCaseToSentenceCase(tableTitle)}</th>
-            ))}
-            {(userPermissions.includes('Update') || userPermissions.includes('Delete')) && (
-                <th key="options">Options</th>
-            )}
+            {renderTableHeaders()}
+            {showOptionsColumn && <th key="options">Options</th>}
         </>
-    )
-}
+    );
+};
 
 export default TableTitles;
