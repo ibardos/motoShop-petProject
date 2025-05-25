@@ -87,9 +87,11 @@ public class CustomerService {
      * @throws EntityNotFoundException if no customer exists with the ID specified in the customer parameter
      */
     public void update(Customer customer) {
-        if (customerRepository.findById(customer.getId()).isEmpty()) {
-            throw new EntityNotFoundException("Customer with id: " + customer.getId() + " not found.");
-        }
+        Customer customerFromDb = customerRepository.findById(customer.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + customer.getId() + " not found."));
+
+        // Make sure the date of registration cannot be modified during an update
+        customer.setDateOfRegistration( customerFromDb.getDateOfRegistration());
 
         customerRepository.save(customer);
     }
