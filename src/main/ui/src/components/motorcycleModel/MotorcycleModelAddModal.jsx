@@ -128,50 +128,50 @@ const AddForm = (props) => {
                   touched,
                   errors,
               }) => (
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formSelectManufacturerName">
-                    <Form.Label>Manufacturer<span style={{color: "red"}}>*</span></Form.Label>
-                    <br/>
-                    <Field as="select"
-                           name="manufacturerName"
-                    >
-                        <option value={initialManufacturerName}>{initialManufacturerName}</option>
-                        {manufacturers.map(m => (
-                            <option key={m.name} value={m.name}>{m.name}</option>
-                        ))}
-                    </Field>
-                </Form.Group>
-                <p className="formErrorText">{incompleteManufacturerNameAlert ? "Choose a Manufacturer!" : null}</p>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3" controlId="formSelectManufacturerName">
+                        <Form.Label>Manufacturer<span style={{color: "red"}}>*</span></Form.Label>
+                        <br/>
+                        <Field as="select" name="manufacturerName">
+                            <option value={values.manufacturerName}>{values.manufacturerName}</option>
+                            {manufacturers.map(m => {
+                                if (m.name !== values.manufacturerName) {
+                                    return <option key={m.name} value={m.name}>{m.name}</option>
+                                }
+                            })}
+                        </Field>
+                    </Form.Group>
+                    <p className="formErrorText">{incompleteManufacturerNameAlert ? "Choose a Manufacturer!" : null}</p>
 
-                <Form.Group className="mb-3" controlId="formSelectModelType">
-                    <Form.Label>Model type<span style={{color: "red"}}>*</span></Form.Label>
-                    <br/>
-                    <Field as="select"
-                           name="modelType"
-                    >
-                        <option value={initialModelType}>{initialModelType}</option>
-                        {motorcycleModelTypes.map(type => (
-                            <option key={type} value={type}>{type}</option>
-                        ))}
-                    </Field>
-                </Form.Group>
-                <p className="formErrorText">{incompleteModelTypeAlert ? "Choose a Model type!" : null}</p>
+                    <Form.Group className="mb-3" controlId="formSelectModelType">
+                        <Form.Label>Model type<span style={{color: "red"}}>*</span></Form.Label>
+                        <br/>
+                        <Field as="select" name="modelType">
+                            <option value={values.modelType}>{values.modelType}</option>
+                            {motorcycleModelTypes.map(type => {
+                                if (type !== values.modelType) {
+                                    return <option key={type} value={type}>{type}</option>
+                                }
+                            })}
+                        </Field>
+                    </Form.Group>
+                    <p className="formErrorText">{incompleteModelTypeAlert ? "Choose a Model type!" : null}</p>
 
 
-                <Form.Group className="mb-3" controlId="formTextareaModelName">
-                    <Form.Label>Model name<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="modelName"
-                                  placeholder="DR-Z 400 SM"
-                                  value={values.modelName}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.modelName && !errors.modelName}
-                                  isInvalid={touched.modelName && !!errors.modelName}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaModelName">
+                        <Form.Label>Model name<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="modelName"
+                                      placeholder="DR-Z 400 SM"
+                                      value={values.modelName}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.modelName && !errors.modelName}
+                                      isInvalid={touched.modelName && !!errors.modelName}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaModelYear">
-                    <Form.Label>Model year<span style={{color: "red"}}>*</span></Form.Label>
+                    <Form.Group className="mb-3" controlId="formTextareaModelYear">
+                        <Form.Label>Model year<span style={{color: "red"}}>*</span></Form.Label>
                         <Form.Control type="text"
                                       name="modelYear"
                                       placeholder="2005"
@@ -180,98 +180,99 @@ const AddForm = (props) => {
                                       onBlur={handleBlur}
                                       isValid={touched.modelYear && !errors.modelYear}
                                       isInvalid={touched.modelYear && !!errors.modelYear}/>
-                </Form.Group>
-                <div className="formErrorText">{errors.modelYear === "maxNumber" ? "No greater than next year!" : null}</div>
+                    </Form.Group>
+                    <div
+                        className="formErrorText">{errors.modelYear === "maxNumber" ? "No greater than next year!" : null}</div>
 
-                <Form.Group className="mb-3" controlId="formTextareaWeight">
-                    <Form.Label>Weight<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="weight"
-                                  placeholder="126"
-                                  value={values.weight}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.weight && !errors.weight}
-                                  isInvalid={touched.weight && !!errors.weight}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaWeight">
+                        <Form.Label>Weight<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="weight"
+                                      placeholder="126"
+                                      value={values.weight}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.weight && !errors.weight}
+                                      isInvalid={touched.weight && !!errors.weight}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaDisplacement">
-                    <Form.Label>Displacement<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="displacement"
-                                  placeholder="439"
-                                  value={values.displacement}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.displacement && !errors.displacement}
-                                  isInvalid={touched.displacement && !!errors.displacement}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaDisplacement">
+                        <Form.Label>Displacement<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="displacement"
+                                      placeholder="439"
+                                      value={values.displacement}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.displacement && !errors.displacement}
+                                      isInvalid={touched.displacement && !!errors.displacement}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaHorsePower">
-                    <Form.Label>Horsepower<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="horsePower"
-                                  placeholder="62"
-                                  value={values.horsePower}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.horsePower && !errors.horsePower}
-                                  isInvalid={touched.horsePower && !!errors.horsePower}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaHorsePower">
+                        <Form.Label>Horsepower<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="horsePower"
+                                      placeholder="62"
+                                      value={values.horsePower}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.horsePower && !errors.horsePower}
+                                      isInvalid={touched.horsePower && !!errors.horsePower}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaTopSpeed">
-                    <Form.Label>Top speed<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="topSpeed"
-                                  placeholder="148"
-                                  value={values.topSpeed}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.topSpeed && !errors.topSpeed}
-                                  isInvalid={touched.topSpeed && !!errors.topSpeed}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaTopSpeed">
+                        <Form.Label>Top speed<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="topSpeed"
+                                      placeholder="148"
+                                      value={values.topSpeed}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.topSpeed && !errors.topSpeed}
+                                      isInvalid={touched.topSpeed && !!errors.topSpeed}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaGearbox">
-                    <Form.Label>Gearbox<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="gearbox"
-                                  placeholder="5"
-                                  value={values.gearbox}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.gearbox && !errors.gearbox}
-                                  isInvalid={touched.gearbox && !!errors.gearbox}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaGearbox">
+                        <Form.Label>Gearbox<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="gearbox"
+                                      placeholder="5"
+                                      value={values.gearbox}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.gearbox && !errors.gearbox}
+                                      isInvalid={touched.gearbox && !!errors.gearbox}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaFuelCapacity">
-                    <Form.Label>Fuel capacity<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="fuelCapacity"
-                                  placeholder="10.0"
-                                  value={values.fuelCapacity}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.fuelCapacity && !errors.fuelCapacity}
-                                  isInvalid={touched.fuelCapacity && !!errors.fuelCapacity}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaFuelCapacity">
+                        <Form.Label>Fuel capacity<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="fuelCapacity"
+                                      placeholder="10.0"
+                                      value={values.fuelCapacity}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.fuelCapacity && !errors.fuelCapacity}
+                                      isInvalid={touched.fuelCapacity && !!errors.fuelCapacity}/>
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formTextareaFuelConsumption">
-                    <Form.Label>Fuel consumption l/100km<span style={{color: "red"}}>*</span></Form.Label>
-                    <Form.Control type="text"
-                                  name="fuelConsumption"
-                                  placeholder="4.2"
-                                  value={values.fuelConsumption}
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  isValid={touched.fuelConsumption && !errors.fuelConsumption}
-                                  isInvalid={touched.fuelConsumption && !!errors.fuelConsumption}/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formTextareaFuelConsumption">
+                        <Form.Label>Fuel consumption l/100km<span style={{color: "red"}}>*</span></Form.Label>
+                        <Form.Control type="text"
+                                      name="fuelConsumption"
+                                      placeholder="4.2"
+                                      value={values.fuelConsumption}
+                                      onChange={handleChange}
+                                      onBlur={handleBlur}
+                                      isValid={touched.fuelConsumption && !errors.fuelConsumption}
+                                      isInvalid={touched.fuelConsumption && !!errors.fuelConsumption}/>
+                    </Form.Group>
 
 
-                <div style={{display: "flex", justifyContent: "center"}}>
-                    <Button variant="secondary" style={{paddingInline: "30px"}} type="submit">Add</Button>
-                </div>
-            </Form>
+                    <div style={{display: "flex", justifyContent: "center"}}>
+                        <Button variant="secondary" style={{paddingInline: "30px"}} type="submit">Add</Button>
+                    </div>
+                </Form>
             )}
         </Formik>
     )

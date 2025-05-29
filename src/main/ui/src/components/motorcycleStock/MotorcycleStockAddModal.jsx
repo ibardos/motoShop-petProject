@@ -107,17 +107,13 @@ const AddForm = (props) => {
                 <Form.Group className="mb-3" controlId="formSelectMotorcycleModel">
                     <Form.Label>Motorcycle model<span style={{color: "red"}}>*</span></Form.Label>
                     <br/>
-                    <Field as="select"
-                           name="motorcycleModel"
-                    >
+                    <Field as="select" name="motorcycleModel">
                         <option value={values.motorcycleModel}>{values.motorcycleModel}</option>
                         {motorcycleModels.map(m => {
                             if (m.manufacturer.name + " - " + m.modelName !== values.motorcycleModel) {
                                 return <option key={m.manufacturer.name + " - " + m.modelName}
                                                value={m.manufacturer.name + " - " + m.modelName}>{m.manufacturer.name + " - " + m.modelName}</option>
                             }
-
-                            return "Click to select Motorcycle model";
                         })}
                     </Field>
                 </Form.Group>
