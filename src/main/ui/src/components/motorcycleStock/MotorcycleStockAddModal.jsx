@@ -114,6 +114,7 @@ const AddForm = (props) => {
                                 return <option key={m.manufacturer.name + " - " + m.modelName}
                                                value={m.manufacturer.name + " - " + m.modelName}>{m.manufacturer.name + " - " + m.modelName}</option>
                             }
+                            return "Click to select Motorcycle model"; // Needed for eslint checks in CI pipeline
                         })}
                     </Field>
                 </Form.Group>

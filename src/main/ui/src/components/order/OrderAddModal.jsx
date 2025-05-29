@@ -113,6 +113,7 @@ const AddForm = (props) => {
                                     return <option key={c.fullName + " - id: " + c.id}
                                                    value={c.fullName + " - id: " + c.id}>{c.fullName + " - id: " + c.id}</option>
                                 }
+                                return "Click to select Customer"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>
@@ -127,6 +128,7 @@ const AddForm = (props) => {
                                 if (status !== values.orderStatus) {
                                     return <option key={status} value={status}>{status}</option>
                                 }
+                                return "PENDING"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>

@@ -108,6 +108,7 @@ const UpdateForm = (props) => {
                                 if (status !== values.orderStatus) {
                                     return <option key={status} value={status}>{status}</option>
                                 }
+                                return "PENDING"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>

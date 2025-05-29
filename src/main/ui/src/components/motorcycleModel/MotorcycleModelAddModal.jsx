@@ -138,6 +138,7 @@ const AddForm = (props) => {
                                 if (m.name !== values.manufacturerName) {
                                     return <option key={m.name} value={m.name}>{m.name}</option>
                                 }
+                                return "Click to select Manufacturer"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>
@@ -152,6 +153,7 @@ const AddForm = (props) => {
                                 if (type !== values.modelType) {
                                     return <option key={type} value={type}>{type}</option>
                                 }
+                                return "Click to select Model type"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>

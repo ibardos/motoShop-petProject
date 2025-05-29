@@ -1,5 +1,4 @@
-import {useContext, useEffect, useState} from "react";
-import {AuthenticationContext} from "../../security/authenticationProvider";
+import {useEffect, useState} from "react";
 import {removeJwtToken} from "../../security/authService";
 import StripedTable from "../shared/table/StripedTable";
 import Modal from "react-bootstrap/Modal";
