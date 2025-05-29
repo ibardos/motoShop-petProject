@@ -74,15 +74,16 @@ public class OrderController {
     }
 
     /**
-     * Retrieves all Orders from the database.
+     * Retrieves all Orders related to a specific Customer.
      *
-     * @return List of OrderResponseDto objects containing all orders
-     * @throws ResponseStatusException with HttpStatus.NOT_FOUND if no orders exist
+     * @param customerId the Customer's unique identifier whom Orders should be retrieved
+     * @return List of OrderResponseDto objects related to a specific Customer
+     * @throws ResponseStatusException with HttpStatus.NOT_FOUND if Customer doesn't exist
      */
-    @GetMapping("get/all")
-    public List<OrderResponseDto> getAll() {
+    @GetMapping("get/byCustomerId/{customerId}")
+    public List<OrderResponseDto> getByCustomerId(@PathVariable int customerId) {
         try {
-            return orderService.getAll();
+            return orderService.getByCustomerId(customerId);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }

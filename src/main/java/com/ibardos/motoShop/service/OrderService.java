@@ -80,6 +80,24 @@ public class OrderService {
     }
 
     /**
+     * Retrieves all Orders from the database, ordered by date descending, related to a specific Customer.
+     *
+     * @param customerId Order identifier passed as path variable
+     * @return OrderResponseDto containing the order details
+     */
+    public List<OrderResponseDto> getByCustomerId(int customerId) {
+        // Check if Customer exists
+        customerRepository.findById(customerId)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + customerId + " not found."));
+
+        List<Order> orders = orderRepository.findAllByCustomerIdOrderByOrderDateDesc(customerId);
+
+        return orders.stream()
+                .map(OrderResponseDto::new)
+                .toList();
+    }
+
+    /**
      * Retrieves all Orders from the database ordered by order date descending.
      * Maps Order entities to DTOs for client response.
      *
