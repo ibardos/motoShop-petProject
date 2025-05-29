@@ -21,6 +21,8 @@ const StripedTable = (props) => {
     // If no errors, show "Loading..." while data is under fetching
     } else if (!props.isLoaded) {
         return <div style={{padding: "30px"}}>Loading...</div>;
+    } else if (props.filteredData.length === 0) {
+        return <div style={{padding: "30px"}}>No data.</div>;
     }
 
 
@@ -36,6 +38,8 @@ const StripedTable = (props) => {
                               setRecordId={props.setRecordId}
                               setUpdateModalShow={props.setUpdateModalShow}
                               setDeleteModalShow={props.setDeleteModalShow}
+                              setOrdersModalShow={props.setOrdersModalShow}
+                              setOrderAddModalShow={props.setOrderAddModalShow}
                               error={props.error}
                               isLoaded={props.isLoaded}
                               isSellButtonVisible={props.isSellButtonVisible}/>

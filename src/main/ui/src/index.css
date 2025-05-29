@@ -39,6 +39,13 @@ a:hover {
   color: cornflowerblue;
 }
 
+.left-aligned {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white
+}
+
 
 /* Modal specific styles */
 .modal-content {
@@ -69,4 +76,9 @@ a:hover {
   margin-left: 12px;
   margin-bottom: 12px;
   color: darkred;
+}
+
+/* Styles to set special width to modals */
+.modal-85 {
+  min-width: 85vw;
 }

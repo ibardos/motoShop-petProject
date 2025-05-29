@@ -1025,7 +1025,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}service/motorcycle/stock/delete/9",
+									"raw": "{{base_url}}service/motorcycle/stock/delete/7",
 									"host": [
 										"{{base_url}}service"
 									],
@@ -1033,7 +1033,7 @@
 										"motorcycle",
 										"stock",
 										"delete",
-										"9"
+										"7"
 									]
 								}
 							},
@@ -1576,6 +1576,26 @@
 							"response": []
 						},
 						{
+							"name": "getByCustomerId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/byCustomerId/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"byCustomerId",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "getAll",
 							"request": {
 								"method": "GET",
@@ -1589,6 +1609,25 @@
 										"order",
 										"get",
 										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOrderStatuses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/statuses",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"statuses"
 									]
 								}
 							},
@@ -1767,6 +1806,26 @@
 										"order",
 										"get",
 										"111"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByCustomerId_invalid_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/byCustomerId/11",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"byCustomerId",
+										"11"
 									]
 								}
 							},

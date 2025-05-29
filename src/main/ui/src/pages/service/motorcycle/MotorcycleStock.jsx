@@ -16,6 +16,7 @@ import MotorcycleStockDeleteModal from "../../../components/motorcycleStock/Moto
 import {fetchData} from "../../../util/fetchData";
 import {removeJwtToken} from "../../../security/authService";
 import {AuthenticationContext} from "../../../security/authenticationProvider";
+import OrderAddModal from "../../../components/order/OrderAddModal";
 
 
 const MotorcycleStock = () => {
@@ -33,6 +34,7 @@ const MotorcycleStock = () => {
     const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [orderAddModalShow,  setOrderAddModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
     // State for table re-render
@@ -117,6 +119,7 @@ const MotorcycleStock = () => {
                           setRecordId={setRecordId}
                           setUpdateModalShow={setUpdateModalShow}
                           setDeleteModalShow={setDeleteModalShow}
+                          setOrderAddModalShow={setOrderAddModalShow}
                           error={error}
                           isLoaded={isLoaded}
                           isSellButtonVisible={true}/>
@@ -140,6 +143,13 @@ const MotorcycleStock = () => {
                                         show={deleteModalShow}
                                         setDeleteModalShow={setDeleteModalShow}
                                         onHide={() => setDeleteModalShow(false)}/>
+
+            <OrderAddModal motorcycleStocks={motorcycleStocks}
+                           recordId={recordId}
+                           setFormSubmit={setFormSubmit}
+                           show={orderAddModalShow}
+                           setOrderAddModalShow={setOrderAddModalShow}
+                           onHide={() => setOrderAddModalShow(false)}/>
         </>
     )
 }

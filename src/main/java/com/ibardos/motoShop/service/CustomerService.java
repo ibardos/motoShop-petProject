@@ -73,8 +73,6 @@ public class CustomerService {
     public List<CustomerDto> getAll() {
         List<Customer> customersFromDb = customerRepository.findAllByOrderByIdAsc();
 
-        if (customersFromDb.isEmpty()) { throw new EntityNotFoundException("No customers found."); }
-
         return customersFromDb.stream()
                 .map(CustomerDto::new)
                 .toList();

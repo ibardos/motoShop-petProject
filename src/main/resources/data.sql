@@ -42,6 +42,7 @@ VALUES ('Marcus', 'Fenix', 'marcus.fenix@cog.gov', '+1-555-0123', '25 Coalition 
 
 INSERT INTO customer_order (order_date, order_status, original_price, discount, total_amount, estimated_delivery_date, motorcycle_stock_id, customer_id)
 VALUES ('2025-01-30', '1', '17600', '0.00', '17600.00', '2025-03-03', '8', '1'),
+       ('2025-02-10', '1', '27080', '0.10', '24372.00', '2025-03-10', '9', '1'),
        ('2025-05-15', '0', '20355', '0.10', '18319.50', '2025-07-25', '1', '3')
 ;
 

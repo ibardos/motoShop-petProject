@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class that handles business logic for Order entities.
@@ -42,7 +44,7 @@ public class OrderService {
      * Validates stock availability and decreases stock level for the ordered motorcycle.
      * Maps relationships between Order, MotorcycleStock and Customer entities.
      *
-     * @param orderRequestDto Order details from client 
+     * @param orderRequestDto Order details from client
      * @return OrderResponseDto containing the saved order details
      * @throws InsufficientStockException if stock level is 0
      * @throws EntityNotFoundException if related entities not found
@@ -80,6 +82,24 @@ public class OrderService {
     }
 
     /**
+     * Retrieves all Orders from the database, ordered by date descending, related to a specific Customer.
+     *
+     * @param customerId Order identifier passed as path variable
+     * @return OrderResponseDto containing the order details
+     */
+    public List<OrderResponseDto> getByCustomerId(int customerId) {
+        // Check if Customer exists
+        customerRepository.findById(customerId)
+                .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + customerId + " not found."));
+
+        List<Order> orders = orderRepository.findAllByCustomerIdOrderByOrderDateDesc(customerId);
+
+        return orders.stream()
+                .map(OrderResponseDto::new)
+                .toList();
+    }
+
+    /**
      * Retrieves all Orders from the database ordered by order date descending.
      * Maps Order entities to DTOs for client response.
      *
@@ -88,10 +108,6 @@ public class OrderService {
      */
     public List<OrderResponseDto> getAll() {
         List<Order> orders = orderRepository.findAllByOrderByOrderDateDesc();
-
-        if (orders.isEmpty()) {
-            throw new EntityNotFoundException("No orders found.");
-        }
 
         return orders.stream()
                 .map(OrderResponseDto::new)
@@ -233,5 +249,11 @@ public class OrderService {
     private void increaseAmountOfStock(MotorcycleStock motorcycleStock) {
         motorcycleStock.setInStock(motorcycleStock.getInStock() + 1);
         motorcycleStockRepository.save(motorcycleStock);
+    }
+
+    public List<String> getOrderStatuses() {
+        return Arrays.stream(OrderStatus.values())
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 }

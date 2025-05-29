@@ -122,16 +122,13 @@ const UpdateForm = (props) => {
                     <Form.Group className="mb-3" controlId="formSelectManufacturerName">
                         <Form.Label>Manufacturer</Form.Label>
                         <br/>
-                        <Field as="select"
-                               name="manufacturerName"
-                        >
+                        <Field as="select" name="manufacturerName">
                             <option value={values.manufacturerName}>{values.manufacturerName}</option>
                             {manufacturers.map(m => {
                                 if (m.name !== values.manufacturerName) {
                                     return <option key={m.name} value={m.name}>{m.name}</option>
                                 }
-
-                                return "Click to select Manufacturer";
+                                return "Click to select Manufacturer"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>
@@ -139,16 +136,13 @@ const UpdateForm = (props) => {
                     <Form.Group className="mb-3" controlId="formSelectModelType">
                         <Form.Label>Model type</Form.Label>
                         <br/>
-                        <Field as="select"
-                               name="modelType"
-                        >
+                        <Field as="select" name="modelType">
                             <option value={values.modelType}>{values.modelType}</option>
                             {motorcycleModelTypes.map(type => {
                                 if (type !== values.modelType) {
                                     return <option key={type} value={type}>{type}</option>
                                 }
-
-                                return "Click to select Model type";
+                                return "Click to select Model type"; // Needed for eslint checks in CI pipeline
                             })}
                         </Field>
                     </Form.Group>

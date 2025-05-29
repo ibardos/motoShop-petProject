@@ -16,7 +16,7 @@ const Account = () => {
         <>
             <h2 className="page-title">My account</h2>
             {/*This part is only for temporarily testing the AuthenticationContext, the final page will be restructured.*/}
-            <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}}>
+            <div className="left-aligned">
                 <Card className={"bg-dark"}>
                     <Card.Body style={{textAlign: "left"}}>
                         <h5 style={{textDecoration: "underline"}}>Account data:</h5>

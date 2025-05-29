@@ -259,7 +259,7 @@ public class MotorcycleStockControllerApiAdminRoleTests {
     @Order(10)
     void delete_motorcycleStockWithValidId_statusCode204() throws Exception {
         // Arrange
-        String url = baseUrl + "service/motorcycle/stock/delete/9";
+        String url = baseUrl + "service/motorcycle/stock/delete/7";
 
         int expectedResponseStatus = 204;
 

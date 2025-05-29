@@ -205,6 +205,53 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
+    @Order(7)
+    void get_listOfOrdersByCustomerId_statusCode200WithProperJson() throws Exception {
+        // Arrange
+        String url = baseUrl + "service/order/get/byCustomerId/1";
+
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/order/response/GetByCustomerId.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+        String resultResponseBody = response.body();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
+    }
+
+    @Test
+    @Order(7)
+    void get_listOfOrdersByCustomerId_statusCode404() throws Exception {
+        // Arrange
+        String url = baseUrl + "service/order/get/byCustomerId/11";
+
+        int expectedResponseStatus = 404;
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+    }
+
+    @Test
     @Order(8)
     void getAll_listOfOrders_statusCode200WithProperJson() throws Exception {
         // Arrange
@@ -425,5 +472,32 @@ public class OrderControllerApiUserRoleTests {
 
         // Assert
         assertEquals(expectedResponseStatus, resultResponseStatus);
+    }
+
+
+    // Tests for Helper API endpoints
+    @Test
+    @Order(8)
+    void get_listOfOrderStatuses_statusCode200WithProperJson() throws Exception {
+        // Arrange
+        String url = baseUrl + "service/order/get/statuses";
+
+        int expectedResponseStatus = 200;
+        String expectedResponseBody = new String(Files.readAllBytes(Path.of("src/test/resources/jsonForEndToEndTest/service/order/response/GetOrderStatuses.json")));
+
+        HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+                .headers("Content-Type", "application/json", "Authorization", "Bearer " + jwtToken)
+                .GET()
+                .build();
+
+        // Act
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        int resultResponseStatus = response.statusCode();
+        String resultResponseBody = response.body();
+
+        // Assert
+        assertEquals(expectedResponseStatus, resultResponseStatus);
+        JSONAssert.assertEquals(expectedResponseBody, resultResponseBody, false);
     }
 }

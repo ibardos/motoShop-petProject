@@ -46,9 +46,15 @@ const TableContent = (props) => {
                         return (
                             <td key={columnIndexer + "orders"}>
                                 {value.length > 0 ? (
-                                    <Button variant={"info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)}>Orders</Button>
+                                    <Button variant={"info"} style={{width: "80px"}} onClick={() => {
+                                        props.setRecordId(record.id);
+                                        props.setOrdersModalShow(true);
+                                    }}>Orders</Button>
                                 ) : (
-                                    <Button variant={"outline-info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)} disabled>Orders</Button>
+                                    <Button variant={"outline-info"} style={{width: "80px"}} disabled onClick={() => {
+                                        props.setRecordId(record.id);
+                                        props.setOrdersModalShow(true);
+                                    }}>Orders</Button>
                                 )}
                             </td>
                         );
@@ -73,7 +79,7 @@ const TableContent = (props) => {
                                     <Button variant={"success"} style={{width: "80px"}} data-id={record.id}
                                             onClick={(event) => {
                                                 props.setRecordId(event.target.dataset.id);
-                                                props.setSellModalShow(true); // TODO Implement Sell modal
+                                                props.setOrderAddModalShow(true);
                                             }
                                             }>Sell</Button>
                                 </Col>

@@ -13,6 +13,7 @@ import CustomerAddModal from "../../components/customer/CustomerAddModal";
 import CustomerUpdateModal from "../../components/customer/CustomerUpdateModal";
 import CustomerDeleteModal from "../../components/customer/CustomerDeleteModal";
 import CustomerDeleteErrorModal from "../../components/customer/CustomerDeleteErrorModal";
+import OrdersModal from "../../components/order/OrdersModal";
 
 
 const Customer = () => {
@@ -31,6 +32,7 @@ const Customer = () => {
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [deleteErrorModalShow, setDeleteErrorModalShow] = useState(false);
+    const [ordersModalShow, setOrdersModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
     // State for table re-render
@@ -71,7 +73,7 @@ const Customer = () => {
                     setIsLoaded(true);
                 }
             );
-    }, [formSubmit, navigate])
+    }, [formSubmit, navigate, ordersModalShow])
 
 
     // Create a search bar for the "Table live search feature"
@@ -111,6 +113,7 @@ const Customer = () => {
                           setRecordId={setRecordId}
                           setUpdateModalShow={setUpdateModalShow}
                           setDeleteModalShow={setDeleteModalShow}
+                          setOrdersModalShow={setOrdersModalShow}
                           error={error}
                           isLoaded={isLoaded}
                           isSellButtonVisible={false}/>
@@ -140,6 +143,12 @@ const Customer = () => {
                                       show={deleteErrorModalShow}
                                       setDeleteErrorModalShow={setDeleteErrorModalShow}
                                       onHide={() => setDeleteErrorModalShow(false)}/>
+
+            <OrdersModal recordId={recordId}
+                         setFormSubmit={setFormSubmit}
+                         show={ordersModalShow}
+                         setOrdersModalShow={setOrdersModalShow}
+                         onHide={() => setOrdersModalShow(false)}/>
         </>
     )
 }
