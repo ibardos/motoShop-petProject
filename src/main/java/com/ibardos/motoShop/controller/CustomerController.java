@@ -83,15 +83,10 @@ public class CustomerController {
      * Retrieves all customers from the database.
      *
      * @return List of CustomerDto objects containing all customers' information
-     * @throws ResponseStatusException with NOT_FOUND status if no customers exist
      */
     @GetMapping("get/all")
     public List<CustomerDto> getAll() {
-        try {
             return customerService.getAll();
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
-        }
     }
 
     /**

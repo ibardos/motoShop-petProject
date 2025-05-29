@@ -42,7 +42,7 @@ public class OrderService {
      * Validates stock availability and decreases stock level for the ordered motorcycle.
      * Maps relationships between Order, MotorcycleStock and Customer entities.
      *
-     * @param orderRequestDto Order details from client 
+     * @param orderRequestDto Order details from client
      * @return OrderResponseDto containing the saved order details
      * @throws InsufficientStockException if stock level is 0
      * @throws EntityNotFoundException if related entities not found
@@ -106,10 +106,6 @@ public class OrderService {
      */
     public List<OrderResponseDto> getAll() {
         List<Order> orders = orderRepository.findAllByOrderByOrderDateDesc();
-
-        if (orders.isEmpty()) {
-            throw new EntityNotFoundException("No orders found.");
-        }
 
         return orders.stream()
                 .map(OrderResponseDto::new)

@@ -21,6 +21,8 @@ const StripedTable = (props) => {
     // If no errors, show "Loading..." while data is under fetching
     } else if (!props.isLoaded) {
         return <div style={{padding: "30px"}}>Loading...</div>;
+    } else if (props.filteredData.length === 0) {
+        return <div style={{padding: "30px"}}>No data.</div>;
     }
 
 

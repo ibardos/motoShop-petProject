@@ -87,6 +87,17 @@ public class OrderController {
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
+
+    }
+
+    /**
+     * Retrieves all Orders from the database.
+     *
+     * @return List of OrderResponseDto objects containing all orders
+     */
+    @GetMapping("get/all")
+    public List<OrderResponseDto> getAll() {
+        return orderService.getAll();
     }
 
     /**
