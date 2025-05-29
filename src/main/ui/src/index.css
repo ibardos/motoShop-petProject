@@ -39,6 +39,13 @@ a:hover {
   color: cornflowerblue;
 }
 
+.left-aligned {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white
+}
+
 
 /* Modal specific styles */
 .modal-content {
