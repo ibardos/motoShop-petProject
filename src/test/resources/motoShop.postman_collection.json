@@ -1025,7 +1025,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}service/motorcycle/stock/delete/9",
+									"raw": "{{base_url}}service/motorcycle/stock/delete/7",
 									"host": [
 										"{{base_url}}service"
 									],
@@ -1033,7 +1033,7 @@
 										"motorcycle",
 										"stock",
 										"delete",
-										"9"
+										"7"
 									]
 								}
 							},

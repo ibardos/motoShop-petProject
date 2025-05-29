@@ -9,7 +9,8 @@
     "fullAddress": "25 Coalition Street, Ephyra EP1 2COG, Sera",
     "dateOfRegistration": "2023-01-15",
     "orderIds": [
-      1
+      1,
+      2
     ]
   },
   {
@@ -33,7 +34,7 @@
     "fullAddress": "42 Thrashball Road, Hanover HN4 1COG, Sera",
     "dateOfRegistration": "2023-06-30",
     "orderIds": [
-      2
+      3
     ]
   }
 ]

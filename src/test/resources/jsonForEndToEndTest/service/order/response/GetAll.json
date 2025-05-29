@@ -1,6 +1,6 @@
 [
   {
-    "id": 2,
+    "id": 3,
     "orderDate": "2025-05-15",
     "orderStatus": "PENDING",
     "originalPrice": 20355.00,
@@ -11,6 +11,19 @@
     "motorcycleModelName": "BMW - R 1250 GS Adventure",
     "customerId": 3,
     "customerFullName": "Augustus Cole"
+  },
+  {
+    "id": 2,
+    "orderDate": "2025-02-10",
+    "orderStatus": "COMPLETED",
+    "originalPrice": 27080.00,
+    "discount": 0.10,
+    "totalAmount": 24372.00,
+    "estimatedDeliveryDate": "2025-03-10",
+    "motorcycleStockId": 9,
+    "motorcycleModelName": "Yamaha - YZF-R1 M",
+    "customerId": 1,
+    "customerFullName": "Marcus Fenix"
   },
   {
     "id": 1,
