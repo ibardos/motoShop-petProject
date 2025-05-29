@@ -90,6 +90,12 @@ const AddForm = (props) => {
             }}
             validationSchema={schema}
             onSubmit={async values => {
+                if (values.customer === initialCustomer) {
+                    setIncompleteCustomerAlert(true)
+                } else {
+                    setIncompleteCustomerAlert(false)
+                }
+
                 await handleSubmit(values)
                 props.setOrderAddModalShow(false)
             }}
