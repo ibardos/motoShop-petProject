@@ -5,13 +5,12 @@ const CrudModal = (props) => {
     return (
         <Modal
             {...props}
-            dialogClassName="modal-75w"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <div style={{paddingInline: "40px"}}>
                 <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
+                    <Modal.Title id="contained-modal-title-vcenter" className="w-100 text-center">
                         {props.title}
                     </Modal.Title>
                 </Modal.Header>
