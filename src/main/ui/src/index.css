@@ -70,3 +70,8 @@ a:hover {
   margin-bottom: 12px;
   color: darkred;
 }
+
+/* Styles to set special width to modals */
+.modal-85 {
+  min-width: 85vw;
+}
