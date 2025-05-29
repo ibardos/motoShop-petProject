@@ -38,6 +38,8 @@ const StripedTable = (props) => {
                               setRecordId={props.setRecordId}
                               setUpdateModalShow={props.setUpdateModalShow}
                               setDeleteModalShow={props.setDeleteModalShow}
+                              setOrdersModalShow={props.setOrdersModalShow}
+                              setOrderAddModalShow={props.setOrderAddModalShow}
                               error={props.error}
                               isLoaded={props.isLoaded}
                               isSellButtonVisible={props.isSellButtonVisible}/>

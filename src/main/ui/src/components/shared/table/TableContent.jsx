@@ -46,9 +46,15 @@ const TableContent = (props) => {
                         return (
                             <td key={columnIndexer + "orders"}>
                                 {value.length > 0 ? (
-                                    <Button variant={"info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)}>Orders</Button>
+                                    <Button variant={"info"} style={{width: "80px"}} onClick={() => {
+                                        props.setRecordId(record.id);
+                                        props.setOrdersModalShow(true);
+                                    }}>Orders</Button>
                                 ) : (
-                                    <Button variant={"outline-info"} style={{width: "80px"}} onClick={() => props.handleShowOrders(record.id)} disabled>Orders</Button>
+                                    <Button variant={"outline-info"} style={{width: "80px"}} disabled onClick={() => {
+                                        props.setRecordId(record.id);
+                                        props.setOrdersModalShow(true);
+                                    }}>Orders</Button>
                                 )}
                             </td>
                         );
