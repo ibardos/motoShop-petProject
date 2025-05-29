@@ -1576,6 +1576,26 @@
 							"response": []
 						},
 						{
+							"name": "getByCustomerId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/byCustomerId/1",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"byCustomerId",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "getAll",
 							"request": {
 								"method": "GET",
@@ -1767,6 +1787,26 @@
 										"order",
 										"get",
 										"111"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByCustomerId_invalid_id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/byCustomerId/11",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"byCustomerId",
+										"11"
 									]
 								}
 							},

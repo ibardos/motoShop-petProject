@@ -1,0 +1,28 @@
+[
+  {
+    "id": 2,
+    "orderDate": "2025-02-10",
+    "orderStatus": "COMPLETED",
+    "originalPrice": 27080.00,
+    "discount": 0.10,
+    "totalAmount": 24372.00,
+    "estimatedDeliveryDate": "2025-03-10",
+    "motorcycleStockId": 9,
+    "motorcycleModelName": "Yamaha - YZF-R1 M",
+    "customerId": 1,
+    "customerFullName": "Marcus Fenix"
+  },
+  {
+    "id": 1,
+    "orderDate": "2025-01-30",
+    "orderStatus": "COMPLETED",
+    "originalPrice": 17600.00,
+    "discount": 0.00,
+    "totalAmount": 17600.00,
+    "estimatedDeliveryDate": "2025-03-03",
+    "motorcycleStockId": 8,
+    "motorcycleModelName": "Suzuki - V-Strom 1050DE Adventure",
+    "customerId": 1,
+    "customerFullName": "Marcus Fenix"
+  }
+]
