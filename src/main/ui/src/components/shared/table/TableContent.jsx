@@ -79,7 +79,7 @@ const TableContent = (props) => {
                                     <Button variant={"success"} style={{width: "80px"}} data-id={record.id}
                                             onClick={(event) => {
                                                 props.setRecordId(event.target.dataset.id);
-                                                props.setSellModalShow(true); // TODO Implement Sell modal
+                                                props.setOrderAddModalShow(true);
                                             }
                                             }>Sell</Button>
                                 </Col>
