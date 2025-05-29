@@ -10,7 +10,7 @@ import {AuthenticationContext} from "../../../security/authenticationProvider";
 const TableContent = (props) => {
     const {userPermissions} = useContext(AuthenticationContext);
 
-    
+
     // Handle Options column minWidth based on how many buttons need to be rendered
     const showUpdateButton = userPermissions.includes('Update');
     const showDeleteButton = userPermissions.includes('Delete');
@@ -76,7 +76,10 @@ const TableContent = (props) => {
                             { /* Conditionally render Sell button for MotorcycleStock page only */}
                             {props.isSellButtonVisible && (
                                 <Col style={{paddingInline: "10px", minWidth: "100px"}}>
-                                    <Button variant={"success"} style={{width: "80px"}} data-id={record.id}
+                                    <Button variant={record.inStock === 0 ? "outline-success" : "success"}
+                                            disabled={record.inStock === 0}
+                                            style={{width: "80px"}}
+                                            data-id={record.id}
                                             onClick={(event) => {
                                                 props.setRecordId(event.target.dataset.id);
                                                 props.setOrderAddModalShow(true);
