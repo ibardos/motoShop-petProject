@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service class that handles business logic for Order entities.
@@ -247,5 +249,11 @@ public class OrderService {
     private void increaseAmountOfStock(MotorcycleStock motorcycleStock) {
         motorcycleStock.setInStock(motorcycleStock.getInStock() + 1);
         motorcycleStockRepository.save(motorcycleStock);
+    }
+
+    public List<String> getOrderStatuses() {
+        return Arrays.stream(OrderStatus.values())
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 }

@@ -1615,6 +1615,25 @@
 							"response": []
 						},
 						{
+							"name": "getOrderStatuses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}service/order/get/statuses",
+									"host": [
+										"{{base_url}}service"
+									],
+									"path": [
+										"order",
+										"get",
+										"statuses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "update",
 							"request": {
 								"method": "PUT",

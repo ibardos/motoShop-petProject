@@ -138,4 +138,11 @@ public class OrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
+
+
+    // Helper API endpoints
+    @GetMapping("get/statuses")
+    public List<String> getOrderStatuses() {
+        return orderService.getOrderStatuses();
+    }
 }
