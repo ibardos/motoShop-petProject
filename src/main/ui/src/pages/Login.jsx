@@ -15,6 +15,7 @@ const Login = () => {
         <>
             <h2 className="page-title">Login to motoShop</h2>
             <LoginForm/>
+            <LoginHelpInfo/>
         </>
     )
 }
@@ -112,6 +113,28 @@ const LoginForm = () => {
             </Card.Body>
         </Card>
     );
+}
+
+const LoginHelpInfo = () => {
+    return (
+        <Card bg={"secondary"} style={{width: '400px', margin: 'auto', marginTop: '40px'}}>
+            <Card.Body>
+                <h4 style={{marginBottom: '1rem', textDecoration: 'underline'}}>Help to log in:</h4>
+                <h6 className="left-aligned">Credentials (username - password):</h6>
+                <ul className="left-aligned">
+                    <li>User role: user - user</li>
+                    <li>Sales role: sales - sales</li>
+                    <li>Admin role: admin - admin</li>
+                </ul>
+                <h6 className="left-aligned">Permissions:</h6>
+                <ul className="left-aligned">
+                    <li>User role: read</li>
+                    <li>Sales role: create, read, update</li>
+                    <li>Admin role: create, read, update, delete</li>
+                </ul>
+            </Card.Body>
+        </Card>
+    )
 }
 
 export default Login;
