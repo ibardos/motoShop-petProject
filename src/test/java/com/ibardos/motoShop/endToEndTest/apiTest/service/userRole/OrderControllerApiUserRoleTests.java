@@ -205,7 +205,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(7)
+    @Order(8)
     void get_listOfOrdersByCustomerId_statusCode200WithProperJson() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/get/byCustomerId/1";
@@ -230,7 +230,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(7)
+    @Order(9)
     void get_listOfOrdersByCustomerId_statusCode404() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/get/byCustomerId/11";
@@ -252,7 +252,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(8)
+    @Order(10)
     void getAll_listOfOrders_statusCode200WithProperJson() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/get/all";
@@ -277,7 +277,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(9)
+    @Order(11)
     void getAll_listOfOrdersFromInvalidUrl_statusCode400() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/get/allInvalid";
@@ -299,7 +299,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(10)
+    @Order(12)
     void update_orderWithValidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -321,7 +321,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(11)
+    @Order(13)
     void update_orderWithInvalidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -343,7 +343,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(12)
+    @Order(14)
     void update_orderWithInvalidJson_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -365,7 +365,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(13)
+    @Order(15)
     void update_orderWithInvalidMotorcycleStock_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -387,7 +387,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(14)
+    @Order(16)
     void update_orderWithInvalidCustomer_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -409,7 +409,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(15)
+    @Order(17)
     void update_orderWithInsufficientStock_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/update";
@@ -431,7 +431,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(16)
+    @Order(18)
     void delete_orderWithValidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/delete/1";
@@ -453,7 +453,7 @@ public class OrderControllerApiUserRoleTests {
     }
 
     @Test
-    @Order(17)
+    @Order(19)
     void delete_orderWithInvalidId_statusCode403() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/delete/100";
@@ -477,7 +477,7 @@ public class OrderControllerApiUserRoleTests {
 
     // Tests for Helper API endpoints
     @Test
-    @Order(8)
+    @Order(20)
     void get_listOfOrderStatuses_statusCode200WithProperJson() throws Exception {
         // Arrange
         String url = baseUrl + "service/order/get/statuses";
