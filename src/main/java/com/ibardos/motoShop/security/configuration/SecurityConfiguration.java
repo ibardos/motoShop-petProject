@@ -39,45 +39,44 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/**").permitAll().anyRequest().authenticated()
-//                        request.requestMatchers("/authentication/login", "/error")
-//                                .permitAll()
-//
-//                                .requestMatchers("/authentication/register").hasRole("Admin")
-//
-//                                .requestMatchers("/service/manufacturer/add").hasAuthority("PERMISSION_Create")
-//                                .requestMatchers("/service/manufacturer/get/**").hasAuthority("PERMISSION_Read")
-//                                .requestMatchers("/service/manufacturer/update").hasAuthority("PERMISSION_Update")
-//                                .requestMatchers("/service/manufacturer/delete/**").hasAuthority("PERMISSION_Delete")
-//
-//                                .requestMatchers("/service/motorcycle/model/add").hasAuthority("PERMISSION_Create")
-//                                .requestMatchers("/service/motorcycle/model/get/**").hasAuthority("PERMISSION_Read")
-//                                .requestMatchers("/service/motorcycle/model/update").hasAuthority("PERMISSION_Update")
-//                                .requestMatchers("/service/motorcycle/model/delete/**").hasAuthority("PERMISSION_Delete")
-//
-//                                .requestMatchers("/service/motorcycle/stock/add").hasAuthority("PERMISSION_Create")
-//                                .requestMatchers("/service/motorcycle/stock/get/**").hasAuthority("PERMISSION_Read")
-//                                .requestMatchers("/service/motorcycle/stock/update").hasAuthority("PERMISSION_Update")
-//                                .requestMatchers("/service/motorcycle/stock/delete/**").hasAuthority("PERMISSION_Delete")
-//
-//                                .requestMatchers("/service/customer/add").hasAuthority("PERMISSION_Create")
-//                                .requestMatchers("/service/customer/get/**").hasAuthority("PERMISSION_Read")
-//                                .requestMatchers("/service/customer/update").hasAuthority("PERMISSION_Update")
-//                                .requestMatchers("/service/customer/delete/**").hasAuthority("PERMISSION_Delete")
-//
-//                                .requestMatchers("/service/order/add").hasAuthority("PERMISSION_Create")
-//                                .requestMatchers("/service/order/get/**").hasAuthority("PERMISSION_Read")
-//                                .requestMatchers("/service/order/update").hasAuthority("PERMISSION_Update")
-//                                .requestMatchers("/service/order/delete/**").hasAuthority("PERMISSION_Delete")
-//
-//                                .anyRequest()
-//                                .authenticated()
+                        request.requestMatchers("/authentication/login", "/error")
+                                .permitAll()
+
+                                .requestMatchers("/authentication/register").hasRole("Admin")
+
+                                .requestMatchers("/service/manufacturer/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("/service/manufacturer/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("/service/manufacturer/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("/service/manufacturer/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .requestMatchers("/service/motorcycle/model/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("/service/motorcycle/model/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("/service/motorcycle/model/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("/service/motorcycle/model/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .requestMatchers("/service/motorcycle/stock/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("/service/motorcycle/stock/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("/service/motorcycle/stock/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("/service/motorcycle/stock/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .requestMatchers("/service/customer/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("/service/customer/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("/service/customer/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("/service/customer/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .requestMatchers("/service/order/add").hasAuthority("PERMISSION_Create")
+                                .requestMatchers("/service/order/get/**").hasAuthority("PERMISSION_Read")
+                                .requestMatchers("/service/order/update").hasAuthority("PERMISSION_Update")
+                                .requestMatchers("/service/order/delete/**").hasAuthority("PERMISSION_Delete")
+
+                                .anyRequest()
+                                .authenticated()
 
                 )
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider);
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
