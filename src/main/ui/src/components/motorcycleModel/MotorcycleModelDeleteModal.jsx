@@ -5,13 +5,13 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {camelCaseToSentenceCase} from "../../util/camelCaseToSentenceCase";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const MotorcycleModelDeleteModal = (props) => {
     const modalBody = <DeleteItemInformation motorcycleModels={props.motorcycleModels}
                                              recordId={props.recordId}
-                                             setDeleteErrorModalShow={props.setErrorModalShow}
+                                             setDeleteErrorModalShow={props.setDeleteErrorModalShow}
                                              setFormSubmit={props.setFormSubmit}
                                              setDeleteModalShow={props.setDeleteModalShow}/>
 
@@ -32,20 +32,17 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/service/motorcycle/model/delete/${currentRecord.id}`;
-
-        const options = {
-            method: "DELETE",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
+        try {
+            await fetchBackendApi(`/service/motorcycle/model/delete/${currentRecord.id}`, "DELETE");
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            if (error.status === 500) {
+                props.setDeleteErrorModalShow(true);
+                console.error(`Failed to delete Motorcycle model with id: ${currentRecord.id} due to foreign key violation:`, error.message);
+            } else {
+                console.error("Unexpected error:", error.message);
+            }
         }
-
-        const response = await fetch(url, options);
-
-        if (!response.ok) {
-            props.setDeleteErrorModalShow(true);
-        }
-
-        props.setFormSubmit(old => !old);
     }
 
 

@@ -2,11 +2,11 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
-import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import * as Yup from "yup";
 import {Formik} from "formik";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const CustomerAddModal = (props) => {
@@ -18,9 +18,7 @@ const CustomerAddModal = (props) => {
 
 const AddForm = (props) => {
     async function handleSubmit(values) {
-        const url = "/service/customer/add";
-
-        const requestBody = {
+        const body = {
             "firstName": values.firstName,
             "lastName": values.lastName,
             "email": values.email,
@@ -31,14 +29,13 @@ const AddForm = (props) => {
             "country": values.country
         }
 
-        const options = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/customer/add", "POST", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to add Customer:", error.message);
         }
 
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

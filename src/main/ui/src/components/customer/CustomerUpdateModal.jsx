@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 // Imports related to form validation
 import {Formik} from "formik";
@@ -40,15 +39,21 @@ const UpdateForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/customer/get/updateDto/" + props.recordId)
-            .then(result => setCurrentRecord(result));
+        const fetchCustomer = async () => {
+            try {
+                const customer = await fetchBackendApi(`/service/customer/get/updateDto/${props.recordId}`, "GET");
+                setCurrentRecord(customer);
+            } catch (error) {
+                console.error("Failed to fetch Customer:", error.message);
+            }
+        }
+
+        fetchCustomer();
     }, [props.recordId])
 
 
     async function handleSubmit(values) {
-        const url = "/service/customer/update";
-
-        const requestBody = {
+        const body = {
             "id": currentRecord.id,
             "firstName": values.firstName ? values.firstName : currentRecord.firstName,
             "lastName": values.lastName ? values.lastName : currentRecord.lastName,
@@ -60,14 +65,12 @@ const UpdateForm = (props) => {
             "country": values.country ? values.country : currentRecord.country
         }
 
-        const options = {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/customer/update", "PUT", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to update Customer:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

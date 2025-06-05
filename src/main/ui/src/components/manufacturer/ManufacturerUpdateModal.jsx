@@ -4,7 +4,7 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const ManufacturerUpdateModal = (props) => {
@@ -35,24 +35,20 @@ const UpdateForm = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "/service/manufacturer/update";
-
-        const requestBody = {
+        const body = {
             "id": currentRecord.id,
             "name": name ? name : currentRecord.name,
             "country": country ? country : currentRecord.country,
             "partnerSince": partnerSince ? partnerSince : currentRecord.partnerSince
         }
 
-        const options = {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
-        }
-
         if (name || country || partnerSince) {
-            await fetch(url, options);
-            props.setFormSubmit(old => !old);
+            try {
+                await fetchBackendApi("/service/manufacturer/update", "PUT", body);
+                props.setFormSubmit(old => !old);
+            } catch (error) {
+                console.error("Failed to update Manufacturer:", error.message);
+            }
         }
     }
 

@@ -3,7 +3,7 @@ import {removeJwtToken} from "../../security/authService";
 import StripedTable from "../shared/table/StripedTable";
 import Modal from "react-bootstrap/Modal";
 import {useNavigate} from "react-router-dom";
-import {fetchData} from "../../util/fetchData";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 import OrderDeleteModal from "./OrderDeleteModal";
 import OrderUpdateModal from "./OrderUpdateModal";
 import Card from "react-bootstrap/Card";
@@ -54,40 +54,46 @@ const Orders = (props) => {
 
     // Fetch data: Orders of a Customer
     useEffect(() => {
-        fetchData(`/service/order/get/byCustomerId/${props.recordId}`)
-            .then(
-                (result) => {
-                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
-                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
-                    if (result.status === 403) {
-                        removeJwtToken();
-                        navigate('/authentication/login');
-                    }
-
-                    setOrders(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
+        const fetchOrders = async () => {
+            try {
+                const orders = await fetchBackendApi(`/service/order/get/byCustomerId/${props.recordId}`, "GET");
+                setOrders(orders);
+            } catch (error) {
+                if (error.status === 403) {
+                    removeJwtToken();
+                    navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
                     setError(error);
-                    setIsLoaded(true);
                 }
-            );
+            } finally {
+                setIsLoaded(true);
+            }
+        }
+
+        fetchOrders();
     }, [props.recordId, formSubmit, navigate])
 
     // Fetch data: data of a Customer
     useEffect(() => {
-        fetchData(`/service/customer/get/${props.recordId}`)
-            .then((result) => {
-                if (result.status === 403) {
+        const fetchCustomer = async () => {
+            try {
+                const customer = await fetchBackendApi(`/service/customer/get/${props.recordId}`, "GET");
+                setCustomer(customer);
+            } catch (error) {
+                if (error.status === 403) {
                     removeJwtToken();
                     navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
+                    setError(error);
                 }
+            } finally {
+                setIsLoaded(true);
+            }
+        }
 
-                setCustomer(result);
-            })
-            .catch((error) => {
-                console.error("Error fetching customer:", error);
-            });
+        fetchCustomer();
     }, [props.recordId, navigate]);
 
     return (

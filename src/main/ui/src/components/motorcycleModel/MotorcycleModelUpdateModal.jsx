@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -32,11 +31,26 @@ const UpdateForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/manufacturer/get/all")
-            .then(result => setManufacturers(result));
+        const fetchManufacturers = async () => {
+            try {
+                const manufacturers = await fetchBackendApi("/service/manufacturer/get/all", "GET");
+                setManufacturers(manufacturers);
+            } catch (error) {
+                console.error("Failed to fetch Manufacturers:", error.message);
+            }
+        }
 
-        fetchData("/service/motorcycle/model/get/types")
-            .then(result => setMotorcycleModelTypes(result));
+        const fetchMotorcycleModelTypes = async () => {
+            try {
+                const motorcycleModelTypes = await fetchBackendApi("/service/motorcycle/model/get/types", "GET");
+                setMotorcycleModelTypes(motorcycleModelTypes);
+            } catch (error) {
+                console.error("Failed to fetch Motorcycle model types:", error.message);
+            }
+        }
+
+        fetchManufacturers();
+        fetchMotorcycleModelTypes();
 
         const currentRecord = props.motorcycleModels.find(m => m.id.toString() === props.recordId);
 
@@ -46,9 +60,7 @@ const UpdateForm = (props) => {
 
 
     async function handleSubmit(values) {
-        const url = "/service/motorcycle/model/update";
-
-        const requestBody = {
+        const body = {
             "id": currentRecord.id,
             "manufacturer": values.manufacturerName ? manufacturers.find(manufacturer => manufacturer.name === values.manufacturerName) : currentManufacturer,
             "modelName": values.modelName ? values.modelName : currentRecord.modelName,
@@ -63,14 +75,12 @@ const UpdateForm = (props) => {
             "motorcycleModelType": values.modelType ? values.modelType : currentRecord.modelType
         }
 
-        const options = {
-            method: "PUT",
-            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}`},
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/motorcycle/model/update", "PUT", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to update Motorcycle model:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

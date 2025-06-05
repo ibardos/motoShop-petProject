@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const OrderDeleteModal = (props) => {
@@ -31,25 +31,12 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/service/order/delete/${currentRecord.id}`;
-
-        const options = {
-            method: "DELETE",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
+        try {
+            await fetchBackendApi(`/service/order/delete/${currentRecord.id}`, "DELETE");
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Unexpected error:", error.message);
         }
-
-        const response = await fetch(url, options);
-
-        if (response.status === 409) {
-            // Specific handling for foreign key violation
-            props.setDeleteErrorModalShow(true);
-        } else if (!response.ok) {
-            // Generic error handler
-            console.error("Unexpected error:", response.status);
-            // You could show a generic error modal or toast here
-        }
-
-        props.setFormSubmit(old => !old);
     }
 
 

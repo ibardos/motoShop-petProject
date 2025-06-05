@@ -2,7 +2,7 @@ import {FormControl} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {AuthenticationContext} from "../../security/authenticationProvider";
-import {fetchData} from "../../util/fetchData";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 import {removeJwtToken} from "../../security/authService";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -52,27 +52,27 @@ const Customer = () => {
     }
 
 
-    // Fetching data for all the components of Customers page
+    // Fetch data for all the components of Customers page
     useEffect(() => {
-        fetchData("/service/customer/get/all")
-            .then(
-                (result) => {
-                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
-                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
-                    if (result.status === 403) {
-                        removeJwtToken();
-                        navigate('/authentication/login');
-                    }
-
-                    setCustomers(result);
-                    setFilteredData(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
+        const fetchCustomers = async () => {
+            try {
+                const customers = await fetchBackendApi("/service/customer/get/all", "GET");
+                setCustomers(customers);
+                setFilteredData(customers);
+            } catch (error) {
+                if (error.status === 403) {
+                    removeJwtToken();
+                    navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
                     setError(error);
-                    setIsLoaded(true);
                 }
-            );
+            } finally {
+                setIsLoaded(true);
+            }
+        };
+
+        fetchCustomers();
     }, [formSubmit, navigate, ordersModalShow])
 
 
@@ -132,7 +132,7 @@ const Customer = () => {
 
             <CustomerDeleteModal customers={customers}
                                  recordId={recordId}
-                                 setErrorModalShow={setDeleteErrorModalShow}
+                                 setDeleteErrorModalShow={setDeleteErrorModalShow}
                                  setFormSubmit={setFormSubmit}
                                  show={deleteModalShow}
                                  setDeleteModalShow={setDeleteModalShow}

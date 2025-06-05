@@ -3,14 +3,14 @@ import {useEffect, useState} from "react";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const ManufacturerDeleteModal = (props) => {
     const modalBody = (
         <DeleteItemInformation manufacturers={props.manufacturers}
                                recordId={props.recordId}
-                               setDeleteErrorModalShow={props.setErrorModalShow}
+                               setDeleteErrorModalShow={props.setDeleteErrorModalShow}
                                setFormSubmit={props.setFormSubmit}
                                setDeleteModalShow={props.setDeleteModalShow}/>
     );
@@ -32,20 +32,17 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/service/manufacturer/delete/${currentRecord.id}`;
-
-        const options = {
-            method: "DELETE",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
+        try {
+            await fetchBackendApi(`/service/manufacturer/delete/${currentRecord.id}`, "DELETE");
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            if (error.status === 500) {
+                props.setDeleteErrorModalShow(true);
+                console.error(`Failed to delete Manufacturer with id: ${currentRecord.id} due to foreign key violation:`, error.message);
+            } else {
+                console.error("Unexpected error:", error.message);
+            }
         }
-
-        const response = await fetch(url, options);
-
-        if (!response.ok) {
-            props.setDeleteErrorModalShow(true);
-        }
-
-        props.setFormSubmit(old => !old);
     }
 
 

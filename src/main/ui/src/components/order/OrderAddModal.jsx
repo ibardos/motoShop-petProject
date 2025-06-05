@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -38,20 +37,33 @@ const AddForm = (props) => {
         const customers = props.motorcycleStocks.find(m => m.id.toString() === props.recordId);
         setCurrentMotorcycleStock(customers);
 
-        fetchData("/service/order/get/statuses")
-            .then(result => setOrderStatuses(result));
+        const fetchOrderStatuses = async () => {
+            try {
+                const orderStatuses = await fetchBackendApi("/service/order/get/statuses", "GET");
+                setOrderStatuses(orderStatuses);
+            } catch (error) {
+                console.error("Failed to fetch Order statuses:", error.message);
+            }
+        }
 
-        fetchData("/service/customer/get/all")
-            .then(result => setCustomers(result));
+        const fetchCustomers = async () => {
+            try {
+                const customers = await fetchBackendApi("/service/customer/get/all", "GET");
+                setCustomers(customers);
+            } catch (error) {
+                console.error("Failed to fetch Customers:", error.message);
+            }
+        }
+
+        fetchOrderStatuses();
+        fetchCustomers();
     }, [props.motorcycleStocks, props.recordId])
 
 
     async function handleSubmit(values) {
-        const url = "/service/order/add";
-
         const customerId = identifyCustomerId(values.customer)
 
-        const requestBody = {
+        const body = {
             "orderStatus": values.orderStatus,
             "discount": values.discount,
             "estimatedDeliveryDate": values.estimatedDeliveryDate,
@@ -59,14 +71,12 @@ const AddForm = (props) => {
             "customerId": customerId
         }
 
-        const options = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/order/add", "POST", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to add Order:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 
@@ -94,10 +104,9 @@ const AddForm = (props) => {
                     setIncompleteCustomerAlert(true)
                 } else {
                     setIncompleteCustomerAlert(false)
+                    await handleSubmit(values)
+                    props.setOrderAddModalShow(false)
                 }
-
-                await handleSubmit(values)
-                props.setOrderAddModalShow(false)
             }}
         >
             {({

@@ -5,9 +5,8 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 import {identifyMotorcycleModelObject} from "../../util/identifyMotorcycleModelObject";
-import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -28,17 +27,23 @@ const AddForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/motorcycle/model/get/all")
-            .then(result => setMotorcycleModels(result));
+        const fetchMotorcycleModels = async () => {
+            try {
+                const motorcycleModels = await fetchBackendApi("/service/motorcycle/model/get/all", "GET");
+                setMotorcycleModels(motorcycleModels);
+            } catch (error) {
+                console.error("Failed to fetch Motorcycle models:", error.message);
+            }
+        }
+
+        fetchMotorcycleModels();
     }, [])
 
 
     async function handleSubmit(values) {
-        const url = "/service/motorcycle/stock/add";
-
         const motorcycleModel = identifyMotorcycleModelObject(motorcycleModels, values.motorcycleModel);
 
-        const requestBody = {
+        const body = {
             "motorcycleModel": motorcycleModel,
             "mileage": values.mileage,
             "purchasingPrice": values.purchasingPrice,
@@ -47,14 +52,12 @@ const AddForm = (props) => {
             "color": values.color
         }
 
-        const options = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/motorcycle/stock/add", "POST", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to add Motorcycle stock:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

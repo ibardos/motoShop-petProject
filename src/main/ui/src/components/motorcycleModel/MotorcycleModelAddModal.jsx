@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -29,18 +28,31 @@ const AddForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/manufacturer/get/all")
-            .then(result => setManufacturers(result));
+        const fetchManufacturers = async () => {
+            try {
+                const manufacturers = await fetchBackendApi("/service/manufacturer/get/all", "GET");
+                setManufacturers(manufacturers);
+            } catch (error) {
+                console.error("Failed to fetch Manufacturers:", error.message);
+            }
+        }
 
-        fetchData("/service/motorcycle/model/get/types")
-            .then(result => setMotorcycleModelTypes(result));
+        const fetchMotorcycleModelTypes = async () => {
+            try {
+                const motorcycleModelTypes = await fetchBackendApi("/service/motorcycle/model/get/types", "GET");
+                setMotorcycleModelTypes(motorcycleModelTypes);
+            } catch (error) {
+                console.error("Failed to fetch Motorcycle model types:", error.message);
+            }
+        }
+
+        fetchManufacturers();
+        fetchMotorcycleModelTypes();
     }, [])
 
 
     async function handleSubmit(values) {
-        const url = "/service/motorcycle/model/add";
-
-        const requestBody = {
+        const body = {
             "manufacturer": manufacturers.find(manufacturer => manufacturer.name === values.manufacturerName),
             "modelName": values.modelName,
             "modelYear": values.modelYear,
@@ -54,14 +66,12 @@ const AddForm = (props) => {
             "motorcycleModelType": values.modelType
         }
 
-        const options = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/motorcycle/model/add", "POST", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to add Motorcycle model:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 
