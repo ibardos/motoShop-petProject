@@ -225,7 +225,7 @@ public class OrderService {
      * Checks if motorcycle stock has changed between existing order and update request.
      */
     private boolean isMotorcycleStockChanged(Order orderFromDb, OrderRequestDto orderRequestDto) {
-        return orderFromDb.getId() != orderRequestDto.getMotorcycleStockId();
+        return orderFromDb.getMotorcycleStock().getId() != orderRequestDto.getMotorcycleStockId();
     }
 
     /**
