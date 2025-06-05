@@ -132,7 +132,7 @@ const Customer = () => {
 
             <CustomerDeleteModal customers={customers}
                                  recordId={recordId}
-                                 setErrorModalShow={setDeleteErrorModalShow}
+                                 setDeleteErrorModalShow={setDeleteErrorModalShow}
                                  setFormSubmit={setFormSubmit}
                                  show={deleteModalShow}
                                  setDeleteModalShow={setDeleteModalShow}

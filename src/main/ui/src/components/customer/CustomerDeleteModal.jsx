@@ -10,7 +10,7 @@ const CustomerDeleteModal = (props) => {
     const modalBody = (
         <DeleteItemInformation customers={props.customers}
                                recordId={props.recordId}
-                               setDeleteErrorModalShow={props.setErrorModalShow}
+                               setDeleteErrorModalShow={props.setDeleteErrorModalShow}
                                setFormSubmit={props.setFormSubmit}
                                setDeleteModalShow={props.setDeleteModalShow}/>
     );
