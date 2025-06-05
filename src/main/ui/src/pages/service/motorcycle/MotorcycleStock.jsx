@@ -147,6 +147,12 @@ const MotorcycleStock = () => {
                                         setDeleteModalShow={setDeleteModalShow}
                                         onHide={() => setDeleteModalShow(false)}/>
 
+            <MotorcycleStockDeleteErrorModal motorcycleStocks={motorcycleStocks}
+                                             recordId={recordId}
+                                             show={deleteErrorModalShow}
+                                             setDeleteErrorModalShow={setDeleteErrorModalShow}
+                                             onHide={() => setDeleteErrorModalShow(false)}/>
+
             <OrderAddModal motorcycleStocks={motorcycleStocks}
                            recordId={recordId}
                            setFormSubmit={setFormSubmit}
