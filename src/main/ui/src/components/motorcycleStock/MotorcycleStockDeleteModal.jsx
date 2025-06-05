@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import CrudModal from "../shared/CrudModal";
 
 import {camelCaseToSentenceCase} from "../../util/camelCaseToSentenceCase";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const MotorcycleStockDeleteModal = (props) => {
@@ -31,15 +31,17 @@ const DeleteItemInformation = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = `/service/motorcycle/stock/delete/${currentRecord.id}`;
-
-        const options = {
-            method: "DELETE",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` }
+        try {
+            await fetchBackendApi(`/service/motorcycle/stock/delete/${currentRecord.id}`, "DELETE");
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            if (error.status === 500) {
+                props.setDeleteErrorModalShow(true);
+                console.error(`Failed to delete Motorcycle stock with id: ${currentRecord.id} due to foreign key violation:`, error.message);
+            } else {
+                console.error("Unexpected error:", error.message);
+            }
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

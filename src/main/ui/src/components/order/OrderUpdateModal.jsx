@@ -5,8 +5,7 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -38,18 +37,31 @@ const UpdateForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/order/get/" + props.recordId)
-            .then(result => setCurrentRecord(result));
+        const fetchOrder = async () => {
+            try {
+                const order = await fetchBackendApi(`/service/order/get/${props.recordId}`, "GET");
+                setCurrentRecord(order);
+            } catch (error) {
+                console.error(`Failed to fetch Order with id: ${props.recordId} -`, error.message);
+            }
+        }
 
-        fetchData("/service/order/get/statuses")
-            .then(result => setOrderStatuses(result));
+        const fetchOrderStatuses = async () => {
+            try {
+                const orderStatuses = await fetchBackendApi("/service/order/get/statuses", "GET");
+                setOrderStatuses(orderStatuses);
+            } catch (error) {
+                console.error("Failed to fetch Order statuses:", error.message);
+            }
+        }
+
+        fetchOrder();
+        fetchOrderStatuses();
     }, [props.recordId])
 
 
     async function handleSubmit(values) {
-        const url = "/service/order/update";
-
-        const requestBody = {
+        const body = {
             "id": currentRecord.id,
             "orderStatus": values.orderStatus ? values.orderStatus : currentRecord.orderStatus,
             "discount": values.discount ? values.discount : currentRecord.discount,
@@ -58,14 +70,12 @@ const UpdateForm = (props) => {
             "customerId": currentRecord.customerId
         }
 
-        const options = {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/order/update", "PUT", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to update Order:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

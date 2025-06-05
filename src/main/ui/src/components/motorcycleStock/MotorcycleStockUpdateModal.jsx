@@ -5,9 +5,8 @@ import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
 
-import {fetchData} from "../../util/fetchData";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 import {identifyMotorcycleModelObject} from "../../util/identifyMotorcycleModelObject";
-import {getJwtToken} from "../../security/authService";
 
 // Imports related to form validation
 import {Field, Formik} from "formik";
@@ -33,8 +32,16 @@ const UpdateForm = (props) => {
 
 
     useEffect(() => {
-        fetchData("/service/motorcycle/model/get/all")
-            .then(result => setMotorcycleModels(result));
+        const fetchMotorcycleModels = async () => {
+            try {
+                const motorcycleModels = await fetchBackendApi("/service/motorcycle/model/get/all", "GET");
+                setMotorcycleModels(motorcycleModels);
+            } catch (error) {
+                console.error("Failed to fetch Motorcycle models:", error.message);
+            }
+        }
+
+        fetchMotorcycleModels();
 
         const currentRecord = props.motorcycleStocks.find(m => m.id.toString() === props.recordId);
 
@@ -45,11 +52,9 @@ const UpdateForm = (props) => {
 
 
     async function handleSubmit(values) {
-        const url = "/service/motorcycle/stock/update";
-
         const motorcycleModel = identifyMotorcycleModelObject(motorcycleModels, values.motorcycleModel);
 
-        const requestBody = {
+        const body = {
             "id": currentRecord.id,
             "motorcycleModel": values.motorcycleModel ? motorcycleModel : currentMotorcycleModel,
             "mileage": values.mileage ? values.mileage : currentRecord.mileage,
@@ -59,14 +64,12 @@ const UpdateForm = (props) => {
             "color": values.color ? values.color : currentRecord.color
         }
 
-        const options = {
-            method: "PUT",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/motorcycle/stock/update", "PUT", body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to update Motorcycle stock:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

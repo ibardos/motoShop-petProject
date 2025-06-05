@@ -4,7 +4,7 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 import CrudModal from "../shared/CrudModal";
-import {getJwtToken} from "../../security/authService";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 
 
 const ManufacturerAddModal = (props) => {
@@ -26,22 +26,18 @@ const AddForm = (props) => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "/service/manufacturer/add";
-
-        const requestBody = {
+        const body = {
             "name": name,
             "country": country,
             "partnerSince": partnerSince ? partnerSince : currentDate
         }
 
-        const options = {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getJwtToken()}` },
-            body: JSON.stringify(requestBody),
+        try {
+            await fetchBackendApi("/service/manufacturer/add", 'POST', body);
+            props.setFormSubmit(old => !old);
+        } catch (error) {
+            console.error("Failed to add Manufacturer:", error.message);
         }
-
-        await fetch(url, options);
-        props.setFormSubmit(old => !old);
     }
 
 

@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 
 import {saveJwtToken} from "../security/authService";
 import {AuthenticationContext} from "../security/authenticationProvider";
+import {fetchBackendApi} from "../util/fetchBackendApi";
 
 
 const Login = () => {
@@ -42,40 +43,24 @@ const LoginForm = () => {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const url = "/authentication/login";
-
-        const requestBody = {
+        const body = {
             "username": username,
             "password": password
         }
 
-        const options = {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(requestBody),
-        }
-
         try {
-            const response = await fetch(url, options);
+            const response = await fetchBackendApi("/authentication/login", "POST", body);
+            saveJwtToken(response.jwtToken);
 
-            if (response.ok) {
-                const responseBody = await response.json();
+            // Explicitly set the userIsAuthenticated in AuthenticationContext, otherwise the lag in context refresh
+            // will falsely trigger safety mechanism of forced navigation back to login page
+            setUserIsAuthenticated(true);
 
-                const jwtToken = responseBody.jwtToken;
-
-                saveJwtToken(jwtToken);
-
-                // Explicitly set the userIsAuthenticated in AuthenticationContext, otherwise the lag in context refresh
-                // will falsely trigger safety mechanism of forced navigation back to login page
-                setUserIsAuthenticated(true);
-
-                if (userIsAuthenticated) {
-                    navigate('/');
-                }
-            } else {
-                setBadCredentialsAlert("Bad credentials, please try again!");
+            if (userIsAuthenticated) {
+                navigate('/');
             }
         } catch (authenticationError) {
+            setBadCredentialsAlert("Bad credentials, please try again!");
             console.error('Authentication failed: ', authenticationError);
         }
     }

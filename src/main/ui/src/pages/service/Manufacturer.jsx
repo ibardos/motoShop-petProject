@@ -14,7 +14,7 @@ import ManufacturerUpdateModal from "../../components/manufacturer/ManufacturerU
 import ManufacturerDeleteModal from "../../components/manufacturer/ManufacturerDeleteModal";
 import ManufacturerDeleteErrorModal from "../../components/manufacturer/ManufacturerDeleteErrorModal";
 
-import {fetchData} from "../../util/fetchData";
+import {fetchBackendApi} from "../../util/fetchBackendApi";
 import {removeJwtToken} from "../../security/authService";
 import {AuthenticationContext} from "../../security/authenticationProvider";
 
@@ -54,25 +54,25 @@ const Manufacturer = () => {
 
     // Fetching data for all the components of Manufacturer page
     useEffect(() => {
-        fetchData("/service/manufacturer/get/all")
-            .then(
-                (result) => {
-                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
-                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
-                    if (result.status === 403) {
-                        removeJwtToken();
-                        navigate('/authentication/login');
-                    }
-
-                    setManufacturers(result);
-                    setFilteredData(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
+        const fetchManufacturers = async () => {
+            try {
+                const manufacturers = await fetchBackendApi("/service/manufacturer/get/all", "GET");
+                setManufacturers(manufacturers);
+                setFilteredData(manufacturers);
+            } catch (error) {
+                if (error.status === 403) {
+                    removeJwtToken();
+                    navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
                     setError(error);
-                    setIsLoaded(true);
                 }
-            );
+            } finally {
+                setIsLoaded(true);
+            }
+        };
+
+        fetchManufacturers();
     }, [formSubmit, navigate])
 
 

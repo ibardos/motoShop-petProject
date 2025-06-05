@@ -13,10 +13,11 @@ import MotorcycleStockAddModal from "../../../components/motorcycleStock/Motorcy
 import MotorcycleStockUpdateModal from "../../../components/motorcycleStock/MotorcycleStockUpdateModal";
 import MotorcycleStockDeleteModal from "../../../components/motorcycleStock/MotorcycleStockDeleteModal";
 
-import {fetchData} from "../../../util/fetchData";
+import {fetchBackendApi} from "../../../util/fetchBackendApi";
 import {removeJwtToken} from "../../../security/authService";
 import {AuthenticationContext} from "../../../security/authenticationProvider";
 import OrderAddModal from "../../../components/order/OrderAddModal";
+import MotorcycleStockDeleteErrorModal from "../../../components/motorcycleStock/MotorcycleStockDeleteErrorModal";
 
 
 const MotorcycleStock = () => {
@@ -34,6 +35,7 @@ const MotorcycleStock = () => {
     const [addModalShow, setAddModalShow] = useState(false);
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const [deleteModalShow, setDeleteModalShow] = useState(false);
+    const [deleteErrorModalShow, setDeleteErrorModalShow] = useState(false);
     const [orderAddModalShow,  setOrderAddModalShow] = useState(false);
     const [recordId, setRecordId] = useState("");
 
@@ -58,27 +60,27 @@ const MotorcycleStock = () => {
     }
 
 
-    // Fetching data for all the components of Motorcycle stock page
+    // Fetch data for all the components of Motorcycle stock page
     useEffect(() => {
-        fetchData("/service/motorcycle/stock/get/all")
-            .then(
-                (result) => {
-                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
-                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
-                    if (result.status === 403) {
-                        removeJwtToken();
-                        navigate('/authentication/login');
-                    }
-
-                    setMotorcycleStocks(result);
-                    setFilteredData(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
+        const fetchMotorcycleStocks = async () => {
+            try {
+                const motorcycleStocks = await fetchBackendApi("/service/motorcycle/stock/get/all", "GET");
+                setMotorcycleStocks(motorcycleStocks);
+                setFilteredData(motorcycleStocks);
+            } catch (error) {
+                if (error.status === 403) {
+                    removeJwtToken();
+                    navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
                     setError(error);
-                    setIsLoaded(true);
                 }
-            );
+            } finally {
+                setIsLoaded(true);
+            }
+        };
+
+        fetchMotorcycleStocks();
     }, [formSubmit, navigate])
 
 

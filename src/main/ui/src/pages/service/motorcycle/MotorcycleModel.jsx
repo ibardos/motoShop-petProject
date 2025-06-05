@@ -14,7 +14,7 @@ import MotorcycleModelUpdateModal from "../../../components/motorcycleModel/Moto
 import MotorcycleModelDeleteModal from "../../../components/motorcycleModel/MotorcycleModelDeleteModal";
 import MotorcycleModelDeleteErrorModal from "../../../components/motorcycleModel/MotorcycleModelDeleteErrorModal";
 
-import {fetchData} from "../../../util/fetchData";
+import {fetchBackendApi} from "../../../util/fetchBackendApi";
 import {removeJwtToken} from "../../../security/authService";
 import {AuthenticationContext} from "../../../security/authenticationProvider";
 
@@ -60,27 +60,27 @@ const MotorcycleModel = () => {
     }
 
 
-    // Fetching data for all the components of Motorcycle model page
+    // Fetch data for all the components of Motorcycle model page
     useEffect(() => {
-        fetchData("/service/motorcycle/model/get/all")
-            .then(
-                (result) => {
-                    // If HTTP response has 403 status code here, that means the JWT token has been maliciously altered
-                    // so the user will be prompted to log in again, and retrieve a valid JWT token from the back-end server
-                    if (result.status === 403) {
-                        removeJwtToken();
-                        navigate('/authentication/login');
-                    }
-
-                    setMotorcycleModels(result);
-                    setFilteredData(result);
-                    setIsLoaded(true);
-                },
-                (error) => {
+        const fetchMotorcycleModels = async () => {
+            try {
+                const motorcycleModels = await fetchBackendApi("/service/motorcycle/model/get/all", "GET");
+                setMotorcycleModels(motorcycleModels);
+                setFilteredData(motorcycleModels);
+            } catch (error) {
+                if (error.status === 403) {
+                    removeJwtToken();
+                    navigate('/authentication/login');
+                } else {
+                    console.error("Unexpected error:", error.message);
                     setError(error);
-                    setIsLoaded(true);
                 }
-            );
+            } finally {
+                setIsLoaded(true);
+            }
+        };
+
+        fetchMotorcycleModels();
     }, [formSubmit, navigate])
 
 
