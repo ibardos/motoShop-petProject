@@ -132,7 +132,7 @@ const Manufacturer = () => {
 
             <ManufacturerDeleteModal manufacturers={manufacturers}
                                      recordId={recordId}
-                                     setErrorModalShow={setDeleteErrorModalShow}
+                                     setDeleteErrorModalShow={setDeleteErrorModalShow}
                                      setFormSubmit={setFormSubmit}
                                      show={deleteModalShow}
                                      setDeleteModalShow={setDeleteModalShow}
