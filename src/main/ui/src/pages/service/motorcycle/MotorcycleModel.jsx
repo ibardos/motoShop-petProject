@@ -140,7 +140,7 @@ const MotorcycleModel = () => {
 
             <MotorcycleModelDeleteModal motorcycleModels={motorcycleModels}
                                         recordId={recordId}
-                                        setErrorModalShow={setDeleteErrorModalShow}
+                                        setDeleteErrorModalShow={setDeleteErrorModalShow}
                                         setFormSubmit={setFormSubmit}
                                         show={deleteModalShow} setDeleteModalShow={setDeleteModalShow}
                                         onHide={() => setDeleteModalShow(false)}/>

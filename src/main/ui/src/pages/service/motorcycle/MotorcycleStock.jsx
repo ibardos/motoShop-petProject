@@ -141,6 +141,7 @@ const MotorcycleStock = () => {
 
             <MotorcycleStockDeleteModal motorcycleStocks={motorcycleStocks}
                                         recordId={recordId}
+                                        setDeleteErrorModalShow={setDeleteErrorModalShow}
                                         setFormSubmit={setFormSubmit}
                                         show={deleteModalShow}
                                         setDeleteModalShow={setDeleteModalShow}

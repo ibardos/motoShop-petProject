@@ -11,6 +11,7 @@ import {fetchBackendApi} from "../../util/fetchBackendApi";
 const MotorcycleStockDeleteModal = (props) => {
     const modalBody = <DeleteItemInformation motorcycleStocks={props.motorcycleStocks}
                                              recordId={props.recordId}
+                                             setDeleteErrorModalShow={props.setDeleteErrorModalShow}
                                              setFormSubmit={props.setFormSubmit}
                                              setDeleteModalShow={props.setDeleteModalShow}/>
 
