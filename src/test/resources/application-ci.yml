@@ -14,5 +14,5 @@ spring:
 application:
   security:
     jwt:
-      secret-key: dummykeyusedforci123456789
+      secret-key: aJY0J85oUTN3kjldfiuew3khdfgikuFfjhygcel2iug76KUYFLkvgbilhe39p7gtd3ouLKJHEnflJKREvfw8AJmInMNqFtfHWNK
       expiration: 3600000
