@@ -26,7 +26,7 @@ jobs:
 
       - name: Build and test with Maven
         # End-to-end tests are used to cover all code-components, excluding context loading test, as database is not present in CI environment.
-        run: mvn -B package --file pom.xml -Dspring.profiles.active=dev -Dtest=!MotoShopApplicationGeneralTests#contextLoads
+        run: mvn -B package --file pom.xml -Dspring.profiles.active=ci -Dtest=!MotoShopApplicationGeneralTests#contextLoads
 
       - name: Debug Environment
         run: env
