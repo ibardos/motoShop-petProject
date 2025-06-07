@@ -8,6 +8,7 @@ import com.ibardos.motoShop.repository.CustomerRepository;
 import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
+import org.hibernate.Hibernate;
 
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class CustomerService {
     public CustomerDto add(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
 
+        // Ensure lazy-loaded orders are initialized to prevent LazyInitializationException
+        Hibernate.initialize(savedCustomer.getOrders());
+
         return new CustomerDto(savedCustomer);
     }
 
@@ -46,6 +50,9 @@ public class CustomerService {
     public CustomerDto get(int id) {
         Customer customerFromDb = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
+
+        // Ensure lazy-loaded orders are initialized to prevent LazyInitializationException
+        Hibernate.initialize(customerFromDb.getOrders());
 
         return new CustomerDto(customerFromDb);
     }
@@ -72,6 +79,9 @@ public class CustomerService {
      */
     public List<CustomerDto> getAll() {
         List<Customer> customersFromDb = customerRepository.findAllByOrderByIdAsc();
+
+        // Ensure lazy-loaded orders are initialized to prevent LazyInitializationException
+        customersFromDb.forEach(customer -> Hibernate.initialize(customer.getOrders()));
 
         return customersFromDb.stream()
                 .map(CustomerDto::new)
