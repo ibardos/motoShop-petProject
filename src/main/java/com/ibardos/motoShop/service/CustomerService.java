@@ -7,8 +7,10 @@ import com.ibardos.motoShop.repository.CustomerRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import jakarta.persistence.Transient;
 import org.springframework.stereotype.Service;
 import org.hibernate.Hibernate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,6 +49,7 @@ public class CustomerService {
      * @return CustomerDto containing the customer's data
      * @throws EntityNotFoundException if no customer exists with the specified ID
      */
+    @Transactional
     public CustomerDto get(int id) {
         Customer customerFromDb = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
@@ -61,13 +64,12 @@ public class CustomerService {
      * Retrieves a customer record from the database by its ID.
      *
      * @param id The unique identifier of the customer to retrieve
-     * @return CustomerDto containing the customer's data
+     * @return CustomerUpdateDto containing the customer's data
      * @throws EntityNotFoundException if no customer exists with the specified ID
      */
     public CustomerUpdateDto getUpdateDto(int id) {
         Customer customerFromDb = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
-
         return new CustomerUpdateDto(customerFromDb);
     }
 
@@ -77,6 +79,7 @@ public class CustomerService {
      * @return List of CustomerDto objects containing all customers' data, sorted by ID in ascending order
      * @throws EntityNotFoundException if no customers exist in the database
      */
+    @Transactional
     public List<CustomerDto> getAll() {
         List<Customer> customersFromDb = customerRepository.findAllByOrderByIdAsc();
 
@@ -111,14 +114,17 @@ public class CustomerService {
      * @throws EntityNotFoundException if no customer exists with the specified ID
      * @throws IllegalStateException if the customer has any related order in the database
      */
+    @Transactional
     public void delete(int id) {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Customer with id: " + id + " not found."));
 
+        // Ensure lazy-loaded orders are initialized before checking isEmpty()
+        Hibernate.initialize(customer.getOrders());
+
         if (!customer.getOrders().isEmpty()) {
             throw new IllegalStateException("Customer with id " + id + " cannot be deleted because it has orders.");
         }
-
         customerRepository.deleteById(id);
     }
 }
