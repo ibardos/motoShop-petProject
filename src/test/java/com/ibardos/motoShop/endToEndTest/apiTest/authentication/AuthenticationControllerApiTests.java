@@ -33,18 +33,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AuthenticationControllerApiTests {
     @LocalServerPort
     private int port;
+
     private String baseUrl;
-    private HttpClient client;
+    private static HttpClient client;
     private String jwtTokenAdminRole;
 
-
-    @PostConstruct
-    void initBeforeAll() throws Exception {
+    @BeforeAll
+    static void setupAll() {
         client = HttpClient.newBuilder().build();
+    }
 
+    @BeforeEach
+    void setupEach() throws Exception {
         baseUrl = "http://localhost:" + port + "/";
-
-        // JWT of authenticated ApplicationUser with Admin role needed to be authorized for calling register endpoint
         jwtTokenAdminRole = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Admin");
     }
 

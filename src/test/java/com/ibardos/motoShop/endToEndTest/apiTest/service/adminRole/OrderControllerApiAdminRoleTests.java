@@ -5,10 +5,7 @@ import com.ibardos.motoShop.endToEndTest.util.EndToEndTestUtil;
 import jakarta.annotation.PostConstruct;
 
 import org.json.JSONObject;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,17 +33,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OrderControllerApiAdminRoleTests {
     @LocalServerPort
     private int port;
+
     private String baseUrl;
-    private HttpClient client;
+    private static HttpClient client;
     private String jwtToken;
 
-
-    @PostConstruct
-    public void initBeforeAll() throws Exception {
+    @BeforeAll
+    static void setupAll() {
         client = HttpClient.newBuilder().build();
+    }
 
+    @BeforeEach
+    void setupEach() throws Exception {
         baseUrl = "http://localhost:" + port + "/";
-
         jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Admin");
     }
 

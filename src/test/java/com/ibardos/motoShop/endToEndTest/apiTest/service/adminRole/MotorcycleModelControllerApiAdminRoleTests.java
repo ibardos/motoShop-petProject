@@ -33,17 +33,19 @@ import java.nio.file.Files;
 public class MotorcycleModelControllerApiAdminRoleTests {
     @LocalServerPort
     private int port;
+
     private String baseUrl;
-    private HttpClient client;
+    private static HttpClient client;
     private String jwtToken;
 
-
-    @PostConstruct
-    public void initBeforeAll() throws Exception {
+    @BeforeAll
+    static void setupAll() {
         client = HttpClient.newBuilder().build();
+    }
 
+    @BeforeEach
+    void setupEach() throws Exception {
         baseUrl = "http://localhost:" + port + "/";
-
         jwtToken = EndToEndTestUtil.retrieveJwtToken(baseUrl, client, "Admin");
     }
 
