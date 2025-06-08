@@ -39,7 +39,7 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/authentication/login", "/error")
+                        request.requestMatchers("/authentication/login", "/error", "/health/ping")
                                 .permitAll()
 
                                 .requestMatchers("/authentication/register").hasRole("Admin")
