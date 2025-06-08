@@ -8,7 +8,7 @@ server and ReactJS front-end user interface communicating via REST APIs. Persist
 PostgreSQL relational database, secured with Spring Security and role-based authorization. Session handling is stateless
 using JWT web-tokens.
 
-**Live Demo:** [https://motoshop-petproject.netlify.app](https://motoshop-petproject.netlify.app)
+**Live Demo:** <a href="https://motoshop-petproject.netlify.app" target="_blank">motoShop - ERP</a>
 
 **The aim of the project:** I started this project after finishing my full-stack developer studies at Codecool, to further
 extend my practical knowledge related to software development. The main focus of the project was to gather as much
