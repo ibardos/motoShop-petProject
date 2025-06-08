@@ -3,10 +3,12 @@
 **Topic:** A solo "pet project" about an ERP software for a motorcycle retail shop, designed to be a modern single-page
 web application.
 
-The project is under continuous development, with a functional Java back-end server, to which a ReactJS front-end
-user-interface is connected. The back-end and the front-end are communicating via REST APIs. For persistent data storage,
-a PostgreSQL relational database was established. Data is protected with Spring Security. Authorization is role-based.
-Session handling is stateless by using JWT web-tokens.
+The application is now fully deployed and available online, providing a seamless experience with a modern Java back-end
+server and ReactJS front-end user interface communicating via REST APIs. Persistent data storage is managed with a 
+PostgreSQL relational database, secured with Spring Security and role-based authorization. Session handling is stateless
+using JWT web-tokens.
+
+**Live Demo:** [https://motoshop-petproject.netlify.app](https://motoshop-petproject.netlify.app)
 
 **The aim of the project:** I started this project after finishing my full-stack developer studies at Codecool, to further
 extend my practical knowledge related to software development. The main focus of the project was to gather as much
@@ -137,90 +139,36 @@ To being notified about further developments on the project, please consider "wa
 8. Implement login and registration features at the front-end side
     - Create new React components to handle login/registration through UI
     - Implement conditional UI element rendering (buttons, navbar) according to user roles and permissions
+9. Deploy application to public hosting
+    - Containerize the application using Docker
+    - Deploy back-end and front-end components to platforms such as Render, Netlify, Supabase
+    - Configure environment variables and database connections for production
+    - Enable continuous deployment through GitHub Actions CI/CD pipeline
 
 ### Future development plans:
-9. Containerize application - Docker
-   - Create Dockerfile
-   - Create Shell scripts to build and run Dockerfile
-10. Deploy the application to a public server
-    - Utilize previously implemented GitHub Actions CI pipeline for deployment
-      - Update CI pipeline into CI/CD to have Continuous Deployment as well
-    - Utilize previously created Dockerfile for containerization
-    - Add job to YAML file to handle automatic deployment in a containerized environment
+10. Containerize application - Docker (local deployment support coming soon)
+    - Create Dockerfile
+    - Create Shell scripts to build and run Dockerfile
 11. Implement further functionalities
     - Banking
     - Customers
+    - Orders
     - User management
     - Account management
 
-## How to use this repository:
-#### Establish project:
-1. Fork my repository (do not clone it!)
-2. Create Postgre SQL **database** and **login role** on your machine, with following parameters:
-    - Database name: motoShop
-    - User name: ibardos_GitHub_demoProject
-    - Password: Asd123
-3. Download node dependencies for ReactJS
-   1. Open a terminal here: ```~/src/main/ui```
-   2. Run command: ```npm install```
-4. Create a run configuration in your IDE for the back-end server - Java 21
-5. Create a run configuration in your IDE for the front-end server - npm
-
-<br>
-
-#### Back-end testing:
-
-With Postman:
-1. You can find a collection of HTTP requests in this folder of the repository: ```~/src/test/resources/motoShop.postman_collection.json```
-2. Import the collection as raw text into <a href="https://www.postman.com/downloads/" target="_blank">Postman</a>
-3. Open the project in your IDE (I've used <a href="https://www.jetbrains.com/idea/download/?section=mac" target="_blank">IntelliJ IDEA Ultimate</a>)
-4. Start the back-end server in your IDE
-   - Database tables will be created and initialized with data automatically
-5. Test the API endpoints with the predefined HTTP requests in Postman (edge cases are also covered)
-   - Remember to retrieve the proper (see hints) JWT token to be able to call service APIs
-     - Retrieved JWT token should be sent during each subsequent API calls to be authorized
-
-With my set of End-to-End tests: 
-1. Run the tests I've created for API endpoint testing, located here: ```~/src/test/java/com/ibardos/motoShop/endToEndTest/apiTest```
-   - The defined tests have automatic database setup/cleanup code as well in a mock database specifically for testing purposes,
-so you don't have to bother with that
-
-**IMPORTANT:** I managed to "store" the Java back-end application with both persistence technologies used during the project,
-JDBC and ORM as well. You can perform the above-mentioned End-to-End tests against the back-end APIs working with JDBC, or
-even with ORM, by checking out one of the available Git branches in the ```milestone``` git folder, to choose between the
-two distinct "versions" of the Java back-end code. Although they're built different "under the hood", you should notice, that
-they perform exactly the same way. Don't forget to start the Java back-end server by hand before start testing in these
-branches, as opposed to the "latest" version of the application, these older variants do not have automatic server start!
-
-<br>
-
-#### Front-end:
-1. Start the back-end and front-end servers simultaneously (preferably with a predefined Compound in your IDE)
-2. Log in to be able to use the application - available from 2.0 or later versions (see hints below)
-2. Navigate through the menu points in your web browser (rendered according to your role and permissions)
-3. Try to create/read/update/delete data at any page
-
-**IMPORTANT:** The front-end can be tested as well with both persistence technologies used during the project on the
-back-end side, by checking out one of the available Git branches in the ```milestone``` git folder. After successful checking,
-start the front-end server and use the application with its Graphical User Interface (GUI), just as I described in the
-section above. You should notice by using the GUI, that everything will perform just exactly the same way with JDBC, and
-with ORM as well.
-
-<br>
+## Note on local setup:
+Local deployment instructions via manual IDE configurations have been removed as the application is now fully deployed online.
+Support for local deployment using Docker will be provided soon. Please stay tuned for updates.
 
 ## Hints:
 - You can create a Postgre SQL database in your terminal, but I recommend to use <a href="https://www.pgadmin.org/download/" target="_blank">"pgAdmin 4"</a> if you prefer to use a GUI.
 - You can download Postman from the link above, if you haven't already. It is a really helpful tool during API development.
-- Create a compound in your IDE to be able to run back-end and front-end servers simultaneously with a push of a button.
-  - You don't need to bother with database initialisation at any point, as I managed to do that programmatically.
 - If you don't understand something, Google it, ask ChatGPT about it, or feel free to contact me.
-
 
 - Security configuration back-end:
   - User role: read permission
   - Sales role: create, read, update permissions
   - Admin role: create, read, update, delete permissions
-
 
 - Security configuration front-end:
   - username: user, password: user
