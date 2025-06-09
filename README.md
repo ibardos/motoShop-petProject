@@ -10,6 +10,10 @@ using JWT web-tokens.
 
 **Live Demo:** <a href="https://motoshop-petproject.netlify.app" target="_blank">motoShop - ERP</a>
 
+⚠️ Please note: While the application is kept constantly online and avoids cold starts, it is hosted using free-tier infrastructure for demo purposes. In some views (e.g. modals where data is fetched on open), a short delay of 1–2 seconds may occur before data is displayed.
+
+🔄 For a consistent demonstration experience, the database is automatically reset and repopulated with an initial dataset every day at 3:00 AM (UTC).
+
 **The aim of the project:** I started this project after finishing my full-stack developer studies at Codecool, to further
 extend my practical knowledge related to software development. The main focus of the project was to gather as much
 experience as possible with modern software development techniques, frequently used design patterns, frameworks, persistence
