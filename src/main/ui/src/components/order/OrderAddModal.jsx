@@ -174,7 +174,7 @@ const AddForm = (props) => {
 
 
                     <div style={{display: "flex", justifyContent: "center"}}>
-                        <Button variant="secondary" style={{paddingInline: "30px"}} type="submit">Update</Button>
+                        <Button variant="secondary" style={{paddingInline: "30px"}} type="submit">Create order</Button>
                     </div>
                 </Form>
             )}
