@@ -94,6 +94,9 @@ fabric.properties
 # Compiled class file
 *.class
 
+# Spring Boot config
+src/main/resources/application-dev.yml
+
 # Log file
 *.log
 
